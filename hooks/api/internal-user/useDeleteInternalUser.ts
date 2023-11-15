@@ -1,5 +1,5 @@
 import { queryKeyInternalUser } from '@apps/packages/lib/constants'
-import apiServices from '@apps/services'
+import apiServices from '@apps/packages/services'
 import { InternalUserDeleteItemParams, InternalUserDeleteItemResponse } from '@apps/packages/services/internal-user'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

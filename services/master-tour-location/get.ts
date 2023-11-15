@@ -2,7 +2,7 @@ import { common } from '@apps/packages/lib/constants'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { httpGetListResponseSchemaBuilder } from '../../../BaseResponse'
+import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/tour-location`

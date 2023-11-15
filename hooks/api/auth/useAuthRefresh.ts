@@ -1,4 +1,4 @@
-import apiServices from '@apps/services'
+import apiServices from '@apps/packages/services'
 import { mainInstance } from '@apps/packages/services/apiService'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'

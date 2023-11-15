@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { httpGetDetailResponseSchemaBuilder } from '../../../BaseResponse'
+import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = '/auth/admin'

@@ -1,4 +1,4 @@
-import apiServices from '@apps/services'
+import apiServices from '@apps/packages/services'
 import { AdminAuthLoginBody, AdminAuthLoginResponse } from '@apps/packages/services/auth'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

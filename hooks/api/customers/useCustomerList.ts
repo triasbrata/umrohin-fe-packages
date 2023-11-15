@@ -1,6 +1,6 @@
 import { queryKeyCustomers } from '@apps/packages/lib/constants'
-import apiServices from '@apps/services'
-import { placeholderListBuilder } from '@apps/services/BaseResponse'
+import apiServices from '@apps/packages/services'
+import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
 import { CustomerListParams, CustomerListResponse, CustomerListResponseSchema } from '@apps/packages/services/customers'
 import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'

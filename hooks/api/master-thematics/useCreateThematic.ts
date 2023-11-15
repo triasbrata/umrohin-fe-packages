@@ -1,5 +1,5 @@
 import { queryKeyMasterThematics } from '@apps/packages/lib/constants'
-import apiServices from '@apps/services'
+import apiServices from '@apps/packages/services'
 import { ThematicCreateItemBody, ThematicCreateItemResponse } from '@apps/packages/services/master-thematics'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

@@ -2,7 +2,7 @@ import { common } from '@apps/packages/lib/constants'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { HttpBaseResponseMetaSchema } from '../../../BaseResponse'
+import { HttpBaseResponseMetaSchema } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/facility`

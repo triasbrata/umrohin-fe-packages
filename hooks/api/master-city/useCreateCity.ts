@@ -1,5 +1,5 @@
 import { queryKeyMasterCity } from '@apps/packages/lib/constants'
-import apiServices from '@apps/services'
+import apiServices from '@apps/packages/services'
 import { CityCreateItemBody, CityCreateItemResponse } from '@apps/packages/services/master-city'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

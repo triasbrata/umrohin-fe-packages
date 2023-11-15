@@ -1,5 +1,5 @@
 import { queryKeyCustomers } from '@apps/packages/lib/constants'
-import apiServices from '@apps/services'
+import apiServices from '@apps/packages/services'
 import {
   CustomerActivationItemBody,
   CustomerActivationItemParams,

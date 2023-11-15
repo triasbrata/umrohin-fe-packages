@@ -1,6 +1,6 @@
 import { queryKeyMasterThematics } from '@apps/packages/lib/constants'
-import apiServices from '@apps/services'
-import { placeholderListBuilder } from '@apps/services/BaseResponse'
+import apiServices from '@apps/packages/services'
+import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
 import {
   DummyThematicListItem,
   ThematicListParams,

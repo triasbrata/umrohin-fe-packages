@@ -1,5 +1,5 @@
 import { useAntdContextHolder } from '@apps/packages/lib/context'
-import { HttpGetDetailResponse, HttpGetListResponse } from '@apps/services/BaseResponse'
+import { HttpGetDetailResponse, HttpGetListResponse } from '@apps/packages/services/BaseResponse'
 import {
   MutationFunction,
   QueryKey,

@@ -3,7 +3,7 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 
-import { httpGetDetailResponseSchemaBuilder } from '../../../BaseResponse'
+import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/thematic`
