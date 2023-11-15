@@ -1,0 +1,27 @@
+.tablePagination {
+  @apply !flex !w-full;
+}
+
+.tablePagination :global(.ant-pagination-total-text) {
+  @apply !mr-auto;
+}
+
+.tablePagination :global(.ant-pagination-prev) {
+  @apply !inline-flex !items-center !justify-center !border !border-[#E5E7EB] !border-r-0 !rounded-r-none !mr-0;
+}
+
+.tablePagination :global(.ant-pagination-next) {
+  @apply !inline-flex !items-center !justify-center !border !border-[#E5E7EB] !rounded-l-none;
+}
+
+.tablePagination :global(.ant-pagination-item) {
+  @apply !border !border-[#E5E7EB] !border-r-0 !rounded-none !mr-0;
+}
+
+.tablePagination :global(.ant-pagination-item-active) {
+  @apply !bg-bolder-brand;
+}
+
+.tablePagination :global(.ant-pagination-item-active a) {
+  @apply !text-white;
+}

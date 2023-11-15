@@ -1,0 +1,4 @@
+export const queryKeyMitraAgency = {
+  MITRA_AGENCY_LIST: 'MITRA_AGENCY_LIST',
+  MITRA_AGENCY_DETAIL: 'MITRA_AGENCY_DETAIL',
+}

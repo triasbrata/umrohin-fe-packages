@@ -1,0 +1,25 @@
+.customSwiper {
+  @apply relative overflow-y-visible pb-16;
+}
+
+.customSwiper :global(.swiper-scrollbar) {
+  @apply !bg-[#9CA3AF];
+}
+
+.customSwiper :global(.swiper-scrollbar-drag) {
+  @apply top-[-3px] rounded-xl bg-[#EE204D] h-2;
+}
+
+.customSwiper :global(.swiper-scrollbar-horizontal) {
+  bottom: var(--swiper-scrollbar-bottom, 24px);
+  height: var(--swiper-scrollbar-size, 1px);
+  width: calc(100% - 2 * var(--swiper-scrollbar-sides-offset, 6%));
+}
+
+.customSwiperPrevButton {
+  @apply !absolute !right-[52px] !bottom-[5px] !z-[2];
+}
+
+.customSwiperNextButton {
+  @apply !absolute !right-[2px] !bottom-[5px] !z-[2];
+}

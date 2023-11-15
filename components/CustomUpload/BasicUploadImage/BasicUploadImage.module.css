@@ -1,0 +1,23 @@
+.basicUploadImage {
+  @apply !border-none !w-auto;
+}
+
+.basicUploadImage :global(.ant-upload .ant-upload-btn) {
+  @apply !p-0;
+}
+
+.basicUploadImage :global(.ant-upload-drag) {
+  @apply !border-none !bg-transparent;
+}
+
+.basicUploadImage :global(.ant-upload-list-item-container) {
+  @apply !m-0;
+}
+
+.basicUploadImage :global(.ant-upload-list-item) {
+  @apply !flex !items-center !justify-center !border-neutral-200 !border-dashed !rounded-md !overflow-hidden !bg-neutral-50 !h-24 !w-24 !p-0;
+}
+
+.basicUploadImage :global(.ant-upload-list-item::before) {
+  @apply !rounded-md !h-full !w-full;
+}

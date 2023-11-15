@@ -1,0 +1,33 @@
+.side-nav-menu .ant-menu-item,
+.side-nav-menu .ant-menu-item-selected {
+  @apply !h-[56px] !p-4 !my-3 !mx-auto;
+
+  width: calc(100% - 32px) !important;
+}
+
+.side-nav-menu .ant-menu-item-active,
+.side-nav-menu .ant-menu-item-selected {
+  @apply !bg-[#EE204D] !text-white;
+}
+
+.side-nav-menu .ant-menu-title-content {
+  @apply !whitespace-normal !leading-normal !ml-3;
+
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), margin 0.3s, color 0.1s !important;
+}
+
+.side-nav-menu .ant-menu-title-content a {
+  transition: color 0.1s !important;
+}
+
+.side-nav-menu .ant-menu-item-group {
+  @apply !border-t !border-t-[#E5E7EB] !py-3;
+}
+
+.side-nav-menu .ant-menu-item-group .ant-menu-item-group-title {
+  @apply !text-black !font-semibold !py-0 !mb-1;
+}
+
+.side-nav-menu .ant-menu-item-group .ant-menu-item {
+  @apply !my-0;
+}

@@ -1,0 +1,7 @@
+.ant-switch {
+  @apply !bg-[#BFBFBF];
+}
+
+.ant-switch.ant-switch-checked {
+  @apply !bg-[#EE204D];
+}

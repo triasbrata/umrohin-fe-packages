@@ -1,0 +1,11 @@
+.ant-form-item-label > label {
+  @apply !w-full;
+}
+
+.ant-form-item-explain-error {
+  @apply !text-xs !mt-[2px];
+}
+
+.ant-select-selection-item {
+  @apply !text-sm;
+}

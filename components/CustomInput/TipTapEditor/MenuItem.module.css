@@ -1,0 +1,12 @@
+.menuItem {
+  @apply !flex !items-center !justify-center !border-0 !border-r !border-r-[#E5E7EB] !rounded-none !cursor-pointer !p-1;
+}
+
+.menuItem :global(svg) {
+  @apply !h-4 !w-4;
+}
+
+.menuItem:global(:hover),
+.menuItem:global(.is-active) {
+  @apply bg-black/5;
+}

@@ -1,0 +1,4 @@
+export const queryKeyMasterHotel = {
+  MASTER_HOTEL_LIST: 'MASTER_HOTEL_LIST',
+  MASTER_HOTEL_DETAIL: 'MASTER_HOTEL_DETAIL',
+}
