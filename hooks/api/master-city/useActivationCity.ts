@@ -1,10 +1,10 @@
-import { queryKeyMasterCity } from '@apps/split/lib/constants'
+import { queryKeyMasterCity } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import {
   CityActivationItemBody,
   CityActivationItemParams,
   CityActivationItemResponse,
-} from '@apps/split/services/master-city'
+} from '@apps/packages/services/master-city'
 import { useState } from 'react'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

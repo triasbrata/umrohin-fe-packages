@@ -1,10 +1,10 @@
-import { queryKeyInternalUser } from '@apps/split/lib/constants'
+import { queryKeyInternalUser } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import {
   InternalUserUpdateItemBody,
   InternalUserUpdateItemParams,
   InternalUserUpdateItemResponse,
-} from '@apps/split/services/internal-user'
+} from '@apps/packages/services/internal-user'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

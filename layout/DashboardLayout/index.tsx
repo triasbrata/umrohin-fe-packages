@@ -1,6 +1,6 @@
 'use client'
 
-import { AntdContextHolder } from '@apps/split/lib/context'
+import { AntdContextHolder } from '@apps/packages/lib/context'
 import { Layout, Modal, message, notification } from 'antd'
 import { ReactNode } from 'react'
 

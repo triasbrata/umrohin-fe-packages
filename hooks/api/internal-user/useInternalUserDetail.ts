@@ -1,5 +1,5 @@
-import { queryKeyInternalUser } from '@apps/split/lib/constants'
-import { InternalUserListItem } from '@apps/split/services/internal-user'
+import { queryKeyInternalUser } from '@apps/packages/lib/constants'
+import { InternalUserListItem } from '@apps/packages/services/internal-user'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useInternalUserDetailConfig = {

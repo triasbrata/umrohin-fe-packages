@@ -1,5 +1,5 @@
 import apiServices from '@apps/services'
-import { mainInstance } from '@apps/split/services/apiService'
+import { mainInstance } from '@apps/packages/services/apiService'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 

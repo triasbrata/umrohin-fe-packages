@@ -1,4 +1,4 @@
-import { useAntdContextHolder } from '@apps/split/lib/context'
+import { useAntdContextHolder } from '@apps/packages/lib/context'
 import { HttpGetDetailResponse, HttpGetListResponse } from '@apps/services/BaseResponse'
 import {
   MutationFunction,

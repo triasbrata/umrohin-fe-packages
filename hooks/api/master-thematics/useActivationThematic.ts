@@ -1,10 +1,10 @@
-import { queryKeyMasterThematics } from '@apps/split/lib/constants'
+import { queryKeyMasterThematics } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import {
   ThematicActivationItemBody,
   ThematicActivationItemParams,
   ThematicActivationItemResponse,
-} from '@apps/split/services/master-thematics'
+} from '@apps/packages/services/master-thematics'
 import { useState } from 'react'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

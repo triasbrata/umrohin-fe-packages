@@ -1,12 +1,12 @@
-import { queryKeyMasterTourLocation } from '@apps/split/lib/constants'
+import { queryKeyMasterTourLocation } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import { placeholderListBuilder } from '@apps/services/BaseResponse'
 import {
   MasterTourLocationListParams,
   MasterTourLocationListResponse,
   MasterTourLocationListResponseSchema,
-} from '@apps/split/services/master-tour-location'
-import { apiResponseValidation } from '@apps/split/utils'
+} from '@apps/packages/services/master-tour-location'
+import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 

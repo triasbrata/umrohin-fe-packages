@@ -1,5 +1,5 @@
-import { queryKeyMitraPackage } from '@apps/split/lib/constants'
-import { PackageListItem } from '@apps/split/services/mitra-package'
+import { queryKeyMitraPackage } from '@apps/packages/lib/constants'
+import { PackageListItem } from '@apps/packages/services/mitra-package'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type usePackageListConfig = {

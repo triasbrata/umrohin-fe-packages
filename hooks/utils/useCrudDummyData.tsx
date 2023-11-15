@@ -1,4 +1,4 @@
-import { useAntdContextHolder } from '@apps/split/lib/context'
+import { useAntdContextHolder } from '@apps/packages/lib/context'
 import { QueryKey, useQueryClient } from '@tanstack/react-query'
 import { Button, Typography } from 'antd'
 import { Cancel, CheckCircle } from 'iconoir-react'

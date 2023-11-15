@@ -1,5 +1,5 @@
-import { queryKeyMitraAgency } from '@apps/split/lib/constants'
-import { AgencyListItem } from '@apps/split/services/mitra-agency'
+import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
+import { AgencyListItem } from '@apps/packages/services/mitra-agency'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useCustomerListConfig = {

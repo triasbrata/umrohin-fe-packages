@@ -1,6 +1,6 @@
-import { queryKeyCustomers } from '@apps/split/lib/constants'
+import { queryKeyCustomers } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
-import { CustomerUpdateItemBody, CustomerUpdateItemParams, CustomerUpdateItemResponse } from '@apps/split/services/customers'
+import { CustomerUpdateItemBody, CustomerUpdateItemParams, CustomerUpdateItemResponse } from '@apps/packages/services/customers'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

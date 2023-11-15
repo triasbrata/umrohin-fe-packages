@@ -1,4 +1,4 @@
-import { common } from '@apps/split/lib/constants'
+import { common } from '@apps/packages/lib/constants'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'

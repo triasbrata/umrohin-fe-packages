@@ -1,4 +1,4 @@
-import { common } from '@apps/split/lib/constants'
+import { common } from '@apps/packages/lib/constants'
 import { RcFile } from 'antd/es/upload'
 import axios from 'axios'
 

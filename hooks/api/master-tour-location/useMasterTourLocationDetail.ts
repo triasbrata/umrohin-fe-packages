@@ -1,5 +1,5 @@
-import { queryKeyMasterTourLocation } from '@apps/split/lib/constants'
-import { MasterTourLocationListItem } from '@apps/split/services/master-tour-location'
+import { queryKeyMasterTourLocation } from '@apps/packages/lib/constants'
+import { MasterTourLocationListItem } from '@apps/packages/services/master-tour-location'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useMasterTourLocationDetailConfig = {

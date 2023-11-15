@@ -1,10 +1,10 @@
-import { queryKeyMasterAirport } from '@apps/split/lib/constants'
+import { queryKeyMasterAirport } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import {
   MasterAirportActivationItemBody,
   MasterAirportActivationItemParams,
   MasterAirportActivationItemResponse,
-} from '@apps/split/services/master-airport'
+} from '@apps/packages/services/master-airport'
 import { useState } from 'react'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

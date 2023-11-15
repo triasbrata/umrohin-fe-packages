@@ -1,6 +1,6 @@
-import { queryKeyMasterAirport } from '@apps/split/lib/constants'
+import { queryKeyMasterAirport } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
-import { MasterAirportDeleteItemParams, MasterAirportDeleteItemResponse } from '@apps/split/services/master-airport'
+import { MasterAirportDeleteItemParams, MasterAirportDeleteItemResponse } from '@apps/packages/services/master-airport'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

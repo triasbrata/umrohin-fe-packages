@@ -1,4 +1,4 @@
-import { queryKeyMasterCity } from '@apps/split/lib/constants'
+import { queryKeyMasterCity } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import { placeholderListBuilder } from '@apps/services/BaseResponse'
 import {
@@ -6,8 +6,8 @@ import {
   MasterCityListParams,
   MasterCityListResponse,
   MasterCityListResponseSchema,
-} from '@apps/split/services/master-city'
-import { apiResponseValidation } from '@apps/split/utils'
+} from '@apps/packages/services/master-city'
+import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 

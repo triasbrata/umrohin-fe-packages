@@ -1,5 +1,5 @@
-import { queryKeyCustomerTransactions } from '@apps/split/lib/constants'
-import { CustomerTransactionListItem } from '@apps/split/services/customer-transactions'
+import { queryKeyCustomerTransactions } from '@apps/packages/lib/constants'
+import { CustomerTransactionListItem } from '@apps/packages/services/customer-transactions'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useCustomerTransactionDetailConfig = {

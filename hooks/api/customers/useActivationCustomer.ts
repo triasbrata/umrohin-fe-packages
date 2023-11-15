@@ -1,10 +1,10 @@
-import { queryKeyCustomers } from '@apps/split/lib/constants'
+import { queryKeyCustomers } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import {
   CustomerActivationItemBody,
   CustomerActivationItemParams,
   CustomerActivationItemResponse,
-} from '@apps/split/services/customers'
+} from '@apps/packages/services/customers'
 import { useState } from 'react'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'

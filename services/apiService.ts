@@ -1,4 +1,4 @@
-import { errorHandling } from '@apps/split/utils'
+import { errorHandling } from '@apps/packages/utils'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { getSession } from 'next-auth/react'
 

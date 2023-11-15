@@ -1,5 +1,5 @@
-import { queryKeyMasterFacility } from '@apps/split/lib/constants'
-import { MasterFacilityListItem } from '@apps/split/services/master-facility'
+import { queryKeyMasterFacility } from '@apps/packages/lib/constants'
+import { MasterFacilityListItem } from '@apps/packages/services/master-facility'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useMasterFacilityDetailConfig = {

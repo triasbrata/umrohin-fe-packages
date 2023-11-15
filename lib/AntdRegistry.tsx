@@ -2,7 +2,7 @@
 
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
 import type Entity from '@ant-design/cssinjs/es/Cache'
-import { themeConfig } from '@apps/split/theme'
+import { themeConfig } from '@apps/packages/theme'
 import { ConfigProvider } from 'antd'
 import dayjs from 'dayjs'
 import advancedFormat from 'dayjs/plugin/advancedFormat'

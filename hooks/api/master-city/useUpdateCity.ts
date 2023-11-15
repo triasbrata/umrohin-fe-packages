@@ -1,6 +1,6 @@
-import { queryKeyMasterCity } from '@apps/split/lib/constants'
+import { queryKeyMasterCity } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
-import { CityUpdateItemBody, CityUpdateItemParams, CityUpdateItemResponse } from '@apps/split/services/master-city'
+import { CityUpdateItemBody, CityUpdateItemParams, CityUpdateItemResponse } from '@apps/packages/services/master-city'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

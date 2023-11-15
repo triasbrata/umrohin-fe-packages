@@ -1,12 +1,12 @@
-import { queryKeyInternalUser } from '@apps/split/lib/constants'
+import { queryKeyInternalUser } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import { placeholderListBuilder } from '@apps/services/BaseResponse'
 import {
   InternalUserListParams,
   InternalUserListResponse,
   InternalUserListResponseSchema,
-} from '@apps/split/services/internal-user'
-import { apiResponseValidation } from '@apps/split/utils'
+} from '@apps/packages/services/internal-user'
+import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 

@@ -1,5 +1,5 @@
-import { queryKeyCloudinary } from '@apps/split/lib/constants'
-import { UploadImageParams, UploadImageResponse, uploadImage } from '@apps/split/services/cloudinary'
+import { queryKeyCloudinary } from '@apps/packages/lib/constants'
+import { UploadImageParams, UploadImageResponse, uploadImage } from '@apps/packages/services/cloudinary'
 import { QueryKey, UseMutationOptions, useMutation } from '@tanstack/react-query'
 
 type useUploadImageConfig = {

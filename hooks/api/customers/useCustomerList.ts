@@ -1,8 +1,8 @@
-import { queryKeyCustomers } from '@apps/split/lib/constants'
+import { queryKeyCustomers } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import { placeholderListBuilder } from '@apps/services/BaseResponse'
-import { CustomerListParams, CustomerListResponse, CustomerListResponseSchema } from '@apps/split/services/customers'
-import { apiResponseValidation } from '@apps/split/utils'
+import { CustomerListParams, CustomerListResponse, CustomerListResponseSchema } from '@apps/packages/services/customers'
+import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 

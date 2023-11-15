@@ -1,12 +1,12 @@
-import { queryKeyMasterFacility } from '@apps/split/lib/constants'
+import { queryKeyMasterFacility } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import { placeholderListBuilder } from '@apps/services/BaseResponse'
 import {
   MasterFacilityListParams,
   MasterFacilityListResponse,
   MasterFacilityListResponseSchema,
-} from '@apps/split/services/master-facility'
-import { apiResponseValidation } from '@apps/split/utils'
+} from '@apps/packages/services/master-facility'
+import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 

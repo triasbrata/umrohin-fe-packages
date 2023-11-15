@@ -1,5 +1,5 @@
-import { queryKeyMasterHotel } from '@apps/split/lib/constants'
-import { MasterHotelListItem } from '@apps/split/services/master-hotel'
+import { queryKeyMasterHotel } from '@apps/packages/lib/constants'
+import { MasterHotelListItem } from '@apps/packages/services/master-hotel'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useMasterHotelListConfig = {

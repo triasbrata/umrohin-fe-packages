@@ -1,5 +1,5 @@
-import { queryKeyMasterAirlines } from '@apps/split/lib/constants'
-import { MasterAirlinesListItem } from '@apps/split/services/master-airlines'
+import { queryKeyMasterAirlines } from '@apps/packages/lib/constants'
+import { MasterAirlinesListItem } from '@apps/packages/services/master-airlines'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useMasterAirlinesDetailConfig = {

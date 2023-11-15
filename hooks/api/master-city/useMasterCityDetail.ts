@@ -1,5 +1,5 @@
-import { queryKeyMasterCity } from '@apps/split/lib/constants'
-import { DummyMasterCityListItem } from '@apps/split/services/master-city'
+import { queryKeyMasterCity } from '@apps/packages/lib/constants'
+import { DummyMasterCityListItem } from '@apps/packages/services/master-city'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useDummyMasterCityDetailConfig = {

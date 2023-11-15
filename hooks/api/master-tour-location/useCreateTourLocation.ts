@@ -1,9 +1,9 @@
-import { queryKeyMasterTourLocation } from '@apps/split/lib/constants'
+import { queryKeyMasterTourLocation } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
 import {
   MasterTourLocationCreateItemBody,
   MasterTourLocationCreateItemResponse,
-} from '@apps/split/services/master-tour-location'
+} from '@apps/packages/services/master-tour-location'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useSidebarMenu } from '@apps/split/hooks/utils'
+import { useSidebarMenu } from '@apps/packages/hooks/utils'
 import { Layout, Menu, MenuProps } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'

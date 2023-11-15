@@ -1,5 +1,5 @@
 import apiServices from '@apps/services'
-import { AdminAuthLoginBody, AdminAuthLoginResponse } from '@apps/split/services/auth'
+import { AdminAuthLoginBody, AdminAuthLoginResponse } from '@apps/packages/services/auth'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

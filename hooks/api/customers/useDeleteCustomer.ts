@@ -1,6 +1,6 @@
-import { queryKeyCustomers } from '@apps/split/lib/constants'
+import { queryKeyCustomers } from '@apps/packages/lib/constants'
 import apiServices from '@apps/services'
-import { CustomerDeleteItemParams, CustomerDeleteItemResponse } from '@apps/split/services/customers'
+import { CustomerDeleteItemParams, CustomerDeleteItemResponse } from '@apps/packages/services/customers'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 

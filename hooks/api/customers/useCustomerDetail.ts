@@ -1,5 +1,5 @@
-import { queryKeyCustomers } from '@apps/split/lib/constants'
-import { CustomerListItem } from '@apps/split/services/customers'
+import { queryKeyCustomers } from '@apps/packages/lib/constants'
+import { CustomerListItem } from '@apps/packages/services/customers'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useCustomerDetailConfig = {
