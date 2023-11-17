@@ -1,11 +1,11 @@
-import apiServices from '@apps/packages/services'
+// import apiServices from '@apps/packages/services'
 import { mainInstance } from '@apps/packages/services/apiService'
-import { useSession } from 'next-auth/react'
+// import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 
 // TODO: In experimental
 export const useAuthRefreshToken = () => {
-  const { data: session, update: updateSession } = useSession()
+  // const { data: session, update: updateSession } = useSession()
 
   const refreshToken = async () => {
     try {
@@ -15,15 +15,16 @@ export const useAuthRefreshToken = () => {
       //     'x-jwt-refresh': session?.user.refreshToken ?? '',
       //   },
       // })
-      const res = await apiServices.auth.adminRefresh({
-        headers: {
-          'x-jwt-refresh': session?.user.refreshToken ?? '',
-        },
-      })
-      await updateSession({
-        jwtToken: res.result?.jwtToken,
-        userPermission: res.result?.userPermission,
-      })
+      // const res = await apiServices.auth.adminRefresh({
+      //   headers: {
+      //     'x-jwt-refresh': session?.user.refreshToken ?? '',
+      //   },
+      // })
+      // await updateSession({
+      //   jwtToken: res.result?.jwtToken,
+      //   userPermission: res.result?.userPermission,
+      // })
+      console.error('refresh token')
     } catch (error) {
       console.error(error)
     }
@@ -34,14 +35,14 @@ export const useAuthRefreshToken = () => {
 
 // TODO: In experimental
 export const useAxiosAuth = () => {
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
   const refreshToken = useAuthRefreshToken()
 
   useEffect(() => {
     const requestIntercept = mainInstance.interceptors.request.use(
       (config) => {
         if (!config.headers.Authorization) {
-          config.headers['Authorization'] = `Bearer ${session?.user.jwtToken}`
+          // config.headers['Authorization'] = `Bearer ${session?.user.jwtToken}`
         }
         return config
       },
@@ -55,7 +56,7 @@ export const useAxiosAuth = () => {
         if (prevRequest.response.status === 401 && !prevRequest.sent) {
           prevRequest.sent = true
           await refreshToken()
-          prevRequest.headers['Authorization'] = `Bearer ${session?.user.jwtToken}`
+          // prevRequest.headers['Authorization'] = `Bearer ${session?.user.jwtToken}`
           return mainInstance(prevRequest)
         }
         return Promise.reject(error)
@@ -66,7 +67,8 @@ export const useAxiosAuth = () => {
       mainInstance.interceptors.request.eject(requestIntercept)
       mainInstance.interceptors.response.eject(responseIntercept)
     }
-  }, [session])
+    // }, [session])
+  }, [])
 
   return mainInstance
 }

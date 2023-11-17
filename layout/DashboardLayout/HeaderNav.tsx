@@ -3,7 +3,6 @@
 import { Button, Col, Dropdown, Layout, Row, Space, Typography } from 'antd'
 import { BellNotification, LogOut, PasswordPass } from 'iconoir-react'
 import Image from 'next/image'
-import { signOut } from 'next-auth/react'
 import { useRouter } from 'next13-progressbar'
 import { BiSolidUser } from 'react-icons/bi'
 
@@ -51,7 +50,6 @@ export const HeaderNav = () => {
                     type="text"
                     icon={<LogOut height={16} width={16} />}
                     className="flex items-center rounded-lg text-xs font-semibold h-8 w-full"
-                    onClick={() => signOut()}
                   >
                     Keluar
                   </Button>

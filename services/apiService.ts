@@ -1,6 +1,6 @@
 import { errorHandling } from '@apps/packages/utils'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
-import { getSession } from 'next-auth/react'
+// import { getSession } from 'next-auth/react'
 
 const newAbortSignal = (timeoutMs: number) => {
   const abortController = new AbortController()
@@ -12,8 +12,8 @@ export const createAxiosInstance = ({ baseURL }: { baseURL?: string }) => {
   const axiosInstance = axios.create({ baseURL })
 
   axiosInstance.interceptors.request.use(async (config) => {
-    const session = await getSession()
-    if (session) config.headers['Authorization'] = `Bearer ${session?.user.jwtToken}`
+    // const session = await getSession()
+    // if (session) config.headers['Authorization'] = `Bearer ${session?.user.jwtToken}`
     config.signal = newAbortSignal(7000)
     config.headers.setContentType(config.headers['Content-Type'] ?? 'application/json')
     return config
