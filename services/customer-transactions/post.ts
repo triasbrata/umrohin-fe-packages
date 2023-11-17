@@ -13,7 +13,6 @@ export const CustomerTransactionCreateItemBodySchema = z.object({
   buy_date: z.string(),
   payment_method: z.string(),
   package_map_price_id: z.number(),
-  status: z.number(),
   first_dp: z.number(),
   multiply: z.number(),
 })

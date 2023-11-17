@@ -48,11 +48,11 @@ export const CustomerTransactionListItemSchema = z.object({
 
 export type CustomerTransactionListItem = z.infer<typeof CustomerTransactionListItemSchema>
 
-export const CustomerTransactionResponseSchema = httpGetListResponseSchemaBuilder(CustomerTransactionListItemSchema)
+export const CustomerTransactionListResponseSchema = httpGetListResponseSchemaBuilder(CustomerTransactionListItemSchema)
 
-export type CustomerTransactionResponse = z.infer<typeof CustomerTransactionResponseSchema>
+export type CustomerTransactionListResponse = z.infer<typeof CustomerTransactionListResponseSchema>
 
-export const getList = async <ResponseType = CustomerTransactionResponse>({
+export const getList = async <ResponseType = CustomerTransactionListResponse>({
   params,
   options,
 }: {
