@@ -1,8 +1,8 @@
 import { common } from '@apps/packages/lib/constants'
+import { HttpBaseResponseMetaSchema } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { HttpBaseResponseMetaSchema } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/thematic`
