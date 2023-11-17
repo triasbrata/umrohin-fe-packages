@@ -1,4 +1,5 @@
 import * as auth from './auth'
+import * as customerTransaction from './customer-transactions'
 import * as customer from './customers'
 import * as internalUser from './internal-user'
 import * as masterAirport from './master-airport'
@@ -9,6 +10,7 @@ import * as masterTourLocation from './master-tour-location'
 
 const apiServices = {
   auth,
+  customerTransaction,
   customer,
   internalUser,
   masterAirport,
