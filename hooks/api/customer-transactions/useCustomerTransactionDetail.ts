@@ -12,7 +12,7 @@ export const useCustomerTransactionDetail = (opt?: useCustomerTransactionDetailC
 	const queryClient = useQueryClient()
 	const placeholderData: CustomerTransactionListItem = queryClient.getQueryData(queryKey) ?? {
 		customer_id: '',
-		customer_name: '',
+		user_name: '',
 		customer_phone: '',
 		date: '',
 		dp: 0,
