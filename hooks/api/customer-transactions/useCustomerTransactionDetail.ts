@@ -11,14 +11,31 @@ export const useCustomerTransactionDetail = (opt?: useCustomerTransactionDetailC
   const { queryKey = [queryKeyCustomerTransactions.CUSTOMER_TRANSACTION_DETAIL], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: CustomerTransactionListItem = queryClient.getQueryData(queryKey) ?? {
+    transaction_id: 0,
     customer_id: '',
-    buy_date: '',
-    first_dp: 0,
-    payment_method: 'CASH',
+    transaction_user: {
+      name: '',
+      phone_number: '',
+    },
+    transaction_package: {
+      name: '',
+      package_id: 0,
+      thematic: '',
+      agency_name: '',
+    },
     multiply: 0,
-    package_id: '',
-    transaction_number: '',
+    buy_date: '',
+    transaction_package_price: {
+      bed_type: '',
+      price: 0,
+    },
+    payment_method: '',
+    first_dp: 0,
     user_name: '',
+    status: 0,
+    package_map_price_id: 0,
+    package_id: 0,
+    transaction_number: '',
   }
 
   return useQuery<CustomerTransactionListItem>({
