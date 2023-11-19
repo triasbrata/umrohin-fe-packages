@@ -42,6 +42,26 @@ export const HttpGetDetailResponseSchema = httpGetDetailResponseSchemaBuilder(z.
 
 export type HttpGetDetailResponse = z.infer<typeof HttpGetDetailResponseSchema>
 
+export const HttpGetListPointerResponseMetaSchema = HttpBaseResponseMetaSchema.extend({
+  pagger: z
+    .object({
+      hasNext: z.boolean(),
+      lastPointer: z.number(),
+    })
+    .optional(),
+})
+
+export const httpGetListPointerResponseSchemaBuilder = <T extends z.ZodType>(schema: T) => {
+  return z.object({
+    meta: HttpGetListPointerResponseMetaSchema,
+    result: z.array(schema).optional(),
+  })
+}
+
+export const HttpGetListPointerResponseSchema = httpGetListPointerResponseSchemaBuilder(z.any())
+
+export type HttpGetListPointerResponse = z.infer<typeof HttpGetListPointerResponseSchema>
+
 export const placeholderListBuilder = (): HttpGetListResponse => ({
   meta: {
     code: 200,
