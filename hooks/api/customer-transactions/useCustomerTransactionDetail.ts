@@ -3,36 +3,28 @@ import { CustomerTransactionListItem } from '@apps/packages/services/customer-tr
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
 type useCustomerTransactionDetailConfig = {
-	queryKey?: QueryKey
-	options?: UseQueryOptions<CustomerTransactionListItem>
+  queryKey?: QueryKey
+  options?: UseQueryOptions<CustomerTransactionListItem>
 }
 
 export const useCustomerTransactionDetail = (opt?: useCustomerTransactionDetailConfig) => {
-	const { queryKey = [queryKeyCustomerTransactions.CUSTOMER_TRANSACTION_DETAIL], options } = opt ?? {}
-	const queryClient = useQueryClient()
-	const placeholderData: CustomerTransactionListItem = queryClient.getQueryData(queryKey) ?? {
-		customer_id: '',
-		user_name: '',
-		customer_phone: '',
-		date: '',
-		dp: 0,
-		id: '',
-		listing_category: '',
-		listing_id: '',
-		listing_name: '',
-		payment_type: 'CASH',
-		pic: '',
-		qty: 0,
-		room_id: '',
-		room_name: '',
-		room_price: 0,
-		total_price: 0,
-	}
+  const { queryKey = [queryKeyCustomerTransactions.CUSTOMER_TRANSACTION_DETAIL], options } = opt ?? {}
+  const queryClient = useQueryClient()
+  const placeholderData: CustomerTransactionListItem = queryClient.getQueryData(queryKey) ?? {
+    customer_id: '',
+    buy_date: '',
+    first_dp: 0,
+    payment_method: 'CASH',
+    multiply: 0,
+    package_id: '',
+    transaction_number: '',
+    user_name: '',
+  }
 
-	return useQuery<CustomerTransactionListItem>({
-		queryKey,
-		queryFn: () => placeholderData,
-		refetchOnWindowFocus: false,
-		...options,
-	})
+  return useQuery<CustomerTransactionListItem>({
+    queryKey,
+    queryFn: () => placeholderData,
+    refetchOnWindowFocus: false,
+    ...options,
+  })
 }
