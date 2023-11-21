@@ -1,16 +1,16 @@
 import { common } from '@apps/packages/lib/constants'
+import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/user`
 
 export const InternalUserListParamsSchema = z.object({
+  name: z.string().optional(),
   page: z.number().optional(),
   page_size: z.number().optional(),
-  name: z.string().optional(),
   ob: z.string().optional(),
   or: z.string().optional(),
 })
