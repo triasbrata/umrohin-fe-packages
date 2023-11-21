@@ -2,24 +2,22 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 
 type Params = {
-  page: number
-  pageSize: number
+  newParams: { [key: string]: string | number }
   withPrevSearchParams?: boolean
 }
 
-// TODO: Deprecated, use useChangeUrlParams instead
-export const usePaginationChange = () => {
+export const useChangeUrlParams = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const pathname = usePathname()
 
   const queryString = useCallback(
-    ({ page, pageSize: page_size, withPrevSearchParams }: Params) => {
-      const params: { [key: string]: any } = {}
+    ({ newParams, withPrevSearchParams }: Params) => {
+      const params: Params['newParams'] = {}
       if (withPrevSearchParams) {
         searchParams.forEach((value, key) => (params[key] = value))
       }
-      Object.assign(params, { page, page_size })
+      Object.assign(params, newParams)
       return Object.entries(params)
         .map(([key, value]) => `${key}=${value}`)
         .join('&')
@@ -27,9 +25,9 @@ export const usePaginationChange = () => {
     [searchParams]
   )
 
-  const onPaginationChange = (params: Params) => {
+  const changeUrlParams = (params: Params) => {
     router.push(`${pathname}?${queryString(params)}`)
   }
 
-  return { onPaginationChange }
+  return { changeUrlParams }
 }
