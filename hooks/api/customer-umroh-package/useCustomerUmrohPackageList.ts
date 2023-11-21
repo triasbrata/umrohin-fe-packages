@@ -10,8 +10,6 @@ import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient, useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
-import { useQueryList } from '../BaseMutation'
-
 type useCustomerTransactionHistoryListConfig = {
   queryKey?: QueryKey
   params?: CustomerTransactionsHistoryParams
@@ -30,7 +28,7 @@ export const useCustomerTransactionHistoryList = (opt?: useCustomerTransactionHi
     []
   )
 
-  return useQueryList({
+  return useQuery({
     queryKey,
     queryFn: () => apiServices.customerTransactionsHistory.getList({ params }),
     refetchOnWindowFocus: false,
