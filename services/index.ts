@@ -3,6 +3,7 @@ import * as customerTransaction from './customer-transactions'
 import * as customerTransactionsHistory from './customer-transactions-history'
 import * as customerUmrohPackage from './customer-umroh-package'
 import * as customer from './customers'
+import * as homepage from './homepage'
 import * as internalUser from './internal-user'
 import * as masterAirport from './master-airport'
 import * as masterCity from './master-city'
@@ -16,6 +17,7 @@ const apiServices = {
   customerTransactionsHistory,
   customerUmrohPackage,
   customer,
+  homepage,
   internalUser,
   masterAirport,
   masterCity,
