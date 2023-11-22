@@ -1,9 +1,11 @@
+import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 
 type Params = {
   newParams: { [key: string]: string | number }
   withPrevSearchParams?: boolean
+  options?: NavigateOptions
 }
 
 export const useChangeUrlParams = () => {
@@ -26,7 +28,8 @@ export const useChangeUrlParams = () => {
   )
 
   const changeUrlParams = (params: Params) => {
-    router.push(`${pathname}?${queryString(params)}`)
+    const { options, ...restParams } = params
+    router.push(`${pathname}?${queryString(restParams)}`, options)
   }
 
   return { changeUrlParams }
