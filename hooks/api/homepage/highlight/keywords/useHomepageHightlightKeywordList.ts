@@ -2,9 +2,8 @@ import { queryKeyHomepage } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
 import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
 import {
-  HomepageSearchResultListParams,
-  HomepageSearchResultListResponse,
-  HomepageSearchResultListResponseSchema,
+  HomepageHighlightKeywordListResponse,
+  HomepageHighlightKeywordListResponseSchema,
 } from '@apps/packages/services/homepage'
 import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
@@ -12,30 +11,29 @@ import { useMemo } from 'react'
 
 import { useQueryList } from '../../../BaseMutation'
 
-type useHomepageSearchResultListConfig = {
+type useHomepageHighlightKeywordListConfig = {
   queryKey?: QueryKey
-  params: HomepageSearchResultListParams
-  options?: UseQueryOptions<HomepageSearchResultListResponse>
+  options?: UseQueryOptions<HomepageHighlightKeywordListResponse>
 }
 
-export const useHomepageSearchResultList = (opt: useHomepageSearchResultListConfig) => {
-  const { queryKey = [queryKeyHomepage.SEARCH_RESULT_LIST], params, options } = opt
+export const useHomepageHighlightKeywordList = (opt?: useHomepageHighlightKeywordListConfig) => {
+  const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
   const queryClient = useQueryClient()
-  const placeholderData: HomepageSearchResultListResponse = useMemo(
+  const placeholderData: HomepageHighlightKeywordListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
     []
   )
 
   return useQueryList({
     queryKey,
-    queryFn: () => apiServices.homepage.getSearchResultList({ params }),
+    queryFn: () => apiServices.homepage.getHighlightKeywordList(),
     refetchOnWindowFocus: false,
     placeholderData,
-    enabled: !!params.keyword,
+    enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,
-        schema: HomepageSearchResultListResponseSchema,
+        schema: HomepageHighlightKeywordListResponseSchema,
         placeholderData,
       })
     },
