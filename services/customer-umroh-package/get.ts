@@ -2,7 +2,7 @@ import { common } from '@apps/packages/lib/constants'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { httpGetListResponseSchemaBuilder } from '../BaseResponse'
+import { HttpGetListResponseMetaSchema, httpGetListResponseSchemaBuilder } from '../BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/search/packages`
@@ -116,9 +116,10 @@ export const CustomerUmrohPackageFilterSchema = z.object({
 
 export type CustomerUmrohPackageFilter = z.infer<typeof CustomerUmrohPackageFilterSchema>
 
-export const CustomerUmrohPackageFilterResponseSchema = httpGetListResponseSchemaBuilder(
-  CustomerUmrohPackageFilterSchema
-)
+export const CustomerUmrohPackageFilterResponseSchema = z.object({
+  meta: HttpGetListResponseMetaSchema,
+  result: CustomerUmrohPackageFilterSchema,
+})
 
 export type CustomerUmrohPackageFilterResponse = z.infer<typeof CustomerUmrohPackageFilterResponseSchema>
 
