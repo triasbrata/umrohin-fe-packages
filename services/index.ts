@@ -9,6 +9,7 @@ import * as masterAirport from './master-airport'
 import * as masterCity from './master-city'
 import * as masterFacility from './master-facility'
 import * as masterThematic from './master-thematics'
+import * as masterTourLeader from './master-tour-leader'
 import * as masterTourLocation from './master-tour-location'
 
 const apiServices = {
@@ -24,6 +25,7 @@ const apiServices = {
   masterFacility,
   masterThematic,
   masterTourLocation,
+  masterTourLeader,
 }
 
 export default apiServices

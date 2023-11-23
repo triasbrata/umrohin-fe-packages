@@ -11,12 +11,13 @@ export const useMasterTourLeaderDetail = (opt?: useMasterTourLeaderDetailConfig)
   const { queryKey = [queryKeyMasterTourLeader.MASTER_TOUR_LEADER_DETAIL], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterTourLeaderListItem = queryClient.getQueryData(queryKey) ?? {
-    id: '',
+    tour_leader_id: 0,
     name: '',
-    icon_url: '',
-    banner_url: '',
-    is_highlight: false,
+    is_highglight: false,
+    thumbnail: '',
+    image: '',
     status: 0,
+    desc: '',
   }
 
   return useQuery<MasterTourLeaderListItem>({

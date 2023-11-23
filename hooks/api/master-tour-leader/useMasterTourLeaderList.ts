@@ -1,22 +1,47 @@
 import { queryKeyMasterTourLeader } from '@apps/packages/lib/constants'
-import { MasterTourLeaderListItem } from '@apps/packages/services/master-tour-leader'
-import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
+import apiServices from '@apps/packages/services'
+import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
+import {
+  MasterTourLeaderListParams,
+  MasterTourLeaderListResponse,
+  MasterTourLeaderListResponseSchema,
+} from '@apps/packages/services/master-tour-leader'
+import { apiResponseValidation } from '@apps/packages/utils'
+import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
+import { useMemo } from 'react'
+
+import { useQueryList } from '../BaseMutation'
 
 type useMasterTourLeaderListConfig = {
   queryKey?: QueryKey
-  options?: UseQueryOptions<MasterTourLeaderListItem[]>
+  params?: MasterTourLeaderListParams
+  options?: UseQueryOptions<MasterTourLeaderListResponse>
 }
 
 export const useMasterTourLeaderList = (opt?: useMasterTourLeaderListConfig) => {
-  const { queryKey = [queryKeyMasterTourLeader.MASTER_TOUR_LEADER_LIST], options } = opt ?? {}
+  const {
+    queryKey = [queryKeyMasterTourLeader.MASTER_TOUR_LEADER_LIST],
+    params = { page: 1, page_size: 10 },
+    options,
+  } = opt ?? {}
   const queryClient = useQueryClient()
-  const placeholderData: MasterTourLeaderListItem[] = queryClient.getQueryData(queryKey) ?? []
+  const placeholderData: MasterTourLeaderListResponse = useMemo(
+    () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
+    []
+  )
 
-  return useQuery<MasterTourLeaderListItem[]>({
+  return useQueryList({
     queryKey,
-    queryFn: () => placeholderData,
+    queryFn: () => apiServices.masterTourLeader.getList({ params }),
     refetchOnWindowFocus: false,
-    staleTime: Infinity,
+    placeholderData,
+    select: (response) => {
+      return apiResponseValidation({
+        response,
+        schema: MasterTourLeaderListResponseSchema,
+        placeholderData,
+      })
+    },
     ...options,
   })
 }
