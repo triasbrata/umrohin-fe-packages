@@ -11,6 +11,7 @@ const endpointUrl = `${common.ROOT_ENDPOINT}/tour-leader`
 export const TourLeaderCreateItemBodySchema = zfd.formData({
   image: zfd.file(),
   thumbnail: zfd.file(),
+  is_highlight: z.boolean(),
   name: zfd.text(),
   desc: zfd.text().optional(),
 })
@@ -18,10 +19,10 @@ export const TourLeaderCreateItemBodySchema = zfd.formData({
 export type TourLeaderCreateItemBody = z.infer<typeof TourLeaderCreateItemBodySchema>
 
 export const TourLeaderCreateItemResultSchema = z.object({
-  tour_leader_id: z.number(),
+  tour_leader_id: z.string(),
   name: z.string(),
   desc: z.string().optional(),
-  is_highglight: z.boolean(),
+  is_highlight: z.boolean(),
   thumbnail: z.string(),
   image: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
@@ -41,7 +42,10 @@ export const createItem = async <ResponseType = TourLeaderCreateItemResponse>({
   options?: AxiosRequestConfig
 }) => {
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (typeof value === 'object') formData.append(key, value)
+    else formData.append(key, value.toString())
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,

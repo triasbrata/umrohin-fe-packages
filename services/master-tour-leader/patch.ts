@@ -15,6 +15,7 @@ export type TourLeaderUpdateItemParams = z.infer<typeof TourLeaderUpdateItemPara
 export const TourLeaderUpdateItemBodySchema = zfd.formData({
   name: zfd.text(),
   desc: zfd.text().optional(),
+  is_highlight: z.boolean(),
   image: z.union([zfd.file(), z.string()]),
   thumbnail: z.union([zfd.file(), z.string()]),
 })
@@ -22,10 +23,10 @@ export const TourLeaderUpdateItemBodySchema = zfd.formData({
 export type TourLeaderUpdateItemBody = z.infer<typeof TourLeaderUpdateItemBodySchema>
 
 export const TourLeaderUpdateItemResultSchema = z.object({
-  tour_leader_id: z.number(),
+  tour_leader_id: z.string(),
   name: z.string(),
   desc: z.string().optional(),
-  is_highglight: z.boolean(),
+  is_highlight: z.boolean(),
   thumbnail: z.string(),
   image: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
@@ -48,11 +49,14 @@ export const updateItem = async <ResponseType = TourLeaderUpdateItemResponse>({
 }) => {
   const { id } = params
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (typeof value === 'object') formData.append(key, value)
+    else formData.append(key, value.toString())
+  })
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,
     ...options,
-    method: 'patch',
+    method: 'put',
     url: `${endpointUrl}/${id}`,
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -72,10 +76,10 @@ export const TourLeaderActivationItemBodySchema = z.object({
 export type TourLeaderActivationItemBody = z.infer<typeof TourLeaderActivationItemBodySchema>
 
 export const TourLeaderActivationItemResultSchema = z.object({
-  tour_leader_id: z.number(),
+  tour_leader_id: z.string(),
   name: z.string(),
   desc: z.string().optional(),
-  is_highglight: z.boolean(),
+  is_highlight: z.boolean(),
   thumbnail: z.string(),
   image: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),

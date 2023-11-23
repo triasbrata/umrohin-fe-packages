@@ -18,10 +18,10 @@ export const MasterTourLeaderListParamsSchema = z.object({
 export type MasterTourLeaderListParams = z.infer<typeof MasterTourLeaderListParamsSchema>
 
 export const MasterTourLeaderListItemSchema = z.object({
-  tour_leader_id: z.number(),
+  tour_leader_id: z.string(),
   name: z.string(),
   desc: z.string().optional(),
-  is_highglight: z.boolean(),
+  is_highlight: z.boolean(),
   thumbnail: z.string(),
   image: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
