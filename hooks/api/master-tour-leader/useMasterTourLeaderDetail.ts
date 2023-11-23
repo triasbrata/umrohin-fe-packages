@@ -11,7 +11,7 @@ export const useMasterTourLeaderDetail = (opt?: useMasterTourLeaderDetailConfig)
   const { queryKey = [queryKeyMasterTourLeader.MASTER_TOUR_LEADER_DETAIL], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterTourLeaderListItem = queryClient.getQueryData(queryKey) ?? {
-    tour_leader_id: 0,
+    tour_leader_id: '',
     name: '',
     is_highlight: false,
     thumbnail: '',
