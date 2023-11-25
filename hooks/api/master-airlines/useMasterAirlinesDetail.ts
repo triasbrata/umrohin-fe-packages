@@ -11,17 +11,19 @@ export const useMasterAirlinesDetail = (opt?: useMasterAirlinesDetailConfig) => 
   const { queryKey = [queryKeyMasterAirlines.MASTER_AIRLINES_DETAIL], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterAirlinesListItem = queryClient.getQueryData(queryKey) ?? {
-    id: '',
-    logo_url: '',
+    airlines_id: '',
     name: '',
     is_highlight: false,
+    icon: '',
     status: 0,
+    code: '',
   }
 
   return useQuery<MasterAirlinesListItem>({
     queryKey,
     queryFn: () => placeholderData,
     refetchOnWindowFocus: false,
+    staleTime: Infinity,
     ...options,
   })
 }
