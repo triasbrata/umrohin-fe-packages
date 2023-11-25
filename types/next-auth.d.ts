@@ -6,12 +6,6 @@ interface UserAccount {
   userName: string
   jwtToken: string
   refreshToken: string
-  userPermission: {
-    [key: string]: {
-      active: boolean
-      name: string
-    }
-  }
 }
 
 declare module 'next-auth' {

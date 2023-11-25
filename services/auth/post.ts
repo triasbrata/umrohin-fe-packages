@@ -18,13 +18,6 @@ export const AdminAuthLoginResultSchema = z.object({
   userName: z.string(),
   jwtToken: z.string(),
   refreshToken: z.string(),
-  userPermission: z.record(
-    z.string(),
-    z.object({
-      active: z.boolean(),
-      name: z.string(),
-    })
-  ),
 })
 
 export type AdminAuthLoginResult = z.infer<typeof AdminAuthLoginResultSchema>
