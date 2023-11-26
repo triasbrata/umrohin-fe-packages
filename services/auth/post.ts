@@ -113,27 +113,27 @@ export const adminRefresh = async <ResponseType = AdminAuthRefreshResponse>({
   return response?.data
 }
 
-export const AuthCheckPhoneNumberBodySchema = z.object({
+export const UserCheckPhoneNumberBodySchema = z.object({
   phone_number: z.string(),
 })
 
-export type AuthCheckPhoneNumberBody = z.infer<typeof AuthCheckPhoneNumberBodySchema>
+export type UserCheckPhoneNumberBody = z.infer<typeof UserCheckPhoneNumberBodySchema>
 
-export const AuthCheckPhoneNumberResultSchema = z.object({
+export const UserCheckPhoneNumberResultSchema = z.object({
   available_status: z.boolean(),
 })
 
-export type AuthCheckPhoneNumberResult = z.infer<typeof AuthCheckPhoneNumberResultSchema>
+export type UserCheckPhoneNumberResult = z.infer<typeof UserCheckPhoneNumberResultSchema>
 
-export const AuthCheckPhoneNumberResponseSchema = httpGetDetailResponseSchemaBuilder(AuthCheckPhoneNumberResultSchema)
+export const UserCheckPhoneNumberResponseSchema = httpGetDetailResponseSchemaBuilder(UserCheckPhoneNumberResultSchema)
 
-export type AuthCheckPhoneNumberResponse = z.infer<typeof AuthCheckPhoneNumberResponseSchema>
+export type UserCheckPhoneNumberResponse = z.infer<typeof UserCheckPhoneNumberResponseSchema>
 
-export const authCheckPhoneNumber = async <ResponseType = AuthCheckPhoneNumberResponse>({
+export const userCheckPhoneNumber = async <ResponseType = UserCheckPhoneNumberResponse>({
   body,
   options,
 }: {
-  body: AuthCheckPhoneNumberBody
+  body: UserCheckPhoneNumberBody
   options?: AxiosRequestConfig
 }) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
@@ -145,31 +145,31 @@ export const authCheckPhoneNumber = async <ResponseType = AuthCheckPhoneNumberRe
   return response?.data
 }
 
-export const AuthSignUpBodySchema = z.object({
+export const UserSignUpBodySchema = z.object({
   phone_number: z.string(),
   name: z.string(),
   password: z.string(),
   password_confirmation: z.string(),
 })
 
-export type AuthSignUpBody = z.infer<typeof AuthSignUpBodySchema>
+export type UserSignUpBody = z.infer<typeof UserSignUpBodySchema>
 
-export const AuthSignUpResultSchema = z.object({
+export const UserSignUpResultSchema = z.object({
   token: z.string(),
   message: z.string(),
 })
 
-export type AuthSignUpResult = z.infer<typeof AuthSignUpResultSchema>
+export type UserSignUpResult = z.infer<typeof UserSignUpResultSchema>
 
-export const AuthSignUpResponseSchema = httpGetDetailResponseSchemaBuilder(AuthSignUpResultSchema)
+export const UserSignUpResponseSchema = httpGetDetailResponseSchemaBuilder(UserSignUpResultSchema)
 
-export type AuthSignUpResponse = z.infer<typeof AuthSignUpResponseSchema>
+export type UserSignUpResponse = z.infer<typeof UserSignUpResponseSchema>
 
-export const authSignUp = async <ResponseType = AuthSignUpResponse>({
+export const userSignUp = async <ResponseType = UserSignUpResponse>({
   body,
   options,
 }: {
-  body: AuthSignUpBody
+  body: UserSignUpBody
   options?: AxiosRequestConfig
 }) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
@@ -181,24 +181,24 @@ export const authSignUp = async <ResponseType = AuthSignUpResponse>({
   return response?.data
 }
 
-export const AuthValidateBodySchema = z.object({
-  phone_number: z.string(),
-  name: z.string(),
-  password: z.string(),
-  password_confirmation: z.string(),
+export const UserValidateBodySchema = z.object({
+  token: z.string(),
+  pin: z.string(),
 })
 
-export type AuthValidateBody = z.infer<typeof AuthValidateBodySchema>
+export type UserValidateBody = z.infer<typeof UserValidateBodySchema>
 
-export const AuthValidateResponseSchema = HttpBaseResponseMetaSchema
+export const UserValidateResponseSchema = z.object({
+  meta: HttpBaseResponseMetaSchema,
+})
 
-export type AuthValidateResponse = z.infer<typeof AuthValidateResponseSchema>
+export type UserValidateResponse = z.infer<typeof UserValidateResponseSchema>
 
-export const authValidate = async <ResponseType = AuthValidateResponse>({
+export const userValidate = async <ResponseType = UserValidateResponse>({
   body,
   options,
 }: {
-  body: AuthValidateBody
+  body: UserValidateBody
   options?: AxiosRequestConfig
 }) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
@@ -210,24 +210,26 @@ export const authValidate = async <ResponseType = AuthValidateResponse>({
   return response?.data
 }
 
-export const AuthChangePasswordBodySchema = z.object({
+export const UserChangePasswordBodySchema = z.object({
   token: z.string(),
   old_password: z.string(),
   password: z.string(),
   password_confirmation: z.string(),
 })
 
-export type AuthChangePasswordBody = z.infer<typeof AuthChangePasswordBodySchema>
+export type UserChangePasswordBody = z.infer<typeof UserChangePasswordBodySchema>
 
-export const AuthChangePasswordResponseSchema = HttpBaseResponseMetaSchema
+export const UserChangePasswordResponseSchema = z.object({
+  meta: HttpBaseResponseMetaSchema,
+})
 
-export type AuthChangePasswordResponse = z.infer<typeof AuthChangePasswordResponseSchema>
+export type UserChangePasswordResponse = z.infer<typeof UserChangePasswordResponseSchema>
 
-export const authChangePassword = async <ResponseType = AuthChangePasswordResponse>({
+export const userChangePassword = async <ResponseType = UserChangePasswordResponse>({
   body,
   options,
 }: {
-  body: AuthChangePasswordBody
+  body: UserChangePasswordBody
   options?: AxiosRequestConfig
 }) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
@@ -235,6 +237,47 @@ export const authChangePassword = async <ResponseType = AuthChangePasswordRespon
     ...options,
     method: 'post',
     url: `${endpointUrl}/change-password`,
+  })
+  return response?.data
+}
+
+export const UserRefreshHeadersSchema = z.object({
+  'x-jwt-refresh': z.string(),
+})
+
+export type UserRefreshHeaders = z.infer<typeof UserRefreshHeadersSchema>
+
+export const UserRefreshResultSchema = z.object({
+  userID: z.string(),
+  userName: z.string(),
+  jwtToken: z.string(),
+  userPermission: z.record(
+    z.string(),
+    z.object({
+      active: z.boolean(),
+      name: z.string(),
+    })
+  ),
+})
+
+export type UserRefreshResult = z.infer<typeof UserRefreshResultSchema>
+
+export const UserRefreshResponseSchema = httpGetDetailResponseSchemaBuilder(UserRefreshResultSchema)
+
+export type UserRefreshResponse = z.infer<typeof UserRefreshResponseSchema>
+
+export const userRefresh = async <ResponseType = UserRefreshResponse>({
+  headers,
+  options,
+}: {
+  headers: UserRefreshHeaders & AxiosRequestConfig['headers']
+  options?: AxiosRequestConfig
+}) => {
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    headers,
+    ...options,
+    method: 'post',
+    url: `${endpointUrl}/refresh`,
   })
   return response?.data
 }

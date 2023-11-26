@@ -2,6 +2,7 @@ import { useAntdContextHolder } from '@apps/packages/lib/context'
 import { HttpGetDetailResponse, HttpGetListResponse } from '@apps/packages/services/BaseResponse'
 import {
   MutationFunction,
+  MutationKey,
   QueryKey,
   UseMutationOptions,
   UseQueryOptions,
@@ -22,6 +23,7 @@ type MutateNotificationType<ResponseType, Params> = {
 export type BaseMutationOptions<ResponseType, Params> = UseMutationOptions<ResponseType, unknown, Params, unknown>
 
 export type useMutateItemConfig<ResponseType, Params> = {
+  mutationKey?: MutationKey
   successMessage?: MutateNotificationType<ResponseType, Params>
   errorMessage?: MutateNotificationType<ResponseType, Params>
   invalidateQueryKey?: QueryKey
@@ -32,21 +34,24 @@ export type useMutateItemConfig<ResponseType, Params> = {
 export const useMutateItem = <ResponseType extends HttpGetDetailResponse, Params>(
   args: useMutateItemConfig<ResponseType, Params>
 ) => {
-  const { invalidateQueryKey, successMessage, errorMessage, mutationFn, mutationOptions } = args
+  const { mutationKey, invalidateQueryKey, successMessage, errorMessage, mutationFn, mutationOptions } = args
   const queryClient = useQueryClient()
   const { antdNotification } = useAntdContextHolder()
   const refreshToken = useAuthRefreshToken()
 
   const mutation = useMutation({
+    mutationKey,
     mutationFn,
     onSuccess: (res, variables, context) => {
       if (res.meta.success) {
-        antdNotification?.success({
-          message: successMessage?.(res, variables) ?? 'Success',
-          icon: <CheckCircle color="#10B981" height={24} width={24} />,
-          closeIcon: <Cancel height={24} width={24} />,
-          className: 'custom-antd-notification',
-        })
+        if (successMessage) {
+          antdNotification?.success({
+            message: successMessage(res, variables),
+            icon: <CheckCircle color="#10B981" height={24} width={24} />,
+            closeIcon: <Cancel height={24} width={24} />,
+            className: 'custom-antd-notification',
+          })
+        }
         if (invalidateQueryKey) queryClient.invalidateQueries({ queryKey: invalidateQueryKey })
         mutationOptions?.onSuccess?.(res, variables, context)
         return
