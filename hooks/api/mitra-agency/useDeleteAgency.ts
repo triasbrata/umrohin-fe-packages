@@ -8,7 +8,7 @@ type MutationArgs = {
   mutationOptions?: BaseMutationOptions<AgencyDeleteItemResponse, AgencyDeleteItemParams>
 }
 
-export const useDeleteTourLocation = (args?: MutationArgs) => {
+export const useDeleteAgency = (args?: MutationArgs) => {
   const { mutationOptions } = args ?? {}
   return useMutateItem({
     successMessage: () => 'Data berhasil dihapus',

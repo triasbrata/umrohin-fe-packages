@@ -7,6 +7,7 @@ import * as homepage from './homepage'
 import * as internalUser from './internal-user'
 import * as masterAirlines from './master-airlines'
 import * as masterAirport from './master-airport'
+import * as masterBank from './master-bank'
 import * as masterCity from './master-city'
 import * as masterFacility from './master-facility'
 import * as masterThematic from './master-thematics'
@@ -24,6 +25,7 @@ const apiServices = {
   internalUser,
   masterAirlines,
   masterAirport,
+  masterBank,
   masterCity,
   masterFacility,
   masterThematic,

@@ -1,0 +1,4 @@
+export const queryKeyMasterBank = {
+  MASTER_BANK_LIST: 'MASTER_BANK_LIST',
+  MASTER_BANK_DETAIL: 'MASTER_BANK_DETAIL',
+}
