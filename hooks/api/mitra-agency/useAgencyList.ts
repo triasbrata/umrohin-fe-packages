@@ -1,22 +1,43 @@
 import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
-import { AgencyListItem } from '@apps/packages/services/mitra-agency'
-import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
+import apiServices from '@apps/packages/services'
+import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
+import {
+  MitraAgencyListParams,
+  MitraAgencyListResponse,
+  MitraAgencyListResponseSchema,
+} from '@apps/packages/services/mitra-agency'
+import { apiResponseValidation } from '@apps/packages/utils'
+import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
+import { useMemo } from 'react'
 
-type useCustomerListConfig = {
-	queryKey?: QueryKey
-	options?: UseQueryOptions<AgencyListItem[]>
+import { useQueryList } from '../BaseMutation'
+
+type useMitraAgencyListConfig = {
+  queryKey?: QueryKey
+  params?: MitraAgencyListParams
+  options?: UseQueryOptions<MitraAgencyListResponse>
 }
 
-export const useAgencyList = (opt?: useCustomerListConfig) => {
-	const { queryKey = [queryKeyMitraAgency.MITRA_AGENCY_LIST], options } = opt ?? {}
-	const queryClient = useQueryClient()
-	const placeholderData: AgencyListItem[] = queryClient.getQueryData(queryKey) ?? []
+export const useMitraAgencyList = (opt?: useMitraAgencyListConfig) => {
+  const { queryKey = [queryKeyMitraAgency.MITRA_AGENCY_LIST], params = { page: 1, page_size: 10 }, options } = opt ?? {}
+  const queryClient = useQueryClient()
+  const placeholderData: MitraAgencyListResponse = useMemo(
+    () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
+    []
+  )
 
-	return useQuery<AgencyListItem[]>({
-		queryKey,
-		queryFn: () => placeholderData,
-		refetchOnWindowFocus: false,
-		staleTime: Infinity,
-		...options,
-	})
+  return useQueryList({
+    queryKey,
+    queryFn: () => apiServices.mitraAgency.getList({ params }),
+    refetchOnWindowFocus: false,
+    placeholderData,
+    select: (response) => {
+      return apiResponseValidation({
+        response,
+        schema: MitraAgencyListResponseSchema,
+        placeholderData,
+      })
+    },
+    ...options,
+  })
 }

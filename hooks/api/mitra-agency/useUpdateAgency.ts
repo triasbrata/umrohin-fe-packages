@@ -1,10 +1,10 @@
-import { queryKeyMasterAgency } from '@apps/packages/lib/constants'
+import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
 import {
   AgencyUpdateItemBody,
   AgencyUpdateItemParams,
   AgencyUpdateItemResponse,
-} from '@apps/packages/services/master-agency'
+} from '@apps/packages/services/mitra-agency'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 
@@ -20,10 +20,10 @@ export const useUpdateAgency = (args: MutationArgs) => {
   return useMutateItem({
     successMessage: () => 'Data berhasil diubah',
     errorMessage: () => 'Data gagal diubah',
-    invalidateQueryKey: [queryKeyMasterAgency.MASTER_AGENCY_LIST],
+    invalidateQueryKey: [queryKeyMitraAgency.MITRA_AGENCY_LIST],
     mutationFn: (params: ParamsType) => {
       const { id, ...body } = params
-      return apiServices.masterAgency.updateItem({ params, body })
+      return apiServices.mitraAgency.updateItem({ params, body })
     },
     mutationOptions,
   })
