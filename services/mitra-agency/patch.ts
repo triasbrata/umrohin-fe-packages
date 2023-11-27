@@ -21,11 +21,11 @@ export const AgencyUpdateItemBodySchema = zfd.formData({
   address: zfd.text(),
   is_highlight: z.boolean(),
   is_hq: z.boolean(),
-  bank_id: z.number(),
+  bank_id: z.number().optional(),
   bank_number: zfd.text(),
   bank_owner_name: zfd.text(),
   image: z.union([zfd.file(), z.string()]),
-  thumbnail: z.union([zfd.file(), z.string()]),
+  thumbnail: z.union([zfd.file(), z.string()]).optional(),
 })
 
 export type AgencyUpdateItemBody = z.infer<typeof AgencyUpdateItemBodySchema>

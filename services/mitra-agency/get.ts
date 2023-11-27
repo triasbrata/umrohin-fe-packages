@@ -13,6 +13,7 @@ export const MitraAgencyListParamsSchema = z.object({
   name: z.string().optional(),
   ob: z.string().optional(),
   or: z.string().optional(),
+  verification_status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.boolean(), z.number()]).optional(),
 })
 
 export type MitraAgencyListParams = z.infer<typeof MitraAgencyListParamsSchema>
@@ -26,13 +27,13 @@ export const MitraAgencyListItemSchema = z.object({
   business_certificate_year: z.number(),
   is_hq: z.boolean(),
   address: z.string(),
-  bank_id: z.number(),
+  bank_code: z.string(),
   bank_number: z.string(),
   bank_owner_name: z.string(),
   is_highlight: z.boolean(),
   reject_reason: z.union([z.string().optional(), z.null()]),
   verification_status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.boolean()]),
-  thumbnail: z.string(),
+  thumbnail: z.string().optional(),
   image: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
 })
