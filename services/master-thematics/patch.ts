@@ -16,6 +16,7 @@ export const ThematicUpdateItemBodySchema = zfd.formData({
   image: z.union([zfd.file(), z.string()]),
   name: zfd.text(),
   desc: zfd.text(),
+  is_highlight: z.boolean(),
 })
 
 export type ThematicUpdateItemBody = z.infer<typeof ThematicUpdateItemBodySchema>
@@ -26,6 +27,7 @@ export const ThematicUpdateItemResultSchema = z.object({
   image: z.string(),
   name: z.string(),
   status: z.union([z.literal(0), z.literal(1)]),
+  is_highlight: z.boolean(),
 })
 
 export type ThematicUpdateItemResult = z.infer<typeof ThematicUpdateItemResultSchema>
@@ -45,7 +47,13 @@ export const updateItem = async <ResponseType = ThematicUpdateItemResponse>({
 }) => {
   const { id } = params
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      formData.append(key, value.toString())
+    } else {
+      formData.append(key, value)
+    }
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,
@@ -75,6 +83,7 @@ export const ThematicActivationItemResultSchema = z.object({
   image: z.string(),
   name: z.string(),
   status: z.union([z.literal(0), z.literal(1)]),
+  is_highlight: z.boolean(),
 })
 
 export type ThematicActivationItemResult = z.infer<typeof ThematicActivationItemResultSchema>
