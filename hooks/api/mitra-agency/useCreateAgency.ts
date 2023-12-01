@@ -1,6 +1,6 @@
-import { queryKeyMasterAgency } from '@apps/packages/lib/constants'
+import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
-import { AgencyCreateItemBody, AgencyCreateItemResponse } from '@apps/packages/services/master-agency'
+import { AgencyCreateItemBody, AgencyCreateItemResponse } from '@apps/packages/services/mitra-agency'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 
@@ -13,8 +13,8 @@ export const useCreateAgency = (args?: MutationArgs) => {
   return useMutateItem({
     successMessage: () => 'Data berhasil ditambahkan',
     errorMessage: () => 'Data gagal ditambahkan',
-    invalidateQueryKey: [queryKeyMasterAgency.MASTER_AGENCY_LIST],
-    mutationFn: (body: AgencyCreateItemBody) => apiServices.masterAgency.createItem({ body }),
+    invalidateQueryKey: [queryKeyMitraAgency.MITRA_AGENCY_LIST],
+    mutationFn: (body: AgencyCreateItemBody) => apiServices.mitraAgency.createItem({ body }),
     mutationOptions,
   })
 }

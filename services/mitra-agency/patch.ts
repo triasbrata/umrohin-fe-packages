@@ -8,7 +8,7 @@ import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/agency`
 
-export const AgencyUpdateItemParamsSchema = z.object({ id: z.number() })
+export const AgencyUpdateItemParamsSchema = z.object({ id: z.string() })
 
 export type AgencyUpdateItemParams = z.infer<typeof AgencyUpdateItemParamsSchema>
 
@@ -21,11 +21,11 @@ export const AgencyUpdateItemBodySchema = zfd.formData({
   address: zfd.text(),
   is_highlight: z.boolean(),
   is_hq: z.boolean(),
-  bank_id: z.number(),
+  bank_id: z.number().optional(),
   bank_number: zfd.text(),
   bank_owner_name: zfd.text(),
   image: z.union([zfd.file(), z.string()]),
-  thumbnail: z.union([zfd.file(), z.string()]),
+  thumbnail: z.union([zfd.file(), z.string()]).optional(),
 })
 
 export type AgencyUpdateItemBody = z.infer<typeof AgencyUpdateItemBodySchema>
@@ -75,7 +75,7 @@ export const updateItem = async <ResponseType = AgencyUpdateItemResponse>({
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,
     ...options,
-    method: 'put',
+    method: 'patch',
     url: `${endpointUrl}/${id}`,
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -118,8 +118,8 @@ export const AgencyVerificationItemParamsSchema = z.object({ id: z.number() })
 export type AgencyVerificationItemParams = z.infer<typeof AgencyVerificationItemParamsSchema>
 
 export const AgencyVerificationItemBodySchema = z.object({
-  verification_status: z.union([z.literal(0), z.literal(1), z.literal(-1)]),
-  reject_reason: z.union([z.string(), z.null()]),
+  verification_status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.boolean()]),
+  reject_reason: z.union([z.string(), z.null()]).optional(),
 })
 
 export type AgencyVerificationItemBody = z.infer<typeof AgencyVerificationItemBodySchema>
