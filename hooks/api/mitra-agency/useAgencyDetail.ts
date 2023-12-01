@@ -17,6 +17,7 @@ export const useMitraAgencyDetail = (opt?: useMitraAgencyDetailConfig) => {
     business_phone_number: '',
     business_certificate_number: '',
     business_certificate_year: 0,
+    bank_code: '',
     address: '',
     is_hq: false,
     is_highlight: false,
