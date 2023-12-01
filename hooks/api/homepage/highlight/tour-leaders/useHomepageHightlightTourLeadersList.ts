@@ -17,7 +17,7 @@ type useHomepageHighlightTourLeadersListConfig = {
 }
 
 export const useHomepageHighlightTourLeadersList = (opt?: useHomepageHighlightTourLeadersListConfig) => {
-  const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
+  const { queryKey = [queryKeyHomepage.HIGHLIGHT_TOUR_LEADERS], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: HomepageHighlightTourLeadersListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),

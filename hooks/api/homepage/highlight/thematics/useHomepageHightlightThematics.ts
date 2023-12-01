@@ -17,7 +17,7 @@ type useHomepageHighlightThematicsListConfig = {
 }
 
 export const useHomepageHighlightThematicsList = (opt?: useHomepageHighlightThematicsListConfig) => {
-  const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
+  const { queryKey = [queryKeyHomepage.HIGHLIGHT_THEMATICS], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: HomepageHighlightThematicsListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),

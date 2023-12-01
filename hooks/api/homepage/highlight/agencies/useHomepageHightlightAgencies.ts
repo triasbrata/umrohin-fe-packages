@@ -17,7 +17,7 @@ type useHomepageHighlightAgenciesListConfig = {
 }
 
 export const useHomepageHighlightAgenciesList = (opt?: useHomepageHighlightAgenciesListConfig) => {
-  const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
+  const { queryKey = [queryKeyHomepage.HIGHAGE], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: HomepageHighlightAgenciesListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),

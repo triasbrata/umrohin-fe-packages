@@ -17,7 +17,7 @@ type useHomepageHighlightAirlinesListConfig = {
 }
 
 export const useHomepageHighlightAirlinesList = (opt?: useHomepageHighlightAirlinesListConfig) => {
-  const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
+  const { queryKey = [queryKeyHomepage.HIGHLIGHT_AIRLINES], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: HomepageHighlightAirlinesListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),

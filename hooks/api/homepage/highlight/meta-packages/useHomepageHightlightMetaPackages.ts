@@ -17,7 +17,7 @@ type useHomepageHighlightMetaPackagesListConfig = {
 }
 
 export const useHomepageHighlightMetaPackagesList = (opt?: useHomepageHighlightMetaPackagesListConfig) => {
-  const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
+  const { queryKey = [queryKeyHomepage.HIGHLIGHT_META_PACKAGES], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: HomepageHighlightMetaPackagesListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
