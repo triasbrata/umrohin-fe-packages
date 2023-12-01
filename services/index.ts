@@ -19,6 +19,7 @@ import * as masterAirlines from './master-airlines'
 import * as masterAirport from './master-airport'
 import * as masterCity from './master-city'
 import * as masterFacility from './master-facility'
+import * as masterHotel from './master-hotel'
 import * as masterThematic from './master-thematics'
 import * as masterTourLeader from './master-tour-leader'
 import * as masterTourLocation from './master-tour-location'
@@ -48,6 +49,7 @@ const apiServices = {
   masterThematic,
   masterTourLocation,
   masterTourLeader,
+  masterHotel,
 }
 
 export default apiServices
