@@ -1,40 +1,40 @@
-import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
+import { queryKeyMasterBank } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
 import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
 import {
-  MitraAgencyListParams,
-  MitraAgencyListResponse,
-  MitraAgencyListResponseSchema,
-} from '@apps/packages/services/mitra-agency'
+  MasterBankListParams,
+  MasterBankListResponse,
+  MasterBankListResponseSchema,
+} from '@apps/packages/services/master-bank'
 import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
 import { useQueryList } from '../BaseMutation'
 
-type useMitraAgencyListConfig = {
+type useMasterBankListConfig = {
   queryKey?: QueryKey
-  params?: MitraAgencyListParams
-  options?: UseQueryOptions<MitraAgencyListResponse>
+  params?: MasterBankListParams
+  options?: UseQueryOptions<MasterBankListResponse>
 }
 
-export const useMitraAgencyList = (opt?: useMitraAgencyListConfig) => {
-  const { queryKey = [queryKeyMitraAgency.MITRA_AGENCY_LIST], params = { page: 1, page_size: 10 }, options } = opt ?? {}
+export const useMasterBankList = (opt?: useMasterBankListConfig) => {
+  const { queryKey = [queryKeyMasterBank.MASTER_BANK_LIST], params = { page: 1, page_size: 10 }, options } = opt ?? {}
   const queryClient = useQueryClient()
-  const placeholderData: MitraAgencyListResponse = useMemo(
+  const placeholderData: MasterBankListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
     []
   )
 
   return useQueryList({
     queryKey,
-    queryFn: () => apiServices.mitraAgency.getList({ params }),
+    queryFn: () => apiServices.masterBank.getList({ params }),
     refetchOnWindowFocus: false,
     placeholderData,
     select: (response) => {
       return apiResponseValidation({
         response,
-        schema: MitraAgencyListResponseSchema,
+        schema: MasterBankListResponseSchema,
         placeholderData,
       })
     },

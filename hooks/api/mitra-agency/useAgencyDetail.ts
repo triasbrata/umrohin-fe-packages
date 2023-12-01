@@ -1,36 +1,37 @@
 import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
-import { AgencyListItem } from '@apps/packages/services/mitra-agency'
+import { MitraAgencyListItem } from '@apps/packages/services/mitra-agency'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 
-type useCustomerDetailConfig = {
+type useMitraAgencyDetailConfig = {
   queryKey?: QueryKey
-  options?: UseQueryOptions<AgencyListItem>
+  options?: UseQueryOptions<MitraAgencyListItem>
 }
 
-export const useAgencyDetail = (opt?: useCustomerDetailConfig) => {
+export const useMitraAgencyDetail = (opt?: useMitraAgencyDetailConfig) => {
   const { queryKey = [queryKeyMitraAgency.MITRA_AGENCY_DETAIL], options } = opt ?? {}
   const queryClient = useQueryClient()
-  const placeholderData: AgencyListItem = queryClient.getQueryData(queryKey) ?? {
-    id: '',
+  const placeholderData: MitraAgencyListItem = queryClient.getQueryData(queryKey) ?? {
+    agency_id: '',
     name: '',
     director_name: '',
-    address: '',
+    business_phone_number: '',
+    business_certificate_number: '',
+    business_certificate_year: 0,
     bank_code: '',
+    address: '',
+    is_hq: false,
+    is_highlight: false,
+    bank_id: 0,
     bank_number: '',
     bank_owner_name: '',
-    certificate_number: 0,
-    certificate_year: 0,
-    is_highlight: false,
-    logo_url: '',
-    banner_url: '',
-    office_status: '',
-    phone: '',
-    reject_reason: '',
+    thumbnail: '',
+    image: '',
+    reject_reason: null,
+    verification_status: -1,
     status: 0,
-    verification_status: 0,
   }
 
-  return useQuery<AgencyListItem>({
+  return useQuery<MitraAgencyListItem>({
     queryKey,
     queryFn: () => placeholderData,
     refetchOnWindowFocus: false,

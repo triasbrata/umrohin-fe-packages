@@ -1,4 +1,0 @@
-export const queryKeyMasterAgency = {
-  MASTER_AGENCY_LIST: 'MASTER_AGENCY_LIST',
-  MASTER_AGENCY_DETAIL: 'MASTER_AGENCY_DETAIL',
-}

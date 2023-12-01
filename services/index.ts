@@ -14,15 +14,16 @@ import * as customerDetailPackageTourLeader from './customer-umroh-package-detai
 import * as customer from './customers'
 import * as homepage from './homepage'
 import * as internalUser from './internal-user'
-import * as masterAgency from './master-agency'
 import * as masterAirlines from './master-airlines'
 import * as masterAirport from './master-airport'
+import * as masterBank from './master-bank'
 import * as masterCity from './master-city'
 import * as masterFacility from './master-facility'
 import * as masterHotel from './master-hotel'
 import * as masterThematic from './master-thematics'
 import * as masterTourLeader from './master-tour-leader'
 import * as masterTourLocation from './master-tour-location'
+import * as mitraAgency from './mitra-agency'
 
 const apiServices = {
   auth,
@@ -41,15 +42,16 @@ const apiServices = {
   customer,
   homepage,
   internalUser,
-  masterAgency,
   masterAirlines,
   masterAirport,
+  masterBank,
   masterCity,
   masterFacility,
   masterThematic,
   masterTourLocation,
   masterTourLeader,
   masterHotel,
+  mitraAgency,
 }
 
 export default apiServices

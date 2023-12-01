@@ -7,20 +7,20 @@ import { apiCall } from '../../../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/keywords`
 
-export const HomepageHighlightKeywordListItemSchema = z.object({
+export const HomepageHighlightKeywordsListItemSchema = z.object({
   id: z.number(),
   title: z.string(),
 })
 
-export type HomepageHighlightKeywordListItem = z.infer<typeof HomepageHighlightKeywordListItemSchema>
+export type HomepageHighlightKeywordsListItem = z.infer<typeof HomepageHighlightKeywordsListItemSchema>
 
-export const HomepageHighlightKeywordListResponseSchema = httpGetListResponseSchemaBuilder(
-  HomepageHighlightKeywordListItemSchema
+export const HomepageHighlightKeywordsListResponseSchema = httpGetListResponseSchemaBuilder(
+  HomepageHighlightKeywordsListItemSchema
 )
 
-export type HomepageHighlightKeywordListResponse = z.infer<typeof HomepageHighlightKeywordListResponseSchema>
+export type HomepageHighlightKeywordsListResponse = z.infer<typeof HomepageHighlightKeywordsListResponseSchema>
 
-export const getHighlightKeywordList = async <ResponseType = HomepageHighlightKeywordListResponse>(params?: {
+export const getHighlightKeywordsList = async <ResponseType = HomepageHighlightKeywordsListResponse>(params?: {
   options?: AxiosRequestConfig
 }) => {
   const { options } = params ?? {}
