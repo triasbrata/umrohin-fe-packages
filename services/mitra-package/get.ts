@@ -9,7 +9,7 @@ import { MasterHotelListItemSchema } from '../master-hotel'
 import { DummyThematicListItemSchema } from '../master-thematics'
 import { MasterTourLeaderListItemSchema } from '../master-tour-leader'
 import { MasterTourLocationListItemSchema } from '../master-tour-location'
-import { AgencyListItemSchema } from '../mitra-agency'
+import { MitraAgencyListItemSchema } from '../mitra-agency'
 
 export const PackageDepartureDateItemSchema = z.object({
   start_date: z.string(),
@@ -45,7 +45,7 @@ export const PackageListItemSchema = z.object({
   id: z.string(),
   package_id: z.string(),
   package_name: z.string(),
-  agency: AgencyListItemSchema.optional(),
+  agency: MitraAgencyListItemSchema.optional(),
   thematic: DummyThematicListItemSchema.optional(),
   departure_date: z.array(PackageDepartureDateItemSchema),
   airlines: z.array(PackageAirlinesItemSchema),
