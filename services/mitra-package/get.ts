@@ -1,16 +1,24 @@
+import { common } from '@apps/packages/lib/constants'
+import {
+  httpGetDetailResponseSchemaBuilder,
+  httpGetListResponseSchemaBuilder,
+} from '@apps/packages/services/BaseResponse'
 import { UploadFile } from 'antd'
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
+import { apiCall } from '../apiService'
 import { MasterAirlinesListItemSchema } from '../master-airlines'
 import { MasterAirportListItemSchema } from '../master-airport'
 import { MasterCityListItemSchema } from '../master-city'
 import { MasterFacilityListItemSchema } from '../master-facility'
 import { MasterHotelListItemSchema } from '../master-hotel'
-import { DummyThematicListItemSchema, ThematicListItemSchema } from '../master-thematics'
+import { ThematicListItemSchema } from '../master-thematics'
 import { MasterTourLeaderListItemSchema } from '../master-tour-leader'
 import { MasterTourLocationListItemSchema } from '../master-tour-location'
 import { MitraAgencyListItemSchema } from '../mitra-agency'
 
+const endpointUrl = `${common.ROOT_ENDPOINT}/packages`
 export const PackageDepartureDateItemSchema = z.object({
   start_date: z.string(),
   end_date: z.string(),
@@ -41,7 +49,7 @@ export const PackageRoomItemSchema = z.object({
 
 export type PackageRoomItem = z.infer<typeof PackageRoomItemSchema>
 
-export const PackageListItemSchema = z.object({
+export const PackageFormItemSchema = z.object({
   id: z.string(),
   package_id: z.string(),
   package_name: z.string(),
@@ -60,4 +68,176 @@ export const PackageListItemSchema = z.object({
   galleries: z.array(z.object({ image: z.custom<UploadFile[]>() })),
 })
 
+export type PackageFormItem = z.infer<typeof PackageFormItemSchema>
+
+export const PackageListParamsSchema = z.object({
+  page: z.number().optional(),
+  page_size: z.number().optional(),
+  name: z.string().optional(),
+  ob: z.string().optional(),
+  or: z.string().optional(),
+})
+
+export type PackageListParams = z.infer<typeof PackageListParamsSchema>
+
+export const PackageAgencySchema = z.object({
+  agency_id: z.string(),
+  name: z.string(),
+  address: z.string(),
+  image: z.string(),
+  business_certificate_number: z.string(),
+  business_certificate_year: z.number(),
+})
+
+export const PackageThematicSchema = z.object({
+  thematic_id: z.string(),
+  name: z.string(),
+  desc: z.string(),
+  image: z.string(),
+})
+
+export const PackageListItemSchema = z.object({
+  package_id: z.string(),
+  name: z.string(),
+  thematic: z.union([z.string(), z.null()]),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  is_highlight: z.boolean(),
+  agency_id: z.string(),
+  agency_name: z.string(),
+  package_schedules: z.array(
+    z.object({
+      start_date: z.string(),
+      end_date: z.string(),
+    })
+  ),
+  package_destinations: z.array(z.string()),
+  package_prices: z.array(
+    z.object({
+      bed_type: z.string(),
+      price: z.string(),
+    })
+  ),
+  package_tour_leaders: z.array(z.string()),
+  package_hotels: z.array(
+    z.object({
+      city_name: z.string(),
+      name: z.string(),
+      star: z.number(),
+    })
+  ),
+  package_airlines: z.array(z.string()),
+})
+
 export type PackageListItem = z.infer<typeof PackageListItemSchema>
+
+export const PackageListResponseSchema = httpGetListResponseSchemaBuilder(PackageListItemSchema)
+
+export type PackageListResponse = z.infer<typeof PackageListResponseSchema>
+
+export const PackageDetailItemSchema = z.object({
+  package_id: z.string(),
+  name: z.string(),
+  is_package_plus: z.boolean(),
+  desc: z.union([z.string(), z.null()]),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  is_highlight: z.boolean(),
+  agency: PackageAgencySchema,
+  thematic: PackageThematicSchema,
+  package_schedules: z.array(
+    z.object({
+      id: z.string(),
+      start_date: z.string(),
+      end_date: z.string(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_destinations: z.array(
+    z.object({
+      id: z.string(),
+      tour_location_id: z.string(),
+      name: z.string(),
+      city: z.string(),
+      country: z.string(),
+      image: z.string(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_prices: z.array(
+    z.object({
+      bed_type: z.string(),
+      id: z.string(),
+      price: z.number(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_tour_leaders: z.array(
+    z.object({
+      id: z.string(),
+      tour_leader_id: z.string(),
+      name: z.string(),
+      desc: z.string(),
+      image: z.string(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_hotels: z.array(
+    z.object({
+      id: z.string(),
+      accommodation_id: z.string(),
+      city_name: z.string(),
+      province_name: z.string(),
+      country_name: z.string(),
+      name: z.string(),
+      star: z.number(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_facilities: z.array(
+    z.object({
+      id: z.string(),
+      facility_id: z.string(),
+      name: z.string(),
+      desc: z.string(),
+      icon: z.string(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_airlines: z.array(
+    z.object({
+      id: z.string(),
+      airline: z.string(),
+      dest_airport_code: z.string(),
+      dest_airport_name: z.string(),
+      origin_airport_code: z.string(),
+      origin_airport_name: z.string(),
+      time_estimation: z.string(),
+      status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+    })
+  ),
+  package_images: z.object({
+    flyer: z.string(),
+    gallery: z.array(z.string()),
+  }),
+})
+
+export type PackageDetailItem = z.infer<typeof PackageDetailItemSchema>
+
+export const PackageDetailResponseSchema = httpGetDetailResponseSchemaBuilder(PackageDetailItemSchema)
+
+export type PackageDetailResponse = z.infer<typeof PackageDetailResponseSchema>
+
+export const getList = async <ResponseType = PackageListResponse>({
+  params,
+  options,
+}: {
+  params: PackageListParams
+  options?: AxiosRequestConfig
+}) => {
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    params,
+    ...options,
+    method: 'get',
+    url: endpointUrl,
+  })
+  return response?.data
+}
