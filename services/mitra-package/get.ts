@@ -3,10 +3,10 @@ import { z } from 'zod'
 
 import { MasterAirlinesListItemSchema } from '../master-airlines'
 import { MasterAirportListItemSchema } from '../master-airport'
-import { DummyMasterCityListItemSchema } from '../master-city'
+import { MasterCityListItemSchema } from '../master-city'
 import { MasterFacilityListItemSchema } from '../master-facility'
 import { MasterHotelListItemSchema } from '../master-hotel'
-import { DummyThematicListItemSchema } from '../master-thematics'
+import { DummyThematicListItemSchema, ThematicListItemSchema } from '../master-thematics'
 import { MasterTourLeaderListItemSchema } from '../master-tour-leader'
 import { MasterTourLocationListItemSchema } from '../master-tour-location'
 import { MitraAgencyListItemSchema } from '../mitra-agency'
@@ -23,11 +23,11 @@ export const PackageAirlinesItemSchema = z.object({
   airlines: MasterAirlinesListItemSchema.optional(),
   departure: z.object({
     airport: MasterAirportListItemSchema.optional(),
-    city: DummyMasterCityListItemSchema.optional(),
+    city: MasterCityListItemSchema.optional(),
   }),
   arrival: z.object({
     airport: MasterAirportListItemSchema.optional(),
-    city: DummyMasterCityListItemSchema.optional(),
+    city: MasterCityListItemSchema.optional(),
   }),
   flightDuration: z.string(),
 })
@@ -46,7 +46,7 @@ export const PackageListItemSchema = z.object({
   package_id: z.string(),
   package_name: z.string(),
   agency: MitraAgencyListItemSchema.optional(),
-  thematic: DummyThematicListItemSchema.optional(),
+  thematic: ThematicListItemSchema.optional(),
   departure_date: z.array(PackageDepartureDateItemSchema),
   airlines: z.array(PackageAirlinesItemSchema),
   hotels: z.array(MasterHotelListItemSchema),
@@ -55,7 +55,7 @@ export const PackageListItemSchema = z.object({
   tour_leaders: z.array(MasterTourLeaderListItemSchema),
   facilities: z.array(MasterFacilityListItemSchema),
   description: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.literal(2)]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(-1)]),
   thumbnail: z.custom<UploadFile[]>(),
   galleries: z.array(z.object({ image: z.custom<UploadFile[]>() })),
 })
