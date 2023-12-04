@@ -7,13 +7,11 @@ import { apiCall } from '../../../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/agencies`
 
-export const HomepageHighlightAgenciesListItemSchema = z.array(
-  z.object({
-    id: z.string(),
-    image: z.string(),
-    name: z.string(),
-  })
-)
+export const HomepageHighlightAgenciesListItemSchema = z.object({
+  id: z.string(),
+  image: z.string(),
+  name: z.string(),
+})
 
 export type HomepageHighlightAgenciesListItem = z.infer<typeof HomepageHighlightAgenciesListItemSchema>
 
@@ -23,10 +21,9 @@ export const HomepageHighlightAgenciesListResponseSchema = httpGetListResponseSc
 
 export type HomepageHighlightAgenciesListResponse = z.infer<typeof HomepageHighlightAgenciesListResponseSchema>
 
-export const getHighlightAgenciesList = async <ResponseType = HomepageHighlightAgenciesListResponse>(params?: {
+export const getHighlightAgenciesList = async <ResponseType = HomepageHighlightAgenciesListResponse>(
   options?: AxiosRequestConfig
-}) => {
-  const { options } = params ?? {}
+) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
     ...options,
     method: 'get',

@@ -1,2 +1,2 @@
-export * from './usePackageDetail'
+// export * from './usePackageDetail'
 export * from './usePackageList'

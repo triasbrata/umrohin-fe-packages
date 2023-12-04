@@ -17,7 +17,7 @@ type useHomepageHighlightAgenciesListConfig = {
 }
 
 export const useHomepageHighlightAgenciesList = (opt?: useHomepageHighlightAgenciesListConfig) => {
-  const { queryKey = [queryKeyHomepage.HIGHAGE], options } = opt ?? {}
+  const { queryKey = [queryKeyHomepage.HIGHLIGHT_AGENCIES], options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: HomepageHighlightAgenciesListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
@@ -29,7 +29,6 @@ export const useHomepageHighlightAgenciesList = (opt?: useHomepageHighlightAgenc
     queryFn: () => apiServices.homepage.getHighlightAgenciesList(),
     refetchOnWindowFocus: false,
     placeholderData,
-    enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,

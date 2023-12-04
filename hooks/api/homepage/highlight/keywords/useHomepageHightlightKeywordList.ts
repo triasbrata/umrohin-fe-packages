@@ -2,8 +2,8 @@ import { queryKeyHomepage } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
 import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
 import {
-  HomepageHighlightKeywordListResponse,
-  HomepageHighlightKeywordListResponseSchema,
+  HomepageHighlightKeywordsListResponse,
+  HomepageHighlightKeywordsListResponseSchema,
 } from '@apps/packages/services/homepage'
 import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
@@ -13,27 +13,27 @@ import { useQueryList } from '../../../BaseMutation'
 
 type useHomepageHighlightKeywordListConfig = {
   queryKey?: QueryKey
-  options?: UseQueryOptions<HomepageHighlightKeywordListResponse>
+  options?: UseQueryOptions<HomepageHighlightKeywordsListResponse>
 }
 
 export const useHomepageHighlightKeywordList = (opt?: useHomepageHighlightKeywordListConfig) => {
   const { queryKey = [queryKeyHomepage.HIGHLIGHT_KEYWORD_LIST], options } = opt ?? {}
   const queryClient = useQueryClient()
-  const placeholderData: HomepageHighlightKeywordListResponse = useMemo(
+  const placeholderData: HomepageHighlightKeywordsListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
     []
   )
 
   return useQueryList({
     queryKey,
-    queryFn: () => apiServices.homepage.getHighlightKeywordList(),
+    queryFn: () => apiServices.homepage.getHighlightKeywordsList(),
     refetchOnWindowFocus: false,
     placeholderData,
     enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,
-        schema: HomepageHighlightKeywordListResponseSchema,
+        schema: HomepageHighlightKeywordsListResponseSchema,
         placeholderData,
       })
     },

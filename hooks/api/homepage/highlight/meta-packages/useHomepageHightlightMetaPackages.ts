@@ -29,7 +29,6 @@ export const useHomepageHighlightMetaPackagesList = (opt?: useHomepageHighlightM
     queryFn: () => apiServices.homepage.getHighlightMetaPackagesList(),
     refetchOnWindowFocus: false,
     placeholderData,
-    enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,

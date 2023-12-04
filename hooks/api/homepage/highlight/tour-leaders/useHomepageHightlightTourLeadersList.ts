@@ -8,7 +8,6 @@ import {
 import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
-
 import { useQueryList } from '../../../BaseMutation'
 
 type useHomepageHighlightTourLeadersListConfig = {
@@ -29,7 +28,6 @@ export const useHomepageHighlightTourLeadersList = (opt?: useHomepageHighlightTo
     queryFn: () => apiServices.homepage.getHighlightTourLeadersList(),
     refetchOnWindowFocus: false,
     placeholderData,
-    enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,

@@ -7,13 +7,11 @@ import { apiCall } from '../../../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/thematics`
 
-export const HomepageHighlightThematicsListItemSchema = z.array(
-  z.object({
-    thematic_id: z.string(),
-    name: z.string(),
-    image: z.string(),
-  })
-)
+export const HomepageHighlightThematicsListItemSchema = z.object({
+  thematic_id: z.string(),
+  name: z.string(),
+  image: z.string(),
+})
 
 export type HomepageHighlightThematicsListItem = z.infer<typeof HomepageHighlightThematicsListItemSchema>
 

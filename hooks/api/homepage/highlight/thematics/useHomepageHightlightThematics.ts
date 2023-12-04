@@ -29,7 +29,6 @@ export const useHomepageHighlightThematicsList = (opt?: useHomepageHighlightThem
     queryFn: () => apiServices.homepage.getHighlightThematicsList(),
     refetchOnWindowFocus: false,
     placeholderData,
-    enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,

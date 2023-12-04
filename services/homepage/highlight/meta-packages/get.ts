@@ -7,13 +7,11 @@ import { apiCall } from '../../../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/meta-packages`
 
-export const HomepageHighlightMetaPackagesListItemSchema = z.array(
-  z.object({
-    id: z.number(),
-    year: z.number(),
-    name: z.string(),
-  })
-)
+export const HomepageHighlightMetaPackagesListItemSchema = z.object({
+  id: z.number(),
+  year: z.number(),
+  name: z.string(),
+})
 
 export type HomepageHighlightMetaPackagesListItem = z.infer<typeof HomepageHighlightMetaPackagesListItemSchema>
 
@@ -23,10 +21,9 @@ export const HomepageHighlightMetaPackagesListResponseSchema = httpGetListRespon
 
 export type HomepageHighlightMetaPackagesListResponse = z.infer<typeof HomepageHighlightMetaPackagesListResponseSchema>
 
-export const getHighlightMetaPackagesList = async <ResponseType = HomepageHighlightMetaPackagesListResponse>(params?: {
+export const getHighlightMetaPackagesList = async <ResponseType = HomepageHighlightMetaPackagesListResponse>(
   options?: AxiosRequestConfig
-}) => {
-  const { options } = params ?? {}
+) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
     ...options,
     method: 'get',

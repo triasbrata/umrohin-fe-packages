@@ -29,7 +29,6 @@ export const useHomepageHighlightAirlinesList = (opt?: useHomepageHighlightAirli
     queryFn: () => apiServices.homepage.getHighlightAirlinesList(),
     refetchOnWindowFocus: false,
     placeholderData,
-    enabled: false,
     select: (response) => {
       return apiResponseValidation({
         response,

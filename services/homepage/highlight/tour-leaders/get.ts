@@ -7,13 +7,11 @@ import { apiCall } from '../../../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/tour-leaders`
 
-export const HomepageHighlightTourLeadersListItemSchema = z.array(
-  z.object({
-    id: z.string(),
-    name: z.string(),
-    image: z.string(),
-  })
-)
+export const HomepageHighlightTourLeadersListItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: z.string(),
+})
 
 export type HomepageHighlightTourLeadersListItem = z.infer<typeof HomepageHighlightTourLeadersListItemSchema>
 
@@ -23,10 +21,9 @@ export const HomepageHighlightTourLeadersListResponseSchema = httpGetListRespons
 
 export type HomepageHighlightTourLeadersListResponse = z.infer<typeof HomepageHighlightTourLeadersListResponseSchema>
 
-export const getHighlightTourLeadersList = async <ResponseType = HomepageHighlightTourLeadersListResponse>(params?: {
+export const getHighlightTourLeadersList = async <ResponseType = HomepageHighlightTourLeadersListResponse>(
   options?: AxiosRequestConfig
-}) => {
-  const { options } = params ?? {}
+) => {
   const response: AxiosResponse<ResponseType> = await apiCall({
     ...options,
     method: 'get',
