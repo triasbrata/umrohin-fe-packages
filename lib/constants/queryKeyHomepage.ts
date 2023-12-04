@@ -23,7 +23,7 @@ const highlightMetaPackages = {
 }
 
 const highlightAgencies = {
-  HIGHLIGHT_META_PACKAGES: 'HIGHLIGHT_META_PACKAGES',
+  HIGHLIGHT_AGENCIES: 'HIGHLIGHT_AGENCIES',
 }
 
 const highlightAirlines = {

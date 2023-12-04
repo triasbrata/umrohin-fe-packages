@@ -7,16 +7,14 @@ import { apiCall } from '../../../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/packages`
 
-export const HomepageHighlightPackagesListItemSchema = z.array(
-  z.object({
-    package_id: z.string(),
-    package_name: z.string(),
-    start_date: z.string(),
-    end_date: z.string(),
-    price: z.number(),
-    image: z.string(),
-  })
-)
+export const HomepageHighlightPackagesListItemSchema = z.object({
+  package_id: z.string(),
+  package_name: z.string(),
+  start_date: z.string(),
+  end_date: z.string(),
+  price: z.number(),
+  image: z.string(),
+})
 
 export type HomepageHighlightPackagesListItem = z.infer<typeof HomepageHighlightPackagesListItemSchema>
 
@@ -26,11 +24,21 @@ export const HomepageHighlightPackagesListResponseSchema = httpGetListResponseSc
 
 export type HomepageHighlightPackagesListResponse = z.infer<typeof HomepageHighlightPackagesListResponseSchema>
 
-export const getHighlightPackagesList = async <ResponseType = HomepageHighlightPackagesListResponse>(params?: {
+export const HomepageHighlightPackagesListParamsSchema = z.object({
+  month: z.number().optional(),
+  year: z.number().optional(),
+})
+export type HomepageHighlightPackagesListParams = z.infer<typeof HomepageHighlightPackagesListParamsSchema>
+
+export const getHighlightPackagesList = async <ResponseType = HomepageHighlightPackagesListResponse>({
+  options,
+  params,
+}: {
   options?: AxiosRequestConfig
+  params: HomepageHighlightPackagesListParams
 }) => {
-  const { options } = params ?? {}
   const response: AxiosResponse<ResponseType> = await apiCall({
+    params,
     ...options,
     method: 'get',
     url: endpointUrl,
