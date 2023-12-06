@@ -60,3 +60,31 @@ export const getList = async <ResponseType = MitraAgencyListResponse>({
   })
   return response?.data
 }
+
+export const MitraAgencyMetaSchema = z.object({
+  label: z.string(),
+  total: z.number(),
+  value: z.string(),
+})
+
+export type MitraAgencyMeta = z.infer<typeof MitraAgencyMetaSchema>
+
+export const MitraAgencyMetaResponseSchema = httpGetListResponseSchemaBuilder(MitraAgencyMetaSchema)
+
+export type MitraAgencyMetaResponse = z.infer<typeof MitraAgencyMetaResponseSchema>
+
+export const getMeta = async <ResponseType = MitraAgencyMetaResponse>({
+  params,
+  options,
+}: {
+  params: MitraAgencyListParams
+  options?: AxiosRequestConfig
+}) => {
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    params,
+    ...options,
+    method: 'get',
+    url: `${endpointUrl}/meta`,
+  })
+  return response?.data
+}
