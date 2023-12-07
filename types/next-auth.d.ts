@@ -7,13 +7,15 @@ const UserAccountSchema = z.object({
   userName: z.string(),
   jwtToken: z.string(),
   refreshToken: z.string(),
-  userPermission: z.record(
-    z.string(),
-    z.object({
-      active: z.boolean(),
-      name: z.string(),
-    })
-  ),
+  userPermission: z
+    .record(
+      z.string(),
+      z.object({
+        active: z.boolean(),
+        name: z.string(),
+      })
+    )
+    .optional(),
 })
 
 type UserAccount = z.infer<typeof UserAccountSchema>
