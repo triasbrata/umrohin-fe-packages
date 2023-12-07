@@ -224,26 +224,29 @@ export const useSidebarMenu = () => {
       },
     ]
 
-    const filteredMenu = menus
-      .map((item) => {
-        if (item.permissions && !item.permissions.some((permission) => permissions.includes(permission))) {
-          return null // Exclude items with no matching permissions
-        }
-        if (item.children) {
-          const filteredChildren = item.children.filter((child) => {
-            return !child.permissions || child.permissions.some((permission) => permissions.includes(permission))
-          })
+    const filteredMenu =
+      permissions.length > 0
+        ? menus
+            .map((item) => {
+              if (item.permissions && !item.permissions.some((permission) => permissions.includes(permission))) {
+                return null // Exclude items with no matching permissions
+              }
+              if (item.children) {
+                const filteredChildren = item.children.filter((child) => {
+                  return !child.permissions || child.permissions.some((permission) => permissions.includes(permission))
+                })
 
-          if (filteredChildren.length === 0) {
-            return null // Exclude parent item if all children are filtered out
-          }
+                if (filteredChildren.length === 0) {
+                  return null // Exclude parent item if all children are filtered out
+                }
 
-          return { ...item, children: filteredChildren }
-        }
+                return { ...item, children: filteredChildren }
+              }
 
-        return item
-      })
-      .filter(Boolean)
+              return item
+            })
+            .filter(Boolean)
+        : menus
     return filteredMenu
   }, [session])
 
