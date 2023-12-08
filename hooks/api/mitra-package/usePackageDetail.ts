@@ -1,64 +1,50 @@
-// import { queryKeyMitraPackage } from '@apps/packages/lib/constants'
-// import { PackageListItem } from '@apps/packages/services/mitra-package'
-// import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
+import { queryKeyMitraPackage } from '@apps/packages/lib/constants'
+import apiServices from '@apps/packages/services'
+import { placeholderDetailBuilder } from '@apps/packages/services/BaseResponse'
+import {
+  PackageDetailParams,
+  PackageDetailResponse,
+  PackageDetailResponseSchema,
+} from '@apps/packages/services/mitra-package'
+import { apiResponseValidation } from '@apps/packages/utils'
+import { QueryKey, UseQueryOptions, useQueryClient, useQuery } from '@tanstack/react-query'
+import { useEffect, useMemo } from 'react'
 
-// type usePackageDetailConfig = {
-//   queryKey?: QueryKey
-//   options?: UseQueryOptions<PackageListItem>
-// }
+import { useQueryList } from '../BaseMutation'
+import { useAuthRefreshToken } from '../auth'
 
-// export const usePackageDetail = (opt?: usePackageDetailConfig) => {
-//   const { queryKey = [queryKeyMitraPackage.MITRA_PACKAGE_DETAIL], options } = opt ?? {}
-//   const queryClient = useQueryClient()
-//   const placeholderData: PackageListItem = queryClient.getQueryData(queryKey) ?? {
-//     id: '',
-//     airlines: [],
-//     departure_date: [],
-//     description: '',
-//     facilities: [],
-//     galleries: [],
-//     hotels: [],
-//     package_id: '',
-//     package_name: '',
-//     rooms: [],
-//     status: 0,
-//     thumbnail: [],
-//     tour_leaders: [],
-//     tour_locations: [],
-//     agency: {
-//       address: '',
-//       bank_code: '',
-//       bank_number: '',
-//       bank_owner_name: '',
-//       certificate_number: 0,
-//       certificate_year: 0,
-//       director_name: '',
-//       id: '',
-//       is_highlight: false,
-//       logo_url: '',
-//       banner_url: '',
-//       name: '',
-//       office_status: '',
-//       phone: '',
-//       reject_reason: '',
-//       status: 0,
-//       verification_status: 0,
-//     },
-//     thematic: {
-//       description: '',
-//       icon_url: '',
-//       id: '',
-//       is_highlight: false,
-//       status: 0,
-//       title: '',
-//     },
-//   }
+type usePackageDetailConfig = {
+  queryKey?: QueryKey
+  params?: PackageDetailParams
+  options?: UseQueryOptions<PackageDetailResponse>
+  enabled: boolean
+}
 
-//   return useQuery<PackageListItem>({
-//     queryKey,
-//     queryFn: () => placeholderData,
-//     refetchOnWindowFocus: false,
-//     staleTime: Infinity,
-//     ...options,
-//   })
-// }
+export const usePackageDetail = (opt?: usePackageDetailConfig) => {
+  const { queryKey = [queryKeyMitraPackage.MITRA_PACKAGE_DETAIL], params = { id: 0 }, options, enabled } = opt ?? {}
+  const queryClient = useQueryClient()
+  const placeholderData: PackageDetailResponse = useMemo(
+    () => queryClient.getQueryData(queryKey) ?? placeholderDetailBuilder(),
+    []
+  )
+  const refreshToken = useAuthRefreshToken()
+  const query = useQuery({
+    queryKey,
+    queryFn: () => apiServices.mitraPackage.getDetail({ params }),
+    refetchOnWindowFocus: false,
+    placeholderData,
+    select: (response) => {
+      return response
+    },
+    enabled: params.id !== 0 && enabled,
+    ...options,
+  })
+  const { data: response } = query
+  const { code } = response?.meta ?? {}
+
+  useEffect(() => {
+    if (code !== 401) return
+    refreshToken().then(() => query.refetch())
+  }, [code])
+  return query
+}

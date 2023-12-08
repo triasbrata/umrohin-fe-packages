@@ -80,6 +80,10 @@ export const PackageListParamsSchema = z.object({
 
 export type PackageListParams = z.infer<typeof PackageListParamsSchema>
 
+export const PackageDetailParamsSchema = z.object({ id: z.number() })
+
+export type PackageDetailParams = z.infer<typeof PackageDetailParamsSchema>
+
 export const PackageAgencySchema = z.object({
   agency_id: z.string(),
   name: z.string(),
@@ -238,6 +242,22 @@ export const getList = async <ResponseType = PackageListResponse>({
     ...options,
     method: 'get',
     url: endpointUrl,
+  })
+  return response?.data
+}
+
+export const getDetail = async <ResponseType = PackageDetailResponse>({
+  params,
+  options,
+}: {
+  params: PackageDetailParams
+  options?: AxiosRequestConfig
+}) => {
+  const { id } = params
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    ...options,
+    method: 'get',
+    url: `${endpointUrl}/${id}`,
   })
   return response?.data
 }
