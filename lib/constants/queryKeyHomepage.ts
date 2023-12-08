@@ -38,6 +38,10 @@ const staticPrivacyPolicy = {
   PRIVACY_POLICY: 'PRIVACY_POLICY',
 }
 
+const staticContactNumber = {
+  CONTACT_NUMBER: 'CONTACT_NUMBER',
+}
+
 const staticTermsAndConditions = {
   TERMS_AND_CONDITIONS: 'TERMS_AND_CONDITIONS',
 }
@@ -54,4 +58,5 @@ export const queryKeyHomepage = {
   ...searchResult,
   ...staticPrivacyPolicy,
   ...staticTermsAndConditions,
+  ...staticContactNumber,
 }
