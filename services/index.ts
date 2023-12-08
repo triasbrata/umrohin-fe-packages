@@ -1,4 +1,5 @@
 import * as auth from './auth'
+import * as customerAgency from './customer-agency'
 import * as customerTransaction from './customer-transactions'
 import * as customerTransactionsHistory from './customer-transactions-history'
 import * as customerUmrohPackage from './customer-umroh-package'
@@ -28,6 +29,7 @@ import * as mitraPackage from './mitra-package'
 
 const apiServices = {
   auth,
+  customerAgency,
   customerTransaction,
   customerTransactionsHistory,
   customerUmrohPackage,
