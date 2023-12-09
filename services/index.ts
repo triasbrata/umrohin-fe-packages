@@ -4,6 +4,14 @@ import * as customerTourLeader from './customer-tour-leader'
 import * as customerTransaction from './customer-transactions'
 import * as customerTransactionsHistory from './customer-transactions-history'
 import * as customerUmrohPackage from './customer-umroh-package'
+import * as customerPackageAgency from './customer-umroh-package/customer-umroh-package-agency'
+import * as customerPackageAirline from './customer-umroh-package/customer-umroh-package-airline'
+import * as customerPackageAirport from './customer-umroh-package/customer-umroh-package-airport'
+import * as customerPackageDepartureMonth from './customer-umroh-package/customer-umroh-package-departure-month'
+import * as customerPackageFacility from './customer-umroh-package/customer-umroh-package-facility'
+import * as customerPackageThematics from './customer-umroh-package/customer-umroh-package-thematics'
+import * as customerPackageTourDestinations from './customer-umroh-package/customer-umroh-package-tour-destinations'
+import * as customerPackageTourLeaders from './customer-umroh-package/customer-umroh-package-tour-leaders'
 import * as customerDetailPackage from './customer-umroh-package-detail'
 import * as customerDetailPackageAccomodation from './customer-umroh-package-detail/customer-umroh-package-detail-accomodation'
 import * as customerDetailPackageAirlines from './customer-umroh-package-detail/customer-umroh-package-detail-airlines'
@@ -35,6 +43,14 @@ const apiServices = {
   customerTransaction,
   customerTransactionsHistory,
   customerUmrohPackage,
+  customerPackageAgency,
+  customerPackageAirline,
+  customerPackageAirport,
+  customerPackageDepartureMonth,
+  customerPackageFacility,
+  customerPackageThematics,
+  customerPackageTourDestinations,
+  customerPackageTourLeaders,
   customerDetailPackage,
   customerDetailPackageFacility,
   customerDetailPackageAirlines,

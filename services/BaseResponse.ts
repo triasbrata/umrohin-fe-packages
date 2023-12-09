@@ -62,6 +62,26 @@ export const HttpGetListPointerResponseSchema = httpGetListPointerResponseSchema
 
 export type HttpGetListPointerResponse = z.infer<typeof HttpGetListPointerResponseSchema>
 
+export const HttpGetListFilterResponseMetaSchema = HttpBaseResponseMetaSchema.extend({
+  pagger: z
+    .object({
+      hasNext: z.boolean(),
+      lastPointer: z.number(),
+    })
+    .optional(),
+})
+
+export const httpGetListFilterResponseSchemaBuilder = <T extends z.ZodType>(schema: T) => {
+  return z.object({
+    meta: HttpGetListFilterResponseMetaSchema,
+    result: z.array(schema),
+  })
+}
+
+export const HttpGetListFilterResponseSchema = httpGetListFilterResponseSchemaBuilder(z.any())
+
+export type HttpGetListFilterResponse = z.infer<typeof HttpGetListFilterResponseSchema>
+
 export const placeholderListBuilder = (): HttpGetListResponse => ({
   meta: {
     code: 200,
@@ -86,4 +106,18 @@ export const placeholderDetailBuilder = (): HttpGetDetailResponse => ({
     success: true,
   },
   result: {},
+})
+
+export const placeholderListFilterBuilder = (): HttpGetListFilterResponse => ({
+  meta: {
+    code: 200,
+    message: '',
+    response_time: 0,
+    success: true,
+    pagger: {
+      hasNext: false,
+      lastPointer: 0,
+    },
+  },
+  result: [],
 })
