@@ -4,28 +4,31 @@ import { Button, Form, Input, Typography } from 'antd'
 
 import styles from './PasswordForm.module.css'
 
+type FormType = {
+  password: string
+  confirmPassword: string
+}
+
 type Props = {
   title: string
   subtitle: string
-  onSubmit: () => void
-}
-
-type FormType = {
-  password: string
-  confirm_password: string
+  isLoading: boolean
+  onSubmit: (payload: FormType) => void
 }
 
 export const PasswordForm = (props: Props) => {
-  const { title, subtitle, onSubmit } = props
+  const { title, subtitle, onSubmit, isLoading } = props
 
   const [form] = Form.useForm<FormType>()
   const watchPassword = Form.useWatch('password', form) ?? ''
-  const watchConfirmPassword = Form.useWatch('confirm_password', form) ?? ''
+  const watchConfirmPassword = Form.useWatch('confirmPassword', form) ?? ''
 
   const isSubmitDisabled = !watchPassword || !watchConfirmPassword
 
   const handleSubmit = () => {
-    onSubmit()
+    const values = form.getFieldsValue()
+    const { confirmPassword, password } = values
+    onSubmit({ confirmPassword, password })
   }
 
   return (
@@ -55,7 +58,7 @@ export const PasswordForm = (props: Props) => {
         </Form.Item>
         <Form.Item<FormType>
           label={<Typography.Text className="font-semibold">Konfirmasi Kata Sandi</Typography.Text>}
-          name="confirm_password"
+          name="confirmPassword"
           rules={[
             {
               required: true,
@@ -77,6 +80,7 @@ export const PasswordForm = (props: Props) => {
         <Button
           type="primary"
           disabled={isSubmitDisabled}
+          loading={isLoading}
           htmlType="submit"
           className="flex items-center justify-center rounded-lg text-base font-semibold h-10 w-full px-4"
         >
