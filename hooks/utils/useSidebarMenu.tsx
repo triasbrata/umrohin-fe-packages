@@ -225,7 +225,7 @@ export const useSidebarMenu = () => {
     ]
 
     const filteredMenu =
-      permissions.length > 0
+      permissions.length > 1
         ? menus
             .map((item) => {
               if (item.permissions && !item.permissions.some((permission) => permissions.includes(permission))) {
