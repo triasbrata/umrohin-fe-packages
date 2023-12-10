@@ -247,6 +247,35 @@ export const userChangePassword = async <ResponseType = UserChangePasswordRespon
   return response?.data
 }
 
+export const UserManagementPasswordBodySchema = z.object({
+  email: z.string(),
+  action: z.string(),
+})
+
+export type UserManagementPasswordBody = z.infer<typeof UserManagementPasswordBodySchema>
+
+export const UserManagementPasswordResponseSchema = z.object({
+  meta: HttpBaseResponseMetaSchema,
+})
+
+export type UserManagementPasswordResponse = z.infer<typeof UserManagementPasswordResponseSchema>
+
+export const userManagementPassword = async <ResponseType = UserManagementPasswordResponse>({
+  body,
+  options,
+}: {
+  body: UserManagementPasswordBody
+  options?: AxiosRequestConfig
+}) => {
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    data: body,
+    ...options,
+    method: 'post',
+    url: `${endpointUrl}/management-password`,
+  })
+  return response?.data
+}
+
 export const UserRefreshHeadersSchema = z.object({
   'x-jwt-refresh': z.string(),
 })
