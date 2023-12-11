@@ -27,7 +27,7 @@ export const MitraAgencyListItemSchema = z.object({
   business_certificate_year: z.number(),
   is_hq: z.boolean(),
   address: z.string(),
-  bank_id: z.number().optional(),
+  bank_id: z.string().optional(),
   bank_code: z.string(),
   bank_number: z.string(),
   bank_owner_name: z.string(),
