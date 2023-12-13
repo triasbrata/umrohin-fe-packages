@@ -33,7 +33,7 @@ export const CustomerUmrohPackageItemSchema = z.object({
   package_name: z.string(),
   agency_name: z.string(),
   start_date: z.string(),
-  end_date: z.string(),
+  end_date: z.string().optional(),
   price: z.number(),
   image: z.string(),
 })
@@ -51,8 +51,12 @@ export const getList = async <ResponseType = CustomerUmrohPackageResponse>({
   params: CustomerUmrohPackageParams
   options?: AxiosRequestConfig
 }) => {
+  const updatedParams: Record<string, string | number | undefined> = {}
+  Object.entries(params).forEach(([key, value]) => {
+    updatedParams[key] = value === '' ? undefined : value
+  })
   const response: AxiosResponse<ResponseType> = await apiCall({
-    params,
+    params: updatedParams,
     ...options,
     method: 'get',
     url: endpointUrl,
