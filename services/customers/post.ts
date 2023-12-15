@@ -22,7 +22,7 @@ export const CustomerCreateItemResultSchema = z.object({
   user: z.object({
     name: z.string(),
     phone_number: z.string(),
-    email: z.string(),
+    email: z.union([z.string(), z.null()]).optional(),
     status: z.union([z.literal(0), z.literal(1)]),
   }),
 })
