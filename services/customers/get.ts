@@ -23,7 +23,7 @@ export const CustomerListItemSchema = z.object({
   user: z.object({
     name: z.string(),
     phone_number: z.string(),
-    email: z.string(),
+    email: z.string().optional(),
     status: z.number(),
   }),
   is_highlight: z.boolean().optional(),

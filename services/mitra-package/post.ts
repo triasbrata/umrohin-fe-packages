@@ -2,8 +2,7 @@ import { common } from '@apps/packages/lib/constants'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
-
-import { PackageDetailResponse } from './get'
+import { httpGetDetailResponseSchemaBuilder } from '../BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/packages`
@@ -11,10 +10,6 @@ const endpointUrl = `${common.ROOT_ENDPOINT}/packages`
 export const PackageCreateItemBodySchema = zfd.formData({
   name: z.string(),
   agency_id: z.string(),
-  is_package_plus: z.boolean(),
-  is_highlight: z.boolean(),
-  thematic_id: z.string(),
-  desc: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.boolean()]),
   package_schedules: z.array(
     z.object({
@@ -22,29 +17,21 @@ export const PackageCreateItemBodySchema = zfd.formData({
       end_date: z.string(),
     })
   ),
-  package_prices: z.array(
-    z.object({
-      bed_type: z.string(),
-      price: z.number(),
-    })
-  ),
-  package_airlines: z.array(
-    z.object({
-      airlines_id: z.string(),
-      origin_airport_id: z.string(),
-      dest_airport_id: z.string(),
-      time_estimation: z.string(),
-    })
-  ),
-  tour_locations: z.array(z.string()),
-  package_accomodations: z.array(z.string()),
-  package_facilities: z.array(z.string()),
-  package_tour_leaders: z.array(z.string()),
 })
 
 export type PackageCreateItemBody = z.infer<typeof PackageCreateItemBodySchema>
 
-export const createItem = async <ResponseType = PackageDetailResponse>({
+export const PackageCreateItemResultSchema = z.object({
+  package_id: z.string(),
+})
+
+export type PackageCreateItemResult = z.infer<typeof PackageCreateItemResultSchema>
+
+export const PackageCreateItemResponseSchema = httpGetDetailResponseSchemaBuilder(PackageCreateItemResultSchema)
+
+export type PackageCreateItemResponse = z.infer<typeof PackageCreateItemResponseSchema>
+
+export const createItem = async <ResponseType = PackageCreateItemResponse>({
   body,
   options,
 }: {

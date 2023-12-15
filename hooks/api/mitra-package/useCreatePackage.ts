@@ -1,11 +1,11 @@
 import { queryKeyMitraPackage } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
-import { PackageCreateItemBody, PackageDetailResponse } from '@apps/packages/services/mitra-package'
+import { PackageCreateItemBody, PackageCreateItemResponse } from '@apps/packages/services/mitra-package'
 
 import { BaseMutationOptions, useMutateItem } from '../BaseMutation'
 
 type MutationArgs = {
-  mutationOptions?: BaseMutationOptions<PackageDetailResponse, PackageCreateItemBody>
+  mutationOptions?: BaseMutationOptions<PackageCreateItemResponse, PackageCreateItemBody>
 }
 
 export const useCreatePackage = (args?: MutationArgs) => {
