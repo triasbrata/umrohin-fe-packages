@@ -9,7 +9,7 @@ const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/search/packages`
 const endpointFilterUrl = `${common.ROOT_ENDPOINT}/homepage/search/filters`
 
 export const CustomerUmrohPackageParamsSchema = z.object({
-  plus: z.string().optional(),
+  tourDestination: z.string().optional(),
   months: z.string().optional(),
   thematics: z.string().optional(),
   agency: z.number().optional(),
