@@ -14,10 +14,11 @@ type useCustomerTourLeaderHeaderConfig = {
   queryKey?: QueryKey
   params: CustomerTourLeaderHeaderParams
   options?: UseQueryOptions<CustomerTourLeaderHeaderResponse>
+  enabled: boolean
 }
 
 export const useCustomerTourLeaderHeader = (opt: useCustomerTourLeaderHeaderConfig) => {
-  const { queryKey = [queryKeyCustomerTourLeader.CUSTOMER_TOUR_LEADER_HEADER], params, options } = opt ?? {}
+  const { queryKey = [queryKeyCustomerTourLeader.CUSTOMER_TOUR_LEADER_HEADER], params, options, enabled } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: CustomerTourLeaderHeaderResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderDetailBuilder(),
@@ -30,12 +31,15 @@ export const useCustomerTourLeaderHeader = (opt: useCustomerTourLeaderHeaderConf
     refetchOnWindowFocus: false,
     placeholderData,
     select: (response) => {
-      return apiResponseValidation({
-        response,
-        schema: CustomerTourLeaderHeaderResponseSchema,
-        placeholderData,
-      })
+      return enabled
+        ? apiResponseValidation({
+            response,
+            schema: CustomerTourLeaderHeaderResponseSchema,
+            placeholderData,
+          })
+        : response
     },
+    enabled,
     ...options,
   })
 }
