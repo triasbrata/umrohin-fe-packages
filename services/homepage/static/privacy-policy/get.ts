@@ -8,7 +8,7 @@ import { apiCall } from '../../../apiService'
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/static/privacy-policy`
 
 export const HomepageStaticPrivacyPolicySchema = z.object({
-  content: z.string(),
+  content: z.string().optional(),
 })
 
 export type HomepageStaticPrivacyPolicy = z.infer<typeof HomepageStaticPrivacyPolicySchema>

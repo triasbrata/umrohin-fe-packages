@@ -8,7 +8,7 @@ import { apiCall } from '../../../apiService'
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/static/contact-number`
 
 export const HomepageStaticContactSchema = z.object({
-  phone_number: z.string(),
+  phone_number: z.string().optional(),
 })
 
 export type HomepageStaticContact = z.infer<typeof HomepageStaticContactSchema>
