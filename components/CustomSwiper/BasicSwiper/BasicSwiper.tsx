@@ -22,6 +22,7 @@ type SlideToType = {
 
 type BasicSwiperButton = {
   slideTo?: SlideToType
+  dragContent?: number
 }
 
 export const BasicSwiperPrevButton = (props?: BasicSwiperButton) => {
@@ -75,6 +76,7 @@ export const BasicSwiperNextButton = (props?: BasicSwiperButton) => {
 type BasicSwiperProps = SwiperProps & {
   prevButtonProps?: BasicSwiperButton
   nextButtonProps?: BasicSwiperButton
+  dragContent?: number
 }
 
 export const BasicSwiper = (props: BasicSwiperProps) => {

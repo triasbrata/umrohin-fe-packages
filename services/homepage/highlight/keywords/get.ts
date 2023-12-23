@@ -8,7 +8,6 @@ import { apiCall } from '../../../apiService'
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/highlight/keywords`
 
 export const HomepageHighlightKeywordsListItemSchema = z.object({
-  id: z.number(),
   title: z.string(),
 })
 

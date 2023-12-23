@@ -8,7 +8,7 @@ import { apiCall } from '../../../apiService'
 const endpointUrl = `${common.ROOT_ENDPOINT}/homepage/static/terms-and-conditions`
 
 export const HomepageStaticTermsAndConditionsSchema = z.object({
-  content: z.string(),
+  content: z.string().optional(),
 })
 
 export type HomepageStaticTermsAndConditions = z.infer<typeof HomepageStaticTermsAndConditionsSchema>

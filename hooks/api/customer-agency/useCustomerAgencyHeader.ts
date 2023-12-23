@@ -1,5 +1,4 @@
 import { queryKeyCustomerAgency } from '@apps/packages/lib/constants'
-import { queryKeyCustomerPackageDetail } from '@apps/packages/lib/constants/queryKeyCustomerDetailPackage'
 import apiServices from '@apps/packages/services'
 import { placeholderDetailBuilder } from '@apps/packages/services/BaseResponse'
 import {
@@ -15,10 +14,11 @@ type useCustomerAgencyHeaderConfig = {
   queryKey?: QueryKey
   params: CustomerAgencyHeaderParams
   options?: UseQueryOptions<CustomerAgencyHeaderResponse>
+  enabled: boolean
 }
 
 export const useCustomerAgencyHeader = (opt: useCustomerAgencyHeaderConfig) => {
-  const { queryKey = [queryKeyCustomerAgency.CUSTOMER_AGENCY_HEADER], params, options } = opt ?? {}
+  const { queryKey = [queryKeyCustomerAgency.CUSTOMER_AGENCY_HEADER], params, options, enabled } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: CustomerAgencyHeaderResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderDetailBuilder(),
@@ -31,12 +31,15 @@ export const useCustomerAgencyHeader = (opt: useCustomerAgencyHeaderConfig) => {
     refetchOnWindowFocus: false,
     placeholderData,
     select: (response) => {
-      return apiResponseValidation({
-        response,
-        schema: CustomerAgencyHeaderResponseSchema,
-        placeholderData,
-      })
+      return enabled
+        ? apiResponseValidation({
+            response,
+            schema: CustomerAgencyHeaderResponseSchema,
+            placeholderData,
+          })
+        : response
     },
+    enabled,
     ...options,
   })
 }
