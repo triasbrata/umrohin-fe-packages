@@ -20,7 +20,7 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   is_highlight: z.boolean(),
   thematic_id: z.string(),
   desc: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.literal(2), z.boolean()]),
   package_schedules: z.array(
     z.object({
       start_date: z.string(),
@@ -56,7 +56,7 @@ export const PackageUpdateItemResultSchema = z.object({
   is_highlight: z.boolean(),
   thumbnail: z.string(),
   image: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(2), z.boolean()]),
 })
 
 export type PackageUpdateItemResult = z.infer<typeof PackageUpdateItemResultSchema>
@@ -93,7 +93,7 @@ export const PackageActivationItemParamsSchema = z.object({ id: z.number() })
 export type PackageActivationItemParams = z.infer<typeof PackageActivationItemParamsSchema>
 
 export const PackageActivationItemBodySchema = z.object({
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(2), z.boolean()]),
 })
 
 export type PackageActivationItemBody = z.infer<typeof PackageActivationItemBodySchema>
@@ -105,7 +105,7 @@ export const PackageActivationItemResultSchema = z.object({
   is_highlight: z.boolean(),
   thumbnail: z.string(),
   image: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(2), z.boolean()]),
 })
 
 export type PackageActivationItemResult = z.infer<typeof PackageActivationItemResultSchema>

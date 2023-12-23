@@ -22,7 +22,7 @@ export const MasterFacilityListItemSchema = z.object({
   name: z.string(),
   desc: z.string(),
   icon: z.string(),
-  status: z.union([z.literal(0), z.literal(1)]),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
 })
 
 export type MasterFacilityListItem = z.infer<typeof MasterFacilityListItemSchema>

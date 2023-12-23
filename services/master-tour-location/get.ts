@@ -21,7 +21,7 @@ export const MasterTourLocationListItemSchema = z.object({
   tour_location_id: z.string(),
   name: z.string(),
   city_id: z.string(),
-  status: z.union([z.literal(0), z.literal(1)]),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
   image: z.string(),
   main_tour_location: z.boolean(),
   is_highlight: z.boolean(),

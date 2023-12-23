@@ -28,14 +28,29 @@ export type PackageDepartureDateItem = z.infer<typeof PackageDepartureDateItemSc
 
 export const PackageAirlinesItemSchema = z.object({
   id: z.string(),
-  airlines: MasterAirlinesListItemSchema.optional(),
+  airlines: z.object({
+    airlines_id: z.string(),
+    name: z.string(),
+  }),
   departure: z.object({
-    airport: MasterAirportListItemSchema.optional(),
-    city: MasterCityListItemSchema.optional(),
+    airport: z.object({
+      airport_id: z.string(),
+      name: z.string(),
+      code: z.string(),
+    }),
+    city: z.object({
+      city_id: z.string(),
+    }),
   }),
   arrival: z.object({
-    airport: MasterAirportListItemSchema.optional(),
-    city: MasterCityListItemSchema.optional(),
+    airport: z.object({
+      airport_id: z.string(),
+      name: z.string(),
+      code: z.string(),
+    }),
+    city: z.object({
+      city_id: z.string(),
+    }),
   }),
   flightDuration: z.string(),
 })
@@ -63,7 +78,7 @@ export const PackageFormItemSchema = z.object({
   tour_leaders: z.array(MasterTourLeaderListItemSchema),
   facilities: z.array(MasterFacilityListItemSchema),
   description: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.literal(-1)]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(-1)]),
   thumbnail: z.custom<UploadFile[]>(),
   galleries: z.array(z.object({ image: z.custom<UploadFile[]>() })),
 })
@@ -104,7 +119,7 @@ export const PackageListItemSchema = z.object({
   package_id: z.string(),
   name: z.string(),
   thematic: z.union([z.string(), z.null()]),
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(2), z.boolean()]),
   is_highlight: z.boolean(),
   agency_id: z.string(),
   agency_name: z.string(),
@@ -143,7 +158,7 @@ export const PackageDetailItemSchema = z.object({
   name: z.string(),
   is_package_plus: z.boolean(),
   desc: z.union([z.string(), z.null()]),
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(2), z.boolean()]),
   is_highlight: z.boolean(),
   agency: PackageAgencySchema,
   thematic: PackageThematicSchema,
@@ -210,8 +225,13 @@ export const PackageDetailItemSchema = z.object({
     z.object({
       id: z.string(),
       airline: z.string(),
+      airlines_id: z.string(),
+      dest_airport_city_id: z.string(),
+      dest_airport_id: z.string(),
       dest_airport_code: z.string(),
       dest_airport_name: z.string(),
+      origin_airport_city_id: z.string(),
+      origin_airport_id: z.string(),
       origin_airport_code: z.string(),
       origin_airport_name: z.string(),
       time_estimation: z.string(),

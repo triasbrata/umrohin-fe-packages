@@ -26,7 +26,7 @@ export const MasterHotelListItemSchema = z.object({
   distance_to_nabawi: z.number(),
   star: z.number(),
   image: z.string(),
-  status: z.union([z.literal(0), z.literal(1)]),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
 })
 
 export type MasterHotelListItem = z.infer<typeof MasterHotelListItemSchema>

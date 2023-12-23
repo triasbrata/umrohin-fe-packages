@@ -10,7 +10,7 @@ const endpointUrl = `${common.ROOT_ENDPOINT}/packages`
 export const PackageCreateItemBodySchema = zfd.formData({
   name: z.string(),
   agency_id: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.boolean()]),
+  status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.literal(2), z.boolean()]),
   package_schedules: z.array(
     z.object({
       start_date: z.string(),
