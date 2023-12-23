@@ -8,9 +8,6 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
 import { apiCall } from '../apiService'
-import { MasterAirlinesListItemSchema } from '../master-airlines'
-import { MasterAirportListItemSchema } from '../master-airport'
-import { MasterCityListItemSchema } from '../master-city'
 import { MasterFacilityListItemSchema } from '../master-facility'
 import { MasterHotelListItemSchema } from '../master-hotel'
 import { ThematicListItemSchema } from '../master-thematics'
@@ -40,6 +37,7 @@ export const PackageAirlinesItemSchema = z.object({
     }),
     city: z.object({
       city_id: z.string(),
+      city_name: z.string().optional(),
     }),
   }),
   arrival: z.object({
@@ -50,6 +48,7 @@ export const PackageAirlinesItemSchema = z.object({
     }),
     city: z.object({
       city_id: z.string(),
+      city_name: z.string().optional(),
     }),
   }),
   flightDuration: z.string(),
