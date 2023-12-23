@@ -22,6 +22,7 @@ import * as customerDetailPackageSchedule from './customer-umroh-package-detail/
 import * as customerDetailPackageTourDestination from './customer-umroh-package-detail/customer-umroh-package-detail-tour-destination'
 import * as customerDetailPackageTourLeader from './customer-umroh-package-detail/customer-umroh-package-detail-tour-leader'
 import * as customer from './customers'
+import * as dashboard from './dashboard'
 import * as homepage from './homepage'
 import * as internalUser from './internal-user'
 import * as masterAirlines from './master-airlines'
@@ -61,6 +62,7 @@ const apiServices = {
   customerDetailPackageTourLeader,
   customerDetailPackageImage,
   customer,
+  dashboard,
   homepage,
   internalUser,
   masterAirlines,
