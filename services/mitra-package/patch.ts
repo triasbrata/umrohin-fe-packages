@@ -4,8 +4,8 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 
-import { apiCall } from '../apiService'
 import { PackageDetailResponse } from '.'
+import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/packages`
 
