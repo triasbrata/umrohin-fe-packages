@@ -3,7 +3,7 @@
 import { Button } from 'antd'
 import clsx from 'clsx'
 import { NavArrowLeft, NavArrowRight } from 'iconoir-react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperClass, SwiperProps, useSwiper } from 'swiper/react'
 
@@ -83,9 +83,11 @@ export const BasicSwiper = (props: BasicSwiperProps) => {
   const { children, className, prevButtonProps, nextButtonProps, onSlideChange, ...restProps } = props
   const [activeIndex, setActiveIndex] = useState<number>(0)
 
+  const slidesPerView = useMemo(() => props.dragContent ?? 4, [props.dragContent])
+
   return (
     <Swiper
-      slidesPerView={4}
+      slidesPerView={slidesPerView}
       spaceBetween={24}
       scrollbar={{ hide: false, dragSize: 70 }}
       modules={[Scrollbar]}
