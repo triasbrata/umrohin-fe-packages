@@ -1,0 +1,4 @@
+export const queryKeyMitraGroup = {
+  MITRA_GROUP_LIST: 'MITRA_GROUP_LIST',
+  MITRA_GROUP_DETAIL: 'MITRA_GROUP_DETAIL',
+}

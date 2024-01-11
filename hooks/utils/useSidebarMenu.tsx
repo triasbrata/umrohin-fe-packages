@@ -13,6 +13,7 @@ import {
   UserStar,
   Building,
   AirplaneHelix45Deg,
+  Community,
   ViewGrid,
   SeaAndSun,
   Medal,
@@ -87,6 +88,12 @@ export const useSidebarMenu = () => {
             icon: <LiaKaabaSolid size={24} />,
             label: <Link href="/mitra/packages">Paket Umroh</Link>,
             permissions: ['get.packages'],
+          },
+          {
+            key: '/mitra/group',
+            icon: <Community height={24} width={24} />,
+            label: <Link href="/mitra/group">Grup Keberangkatan</Link>,
+            permissions: ['get.agency'],
           },
           {
             key: '/mitra/airlines',
