@@ -1,30 +1,30 @@
-import { queryKeyMitraPackage } from '@apps/packages/lib/constants'
+import { queryKeyMitraGroup } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
 import { placeholderDetailBuilder } from '@apps/packages/services/BaseResponse'
-import { PackageDetailParams, PackageDetailResponse } from '@apps/packages/services/mitra-package'
+import { MitraGroupDetailParams, MitraGroupDetailResponse } from '@apps/packages/services/mitra-group'
 import { QueryKey, UseQueryOptions, useQueryClient, useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo } from 'react'
 
 import { useAuthRefreshToken } from '../auth'
 
-type usePackageDetailConfig = {
+type useGroupDetailConfig = {
   queryKey?: QueryKey
-  params?: PackageDetailParams
-  options?: UseQueryOptions<PackageDetailResponse>
+  params?: MitraGroupDetailParams
+  options?: UseQueryOptions<MitraGroupDetailResponse>
   enabled: boolean
 }
 
-export const usePackageDetail = (opt?: usePackageDetailConfig) => {
-  const { queryKey = [queryKeyMitraPackage.MITRA_PACKAGE_DETAIL], params = { id: 0 }, options, enabled } = opt ?? {}
+export const useGroupDetail = (opt?: useGroupDetailConfig) => {
+  const { queryKey = [queryKeyMitraGroup.MITRA_GROUP_DETAIL], params = { id: 0 }, options, enabled } = opt ?? {}
   const queryClient = useQueryClient()
-  const placeholderData: PackageDetailResponse = useMemo(
+  const placeholderData: MitraGroupDetailResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderDetailBuilder(),
     []
   )
   const refreshToken = useAuthRefreshToken()
   const query = useQuery({
     queryKey,
-    queryFn: () => apiServices.mitraPackage.getDetail({ params }),
+    queryFn: () => apiServices.mitraGroup.getDetail({ params }),
     refetchOnWindowFocus: false,
     placeholderData,
     select: (response) => {

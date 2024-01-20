@@ -35,6 +35,7 @@ import * as masterThematic from './master-thematics'
 import * as masterTourLeader from './master-tour-leader'
 import * as masterTourLocation from './master-tour-location'
 import * as mitraAgency from './mitra-agency'
+import * as mitraGroup from './mitra-group'
 import * as mitraPackage from './mitra-package'
 
 const apiServices = {
@@ -76,6 +77,7 @@ const apiServices = {
   masterHotel,
   mitraAgency,
   mitraPackage,
+  mitraGroup,
 }
 
 export default apiServices
