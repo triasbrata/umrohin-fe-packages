@@ -24,7 +24,6 @@ function DebounceSelect<ValueType extends { key?: string; label: React.ReactNode
       const fetchId = fetchRef.current
       setOptions([])
       setFetching(true)
-
       fetchOptions(value).then((newOptions) => {
         if (fetchId !== fetchRef.current) {
           // for fetch callback order

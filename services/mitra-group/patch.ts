@@ -15,10 +15,10 @@ export type MitraGroupUpdateItemParams = z.infer<typeof MitraGroupUpdateItemPara
 export const MitraGroupUpdateItemBodySchema = zfd.formData({
   name: zfd.text(),
   file: z.union([zfd.file(), z.string()]),
-  startTime: zfd.text(),
-  endTime: zfd.text(),
+  start: zfd.text(),
+  end: zfd.text(),
   desc: zfd.text().optional(),
-  group_total: z.number().optional(),
+  smallGroup: z.number().optional(),
 })
 
 export type MitraGroupUpdateItemBody = z.infer<typeof MitraGroupUpdateItemBodySchema>
@@ -26,14 +26,14 @@ export type MitraGroupUpdateItemBody = z.infer<typeof MitraGroupUpdateItemBodySc
 export const MitraGroupUpdateItemResultSchema = z.object({
   umroh_group_id: z.string(),
   name: z.string(),
-  tour_leader_total: z.number().optional(),
-  tour_guide_total: z.number().optional(),
-  tour_member_total: z.number().optional(),
-  group_total: z.number().optional(),
+  count_tour_leader: z.number().optional(),
+  count_tour_guide: z.number().optional(),
+  count_member: z.number().optional(),
+  smallGroup: z.number().optional(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
-  startTime: z.string(),
-  endTime: z.string(),
+  start: z.string(),
+  end: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
 })
 
@@ -83,14 +83,14 @@ export type MitraGroupActivationItemBody = z.infer<typeof MitraGroupActivationIt
 export const MitraGroupActivationItemResultSchema = z.object({
   umroh_group_id: z.string(),
   name: z.string(),
-  tour_leader_total: z.number().optional(),
-  tour_guide_total: z.number().optional(),
-  tour_member_total: z.number().optional(),
-  group_total: z.number().optional(),
+  count_tour_leader: z.number().optional(),
+  count_tour_guide: z.number().optional(),
+  count_member: z.number().optional(),
+  smallGroup: z.number().optional(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
-  startTime: z.string(),
-  endTime: z.string(),
+  start: z.string(),
+  end: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
 })
 

@@ -11,10 +11,10 @@ const endpointUrl = `${common.ROOT_ENDPOINT}/group`
 export const MitraGroupCreateItemBodySchema = zfd.formData({
   name: zfd.text(),
   file: zfd.file(),
-  startTime: zfd.text(),
-  endTime: zfd.text(),
+  start: zfd.text(),
+  end: zfd.text(),
   desc: zfd.text().optional(),
-  group_total: z.number().optional(),
+  smallGroup: z.number().optional(),
 })
 
 export type MitraGroupCreateItemBody = z.infer<typeof MitraGroupCreateItemBodySchema>
@@ -22,14 +22,14 @@ export type MitraGroupCreateItemBody = z.infer<typeof MitraGroupCreateItemBodySc
 export const MitraGroupCreateItemResultSchema = z.object({
   umroh_group_id: z.string(),
   name: z.string(),
-  tour_leader_total: z.number().optional(),
-  tour_guide_total: z.number().optional(),
-  tour_member_total: z.number().optional(),
-  group_total: z.number().optional(),
+  count_tour_leader: z.number().optional(),
+  count_tour_guide: z.number().optional(),
+  count_member: z.number().optional(),
+  smallGroup: z.number().optional(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
-  startTime: z.string(),
-  endTime: z.string(),
+  start: z.string(),
+  end: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]),
 })
 

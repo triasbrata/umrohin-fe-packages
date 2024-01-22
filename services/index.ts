@@ -36,6 +36,7 @@ import * as masterTourLeader from './master-tour-leader'
 import * as masterTourLocation from './master-tour-location'
 import * as mitraAgency from './mitra-agency'
 import * as mitraGroup from './mitra-group'
+import * as mitraGroupMember from './mitra-group-member'
 import * as mitraPackage from './mitra-package'
 
 const apiServices = {
@@ -78,6 +79,7 @@ const apiServices = {
   mitraAgency,
   mitraPackage,
   mitraGroup,
+  mitraGroupMember,
 }
 
 export default apiServices

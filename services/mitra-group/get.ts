@@ -23,15 +23,15 @@ export type MitraGroupListParams = z.infer<typeof MitraGroupListParamsSchema>
 export const MitraGroupListItemSchema = z.object({
   umroh_group_id: z.string(),
   name: z.string(),
-  tour_leader_total: z.number().optional(),
-  tour_guide_total: z.number().optional(),
-  tour_member_total: z.number().optional(),
-  group_total: z.number().optional(),
+  count_tour_leader: z.number().optional(),
+  count_tour_guide: z.number().optional(),
+  count_member: z.number().optional(),
+  sum_small_group: z.number().optional(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
-  startTime: z.string(),
-  endTime: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  start: z.string(),
+  end: z.string(),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]).optional(),
 })
 
 export type MitraGroupListItem = z.infer<typeof MitraGroupListItemSchema>
@@ -80,15 +80,12 @@ export type MitraGroupDetailParams = z.infer<typeof MitraGroupDetailParamsSchema
 export const MitraGroupDetailItemSchema = z.object({
   umroh_group_id: z.string(),
   name: z.string(),
-  tour_leader_total: z.number().optional(),
-  tour_guide_total: z.number().optional(),
-  tour_member_total: z.number().optional(),
-  group_total: z.number().optional(),
+  sum_small_group: z.number().optional(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
-  startTime: z.string(),
   endTime: z.string(),
-  status: z.union([z.literal(0), z.literal(1), z.boolean()]),
+  startTime: z.string(),
+  status: z.union([z.literal(0), z.literal(1), z.boolean()]).optional(),
 })
 
 export type MitraGroupDetailItem = z.infer<typeof MitraGroupDetailItemSchema>
