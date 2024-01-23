@@ -26,6 +26,7 @@ export const MitraGroupMemberListItemSchema = z.object({
   user_name: z.string(),
   member_status: z.string(),
   marker_info: z.string().optional(),
+  small_group_id: z.number(),
   status: z.union([z.literal(0), z.literal(1), z.boolean()]).optional(),
 })
 

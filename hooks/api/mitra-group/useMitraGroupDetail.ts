@@ -15,7 +15,7 @@ type useGroupDetailConfig = {
 }
 
 export const useGroupDetail = (opt?: useGroupDetailConfig) => {
-  const { queryKey = [queryKeyMitraGroup.MITRA_GROUP_DETAIL], params = { id: 0 }, options, enabled } = opt ?? {}
+  const { queryKey = [queryKeyMitraGroup.MITRA_GROUP_GET_DETAIL], params = { id: 0 }, options, enabled } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MitraGroupDetailResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderDetailBuilder(),

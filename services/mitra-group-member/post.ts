@@ -48,9 +48,6 @@ export const createItem = async <ResponseType = MitraGroupMemberCreateItemRespon
     ...options,
     method: 'post',
     url: endpointUrl,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
   })
   return response?.data
 }
