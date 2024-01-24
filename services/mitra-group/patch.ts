@@ -54,6 +54,7 @@ export const updateItem = async <ResponseType = MitraGroupUpdateItemResponse>({
 }) => {
   const { id } = params
   const formData = new FormData()
+  console.log(body)
   Object.entries(body).forEach(([key, value]) => {
     if (typeof value === 'object') formData.append(key, value)
     else formData.append(key, value.toString())

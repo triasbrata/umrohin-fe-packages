@@ -26,7 +26,7 @@ export const MitraGroupListItemSchema = z.object({
   count_tour_leader: z.number().optional(),
   count_tour_guide: z.number().optional(),
   count_member: z.number().optional(),
-  sum_small_group: z.number().optional(),
+  sum_small_group: z.number().optional().nullable(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
   start: z.string(),
@@ -80,7 +80,7 @@ export type MitraGroupDetailParams = z.infer<typeof MitraGroupDetailParamsSchema
 export const MitraGroupDetailItemSchema = z.object({
   umroh_group_id: z.string(),
   name: z.string(),
-  sum_small_group: z.number().optional(),
+  sum_small_group: z.number().optional().nullable(),
   desc: z.string().optional().optional(),
   file: z.string().optional().optional(),
   endTime: z.string(),
