@@ -15,8 +15,8 @@ export type MitraGroupUpdateItemParams = z.infer<typeof MitraGroupUpdateItemPara
 export const MitraGroupUpdateItemBodySchema = zfd.formData({
   name: zfd.text(),
   file: z.union([zfd.file(), z.string()]),
-  start: zfd.text(),
-  end: zfd.text(),
+  startTime: zfd.text(),
+  endTime: zfd.text(),
   desc: zfd.text().optional(),
   smallGroup: z.number().optional(),
 })

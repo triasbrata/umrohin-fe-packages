@@ -11,8 +11,8 @@ const endpointUrl = `${common.ROOT_ENDPOINT}/group`
 export const MitraGroupCreateItemBodySchema = zfd.formData({
   name: zfd.text(),
   file: zfd.file(),
-  start: zfd.text(),
-  end: zfd.text(),
+  startTime: zfd.text(),
+  endTime: zfd.text(),
   desc: zfd.text().optional(),
   smallGroup: z.number().optional(),
 })
