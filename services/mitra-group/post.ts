@@ -1,5 +1,5 @@
 import { common } from '@apps/packages/lib/constants'
-import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -57,6 +57,42 @@ export const createItem = async <ResponseType = MitraGroupCreateItemResponse>({
     ...options,
     method: 'post',
     url: endpointUrl,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+  return response?.data
+}
+
+export const MitraGroupUploadBodySchema = zfd.formData({
+  file: zfd.file(),
+})
+
+export type MitraGroupUploadBody = z.infer<typeof MitraGroupUploadBodySchema>
+
+export const MitraGroupUploadResponseSchema = z.object({
+  meta: HttpBaseResponseMetaSchema,
+})
+
+export type MitraGroupUploadResponse = z.infer<typeof MitraGroupUploadResponseSchema>
+
+export const uploadItem = async <ResponseType = MitraGroupUploadResponse>({
+  body,
+  options,
+}: {
+  body: MitraGroupUploadBody
+  options?: AxiosRequestConfig
+}) => {
+  const formData = new FormData()
+  Object.entries(body).forEach(([key, value]) => {
+    if (typeof value === 'object') formData.append(key, value)
+  })
+
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    data: formData,
+    ...options,
+    method: 'post',
+    url: `${endpointUrl}/upload`,
     headers: {
       'Content-Type': 'multipart/form-data',
     },
