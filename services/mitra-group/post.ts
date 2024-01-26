@@ -66,6 +66,7 @@ export const createItem = async <ResponseType = MitraGroupCreateItemResponse>({
 
 export const MitraGroupUploadBodySchema = zfd.formData({
   file: zfd.file(),
+  umroh_group_id: z.number(),
 })
 
 export type MitraGroupUploadBody = z.infer<typeof MitraGroupUploadBodySchema>
