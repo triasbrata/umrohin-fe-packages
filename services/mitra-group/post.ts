@@ -87,6 +87,7 @@ export const uploadItem = async <ResponseType = MitraGroupUploadResponse>({
   const formData = new FormData()
   Object.entries(body).forEach(([key, value]) => {
     if (typeof value === 'object') formData.append(key, value)
+    else formData.append(key, value.toString())
   })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
