@@ -1,5 +1,5 @@
 import { common } from '@apps/packages/lib/constants'
-import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import { httpGetListHighlightResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
@@ -29,7 +29,8 @@ export const MasterTourLeaderListItemSchema = z.object({
 
 export type MasterTourLeaderListItem = z.infer<typeof MasterTourLeaderListItemSchema>
 
-export const MasterTourLeaderListResponseSchema = httpGetListResponseSchemaBuilder(MasterTourLeaderListItemSchema)
+export const MasterTourLeaderListResponseSchema =
+  httpGetListHighlightResponseSchemaBuilder(MasterTourLeaderListItemSchema)
 
 export type MasterTourLeaderListResponse = z.infer<typeof MasterTourLeaderListResponseSchema>
 

@@ -1,8 +1,8 @@
 import { common } from '@apps/packages/lib/constants'
+import { httpGetListHighlightResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { apiCall } from '../apiService'
 
 const endpointUrl = `${common.ROOT_ENDPOINT}/tour-location`
@@ -32,7 +32,9 @@ export const MasterTourLocationListItemSchema = z.object({
 
 export type MasterTourLocationListItem = z.infer<typeof MasterTourLocationListItemSchema>
 
-export const MasterTourLocationListResponseSchema = httpGetListResponseSchemaBuilder(MasterTourLocationListItemSchema)
+export const MasterTourLocationListResponseSchema = httpGetListHighlightResponseSchemaBuilder(
+  MasterTourLocationListItemSchema
+)
 
 export type MasterTourLocationListResponse = z.infer<typeof MasterTourLocationListResponseSchema>
 

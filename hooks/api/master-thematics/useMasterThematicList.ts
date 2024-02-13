@@ -1,6 +1,6 @@
 import { queryKeyMasterThematics } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
-import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
+import { placeholderListHighlightBuilder } from '@apps/packages/services/BaseResponse'
 import {
   DummyThematicListItem,
   ThematicListParams,
@@ -11,7 +11,7 @@ import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
-import { useQueryList } from '../BaseMutation'
+import { useQueryHighlightList } from '../BaseMutation'
 
 type useDummyMasterThematicListConfig = {
   queryKey?: QueryKey
@@ -46,11 +46,11 @@ export const useMasterThematicList = (opt?: useMasterThematicListConfig) => {
   } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: ThematicListResponse = useMemo(
-    () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
+    () => queryClient.getQueryData(queryKey) ?? placeholderListHighlightBuilder(),
     []
   )
 
-  return useQueryList({
+  return useQueryHighlightList({
     queryKey,
     queryFn: () => apiServices.masterThematic.getList({ params }),
     refetchOnWindowFocus: false,

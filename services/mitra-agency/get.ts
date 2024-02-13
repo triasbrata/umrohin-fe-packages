@@ -1,5 +1,8 @@
 import { common } from '@apps/packages/lib/constants'
-import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import {
+  httpGetListResponseSchemaBuilder,
+  httpGetListHighlightResponseSchemaBuilder,
+} from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
@@ -41,7 +44,7 @@ export const MitraAgencyListItemSchema = z.object({
 
 export type MitraAgencyListItem = z.infer<typeof MitraAgencyListItemSchema>
 
-export const MitraAgencyListResponseSchema = httpGetListResponseSchemaBuilder(MitraAgencyListItemSchema)
+export const MitraAgencyListResponseSchema = httpGetListHighlightResponseSchemaBuilder(MitraAgencyListItemSchema)
 
 export type MitraAgencyListResponse = z.infer<typeof MitraAgencyListResponseSchema>
 

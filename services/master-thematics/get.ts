@@ -1,5 +1,5 @@
 import { common } from '@apps/packages/lib/constants'
-import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import { httpGetListHighlightResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
@@ -39,7 +39,7 @@ export const ThematicListItemSchema = z.object({
 
 export type ThematicListItem = z.infer<typeof ThematicListItemSchema>
 
-export const ThematicListResponseSchema = httpGetListResponseSchemaBuilder(ThematicListItemSchema)
+export const ThematicListResponseSchema = httpGetListHighlightResponseSchemaBuilder(ThematicListItemSchema)
 
 export type ThematicListResponse = z.infer<typeof ThematicListResponseSchema>
 

@@ -1,6 +1,6 @@
 import { queryKeyMasterAirlines } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
-import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
+import { placeholderListHighlightBuilder } from '@apps/packages/services/BaseResponse'
 import {
   MasterAirlinesListParams,
   MasterAirlinesListResponse,
@@ -10,7 +10,7 @@ import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
-import { useQueryList } from '../BaseMutation'
+import { useQueryHighlightList } from '../BaseMutation'
 
 type useMasterAirlinesListConfig = {
   queryKey?: QueryKey
@@ -26,11 +26,11 @@ export const useMasterAirlinesList = (opt?: useMasterAirlinesListConfig) => {
   } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterAirlinesListResponse = useMemo(
-    () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
+    () => queryClient.getQueryData(queryKey) ?? placeholderListHighlightBuilder(),
     []
   )
 
-  return useQueryList({
+  return useQueryHighlightList({
     queryKey,
     queryFn: () => apiServices.masterAirlines.getList({ params }),
     refetchOnWindowFocus: false,

@@ -1,5 +1,5 @@
 import { common } from '@apps/packages/lib/constants'
-import { httpGetListResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import { httpGetListHighlightResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
@@ -28,7 +28,7 @@ export const MasterAirlinesListItemSchema = z.object({
 
 export type MasterAirlinesListItem = z.infer<typeof MasterAirlinesListItemSchema>
 
-export const MasterAirlinesListResponseSchema = httpGetListResponseSchemaBuilder(MasterAirlinesListItemSchema)
+export const MasterAirlinesListResponseSchema = httpGetListHighlightResponseSchemaBuilder(MasterAirlinesListItemSchema)
 
 export type MasterAirlinesListResponse = z.infer<typeof MasterAirlinesListResponseSchema>
 

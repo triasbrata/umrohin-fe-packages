@@ -1,5 +1,9 @@
 import { useAntdContextHolder } from '@apps/packages/lib/context'
-import { HttpGetDetailResponse, HttpGetListResponse } from '@apps/packages/services/BaseResponse'
+import {
+  HttpGetDetailResponse,
+  HttpGetListHighlightResponse,
+  HttpGetListResponse,
+} from '@apps/packages/services/BaseResponse'
 import {
   MutationFunction,
   MutationKey,
@@ -86,6 +90,20 @@ export const useMutateItem = <ResponseType extends HttpGetDetailResponse, Params
 }
 
 export const useQueryList = <T extends HttpGetListResponse>(options: UseQueryOptions<T>) => {
+  const refreshToken = useAuthRefreshToken()
+  const query = useQuery(options)
+  const { data: response } = query
+  const { code } = response?.meta ?? {}
+
+  useEffect(() => {
+    if (code !== 401) return
+    refreshToken().then(() => query.refetch())
+  }, [code])
+
+  return query
+}
+
+export const useQueryHighlightList = <T extends HttpGetListHighlightResponse>(options: UseQueryOptions<T>) => {
   const refreshToken = useAuthRefreshToken()
   const query = useQuery(options)
   const { data: response } = query

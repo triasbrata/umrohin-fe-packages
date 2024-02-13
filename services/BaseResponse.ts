@@ -31,6 +31,20 @@ export const HttpGetListResponseSchema = httpGetListResponseSchemaBuilder(z.any(
 
 export type HttpGetListResponse = z.infer<typeof HttpGetListResponseSchema>
 
+export const httpGetListHighlightResponseSchemaBuilder = <T extends z.ZodType>(schema: T) => {
+  return z.object({
+    meta: HttpGetListResponseMetaSchema,
+    result: z.object({
+      data: z.array(schema).optional(),
+      total_highlight: z.number(),
+    }),
+  })
+}
+
+export const HttpGetListHighlightResponseSchema = httpGetListHighlightResponseSchemaBuilder(z.any())
+
+export type HttpGetListHighlightResponse = z.infer<typeof HttpGetListHighlightResponseSchema>
+
 export const httpGetDetailResponseSchemaBuilder = <T extends z.ZodType>(schema: T) => {
   return z.object({
     meta: HttpBaseResponseMetaSchema,
@@ -81,6 +95,25 @@ export const httpGetListFilterResponseSchemaBuilder = <T extends z.ZodType>(sche
 export const HttpGetListFilterResponseSchema = httpGetListFilterResponseSchemaBuilder(z.any())
 
 export type HttpGetListFilterResponse = z.infer<typeof HttpGetListFilterResponseSchema>
+
+export const placeholderListHighlightBuilder = (): HttpGetListHighlightResponse => ({
+  meta: {
+    code: 200,
+    message: '',
+    response_time: 0,
+    success: true,
+    pagination: {
+      max_page: 0,
+      current: 0,
+      size: 0,
+      total: 0,
+    },
+  },
+  result: {
+    data: [],
+    total_highlight: 0,
+  },
+})
 
 export const placeholderListBuilder = (): HttpGetListResponse => ({
   meta: {

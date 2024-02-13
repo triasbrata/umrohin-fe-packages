@@ -1,6 +1,6 @@
 import { queryKeyMasterTourLeader } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
-import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
+import { placeholderListHighlightBuilder } from '@apps/packages/services/BaseResponse'
 import {
   MasterTourLeaderListParams,
   MasterTourLeaderListResponse,
@@ -10,7 +10,7 @@ import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
-import { useQueryList } from '../BaseMutation'
+import { useQueryHighlightList } from '../BaseMutation'
 
 type useMasterTourLeaderListConfig = {
   queryKey?: QueryKey
@@ -26,11 +26,11 @@ export const useMasterTourLeaderList = (opt?: useMasterTourLeaderListConfig) => 
   } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterTourLeaderListResponse = useMemo(
-    () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
+    () => queryClient.getQueryData(queryKey) ?? placeholderListHighlightBuilder(),
     []
   )
 
-  return useQueryList({
+  return useQueryHighlightList({
     queryKey,
     queryFn: () => apiServices.masterTourLeader.getList({ params }),
     refetchOnWindowFocus: false,

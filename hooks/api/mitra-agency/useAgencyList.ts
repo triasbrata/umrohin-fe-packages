@@ -1,6 +1,6 @@
 import { queryKeyMitraAgency } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
-import { placeholderListBuilder } from '@apps/packages/services/BaseResponse'
+import { placeholderListBuilder, placeholderListHighlightBuilder } from '@apps/packages/services/BaseResponse'
 import {
   MitraAgencyListParams,
   MitraAgencyListResponse,
@@ -12,7 +12,7 @@ import { apiResponseValidation } from '@apps/packages/utils'
 import { QueryKey, UseQueryOptions, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
-import { useQueryList } from '../BaseMutation'
+import { useQueryList, useQueryHighlightList } from '../BaseMutation'
 
 type useMitraAgencyListConfig = {
   queryKey?: QueryKey
@@ -24,11 +24,11 @@ export const useMitraAgencyList = (opt?: useMitraAgencyListConfig) => {
   const { queryKey = [queryKeyMitraAgency.MITRA_AGENCY_LIST], params = { page: 1, page_size: 10 }, options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MitraAgencyListResponse = useMemo(
-    () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
+    () => queryClient.getQueryData(queryKey) ?? placeholderListHighlightBuilder(),
     []
   )
 
-  return useQueryList({
+  return useQueryHighlightList({
     queryKey,
     queryFn: () => apiServices.mitraAgency.getList({ params }),
     refetchOnWindowFocus: false,
