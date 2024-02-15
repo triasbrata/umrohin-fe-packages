@@ -181,7 +181,7 @@ export const useSidebarMenu = () => {
             key: '/master/hotels',
             icon: <Building height={24} width={24} />,
             label: <Link href="/master/hotels">Hotel</Link>,
-            permissions: ['get.hotels'],
+            permissions: ['get.hotel'],
           },
           {
             key: '/master/airports',
