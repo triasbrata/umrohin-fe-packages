@@ -2,6 +2,7 @@ import { queryKeyMitraPackage } from '@apps/packages/lib/constants'
 import apiServices from '@apps/packages/services'
 import {
   PackageDetailResponse,
+  PackageUpdateImage,
   PackageUpdateItemBody,
   PackageUpdateItemParams,
 } from '@apps/packages/services/mitra-package'
@@ -12,7 +13,7 @@ type MutationArgs = {
   mutationOptions?: BaseMutationOptions<PackageDetailResponse, PackageUpdateItemBody>
 }
 
-type ParamsType = PackageUpdateItemParams & PackageUpdateItemBody
+type ParamsType = PackageUpdateItemParams & PackageUpdateItemBody & PackageUpdateImage
 
 export const useUpdatePackage = (args: MutationArgs) => {
   const { mutationOptions } = args

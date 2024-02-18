@@ -49,6 +49,14 @@ export const PackageUpdateItemBodySchema = zfd.formData({
 
 export type PackageUpdateItemBody = z.infer<typeof PackageUpdateItemBodySchema>
 
+export const PackageUpdateImageSchema = zfd.formData({
+  thumbnail: z.union([zfd.file(), z.string()]).optional(),
+  gallery: z.array(z.union([zfd.file(), z.string()])),
+  deleted: z.array(z.string()),
+})
+
+export type PackageUpdateImage = z.infer<typeof PackageUpdateImageSchema>
+
 export const PackageUpdateItemResultSchema = z.object({
   package_id: z.string(),
   name: z.string(),
@@ -71,12 +79,30 @@ export const updateItem = async <ResponseType = PackageDetailResponse>({
   options,
 }: {
   params: PackageUpdateItemParams
-  body: PackageUpdateItemBody
+  body: PackageUpdateItemBody & PackageUpdateImage
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
+  const { gallery, thumbnail, deleted, ...payload } = body
+  const formData = new FormData()
+  gallery.forEach((g) => {
+    formData.append('gallery[]', g)
+  })
+  formData.append('thumbnail', thumbnail ?? '')
+  deleted.forEach((g) => {
+    formData.append('deleted[]', g)
+  })
+  await apiCall({
+    data: formData,
+    ...options,
+    method: 'patch',
+    url: `${endpointUrl}/${id}/images`,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: body,
+    data: payload,
     ...options,
     method: 'patch',
     url: `${endpointUrl}/${id}`,
