@@ -6,7 +6,7 @@ import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useState } from 'react'
+import { useEffect } from 'react'
 
 import MenuBar from './MenuBar'
 import styles from './index.module.css'
@@ -18,8 +18,6 @@ type Props = {
 
 export const TipTapEditor = (props: Props) => {
   const { initialValue, onChange } = props
-  const [content] = useState<string>(initialValue ?? '')
-
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -35,8 +33,11 @@ export const TipTapEditor = (props: Props) => {
     onUpdate: ({ editor }) => {
       onChange?.(editor.getHTML())
     },
-    content,
   })
+
+  useEffect(() => {
+    editor?.commands.setContent(initialValue ?? '')
+  }, [initialValue])
 
   return (
     <div className={styles.editor}>
