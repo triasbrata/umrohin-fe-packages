@@ -18,7 +18,7 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   agency_id: z.string(),
   is_package_plus: z.boolean(),
   is_highlight: z.boolean(),
-  thematic_id: z.string(),
+  thematic_id: z.number(),
   desc: z.string(),
   status: z.union([z.literal(0), z.literal(1), z.literal(-1), z.literal(2), z.boolean()]),
   package_schedules: z.array(
