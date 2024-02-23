@@ -86,11 +86,11 @@ export const updateItem = async <ResponseType = PackageDetailResponse>({
   const { gallery, thumbnail, deleted, ...payload } = body
   const formData = new FormData()
   gallery.forEach((g) => {
-    formData.append('gallery[]', g)
+    formData.append('gallery', g)
   })
   formData.append('thumbnail', thumbnail ?? '')
   deleted.forEach((g) => {
-    formData.append('deleted[]', g)
+    formData.append('deleted', g)
   })
   await apiCall({
     data: formData,
