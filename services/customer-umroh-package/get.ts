@@ -35,7 +35,7 @@ export const CustomerUmrohPackageItemSchema = z.object({
   start_date: z.string(),
   end_date: z.string().optional(),
   price: z.number(),
-  image: z.string(),
+  image: z.string().optional().nullable(),
 })
 
 export type CustomerUmrohPackageItem = z.infer<typeof CustomerUmrohPackageItemSchema>
