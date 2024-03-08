@@ -40,7 +40,7 @@ export const UploadBannerImage = (props: DraggerProps) => {
             Klik atau seret file ke area ini untuk mengunggah
           </Typography.Paragraph>
           <Typography.Paragraph className="text-sm text-[#00000073] text-center m-0 mt-1">
-            Resolution 1140 x 285. Max File 2 MB. Format PNG, JPEG
+            Resolusi Gambar disarankan 1140 x 285. Max File 1 MB. Format PNG, JPEG
           </Typography.Paragraph>
         </Flex>
       )}
