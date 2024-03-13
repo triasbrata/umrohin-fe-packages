@@ -16,7 +16,7 @@ export type HomepageSearchResultListParams = z.infer<typeof HomepageSearchResult
 export const HomepageSearchResultListItemSchema = z.object({
   package_id: z.string(),
   package_name: z.string(),
-  image: z.string(),
+  image: z.string().nullable(),
 })
 
 export type HomepageSearchResultListItem = z.infer<typeof HomepageSearchResultListItemSchema>
