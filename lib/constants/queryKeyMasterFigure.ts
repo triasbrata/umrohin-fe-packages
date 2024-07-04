@@ -1,0 +1,4 @@
+export const queryKeyMasterFigure = {
+  MASTER_FIGURE_LIST: 'MASTER_FIGURE_LIST',
+  MASTER_FIGURE_DETAIL: 'MASTER_FIGURE_DETAIL',
+}

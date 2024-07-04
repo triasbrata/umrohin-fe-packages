@@ -1,0 +1,13 @@
+.editorHeader {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid #E5E7EB;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.divider {
+  @apply bg-black/50 h-5 w-[1px] ml-2 mr-3;
+}

@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './custom-antd-notification.css';
+@import './custom-antd-modal.css';
+@import './custom-antd-form.css';
+@import './custom-antd-switch.css';

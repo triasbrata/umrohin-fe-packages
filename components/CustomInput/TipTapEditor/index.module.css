@@ -1,0 +1,98 @@
+.editor {
+  @apply flex flex-col border border-[#E5E7EB] rounded-lg bg-white overflow-hidden;
+}
+
+.editor :global(.tiptap) {
+  @apply rounded-b-lg min-h-[162px] p-4;
+}
+
+.editor :global(.tiptap > * + *) {
+  @apply mt-2;
+}
+
+.editor :global(.tiptap ul),
+.editor :global(.tiptap ol) {
+  @apply px-4;
+}
+
+.editor :global(.tiptap h1),
+.editor :global(.tiptap h2),
+.editor :global(.tiptap h3),
+.editor :global(.tiptap h4),
+.editor :global(.tiptap h5),
+.editor :global(.tiptap h6) {
+  @apply leading-[1.1];
+}
+
+.editor :global(.tiptap code) {
+  background-color: rgba(97, 97, 97, 0.1);
+  color: #616161;
+}
+
+.editor :global(.tiptap pre) {
+  @apply bg-[#0D0D0D] rounded-lg text-white py-3 px-4;
+
+  font-family: "JetBrainsMono", monospace;
+}
+
+.editor :global(.tiptap pre code) {
+  background: none;
+  color: inherit;
+  font-size: 0.8rem;
+  padding: 0;
+}
+
+.editor :global(.tiptap mark) {
+  background-color: #faf594;
+}
+
+.editor :global(.tiptap img) {
+  height: auto;
+  max-width: 100%;
+}
+
+.editor :global(.tiptap hr) {
+  margin: 1rem 0;
+}
+
+.editor :global(.tiptap blockquote) {
+  border-left: 2px solid rgba(13, 13, 13, 0.1);
+  padding-left: 1rem;
+}
+
+.editor :global(.tiptap hr) {
+  border: none;
+  border-top: 2px solid rgba(13, 13, 13, 0.1);
+  margin: 2rem 0;
+}
+
+.editor :global(.tiptap ul[data-type="taskList"]) {
+  list-style: none;
+  padding: 0;
+}
+
+.editor :global(.tiptap ul[data-type="taskList"] li) {
+  align-items: center;
+  display: flex;
+}
+
+.editor :global(.tiptap ul[data-type="taskList"] li>label) {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+.editor :global(.tiptap ul[data-type="taskList"] li > div) {
+  flex: 1 1 auto;
+}
+
+.editor :global(.tiptap .ProseMirror-focused) {
+  @apply !border-0 !outline-0;
+}
+
+.editorContent {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

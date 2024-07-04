@@ -1,0 +1,4 @@
+export const queryKeyInternalUser = {
+  INTERNAL_USER_LIST: 'INTERNAL_USER_LIST',
+  INTERNAL_USER_DETAIL: 'INTERNAL_USER_DETAIL',
+}

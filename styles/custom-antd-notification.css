@@ -1,0 +1,19 @@
+.ant-notification-notice.custom-antd-notification {
+  @apply !p-4;
+}
+
+.custom-antd-notification .ant-notification-notice-with-icon {
+  @apply !relative;
+}
+
+.custom-antd-notification .ant-notification-notice-icon {
+  @apply !top-[-2px];
+}
+
+.custom-antd-notification .ant-notification-notice-message {
+  @apply !text-sm !font-semibold !mb-0;
+}
+
+.custom-antd-notification .ant-notification-notice-close {
+  @apply !top-[15px] !end-4;
+}

@@ -1,0 +1,4 @@
+export const queryKeyMasterSkill = {
+  MASTER_SKILL_LIST: 'MASTER_SKILL_LIST',
+  MASTER_SKILL_DETAIL: 'MASTER_SKILL_DETAIL',
+}
