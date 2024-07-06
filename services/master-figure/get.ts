@@ -21,7 +21,7 @@ export const MasterFigureListItemSchema = z.object({
   discount: z.number(),
   status: z.string(),
   featured_image: z.string(),
-  image: z.string(),
+  images: z.any(),
   skills: z.string().array(),
   languages: z.string().array(),
   type: z.string(),

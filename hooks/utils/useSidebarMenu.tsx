@@ -9,6 +9,7 @@ import {
   Medal,
   Group,
   VerifiedUser,
+  Building,
 } from 'iconoir-react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
@@ -104,6 +105,12 @@ export const useSidebarMenu = () => {
             icon: <Medal height={24} width={24} />,
             label: <Link href="/master/facilities">Fasilitas</Link>,
             permissions: ['get.facility'],
+          },
+          {
+            key: '/master/hotel-internal',
+            icon: <Building height={24} width={24} />,
+            label: <Link href="/master/hotel-internal">Hotel Internal</Link>,
+            permissions: ['get.hotel-internal'],
           },
         ],
       },

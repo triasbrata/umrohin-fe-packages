@@ -4,9 +4,13 @@ import * as customerOrder from './customer-order'
 import * as dashboard from './dashboard'
 import * as homepage from './homepage'
 import * as internalUser from './internal-user'
+import * as masterAirlines from './master-airlines'
+import * as masterAirport from './master-airport'
 import * as masterBank from './master-bank'
+import * as masterCityFlight from './master-city-flight'
 import * as masterFacility from './master-facility'
 import * as masterFigure from './master-figure'
+import * as masterHotelInternal from './master-hotel-internal'
 import * as masterLanguage from './master-language'
 import * as masterPackage from './master-package'
 import * as masterPartner from './master-partner'
@@ -32,6 +36,10 @@ const apiServices = {
   masterPackage,
   customerOrder,
   masterPartner,
+  masterAirlines,
+  masterAirport,
+  masterCityFlight,
+  masterHotelInternal,
 }
 
 export default apiServices

@@ -1,17 +1,15 @@
 'use client'
 
-import { Button, ButtonProps, Typography } from 'antd'
+import { Typography } from 'antd'
 import Image from 'next/image'
 
 type Props = {
   isSearch?: boolean
   description: string
-  buttonProps: ButtonProps & { text?: string }
 }
 
 export const EmptyState = (props: Props) => {
-  const { description, buttonProps, isSearch } = props
-  const { text = 'Action', ...restButtonProps } = buttonProps
+  const { description, isSearch } = props
 
   return (
     <div className="flex flex-col items-center justify-center pb-8">
@@ -22,15 +20,6 @@ export const EmptyState = (props: Props) => {
       <Typography.Paragraph className="text-center m-0 mt-1">
         {isSearch ? 'Silahkan memasukkan keyword pencarian lainnya' : description}
       </Typography.Paragraph>
-      {!isSearch ? (
-        <Button
-          type="primary"
-          className="flex items-center rounded-lg text-base font-semibold h-10 mt-8"
-          {...restButtonProps}
-        >
-          {text}
-        </Button>
-      ) : null}
     </div>
   )
 }
