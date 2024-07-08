@@ -53,7 +53,11 @@ export const mainInstance = createAxiosInstance({ baseURL })
 
 export const apiCall = async (options?: AxiosRequestConfig) => {
   try {
-    const response = await mainInstance({ ...options })
+    console.log(JSON.stringify(options));
+    const response = await mainInstance({ ...options });
+    console.log("---------------START-RESPONSE---------------");
+    console.log(JSON.stringify(response));
+    console.log("---------------END-RESPONSE--------------");
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
