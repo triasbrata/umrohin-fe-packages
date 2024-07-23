@@ -10,10 +10,13 @@ import * as masterBank from './master-bank'
 import * as masterCityFlight from './master-city-flight'
 import * as masterFacility from './master-facility'
 import * as masterFigure from './master-figure'
+import * as masterFlightRoute from './master-flight-route'
+import * as masterFlightTicket from './master-flight-ticket'
 import * as masterHotelInternal from './master-hotel-internal'
 import * as masterLanguage from './master-language'
 import * as masterPackage from './master-package'
 import * as masterPartner from './master-partner'
+import * as masterProvider from './master-provider'
 import * as masterSkill from './master-skill'
 import * as masterThematic from './master-thematics'
 import * as masterTourLeader from './master-tour-leader'
@@ -40,6 +43,9 @@ const apiServices = {
   masterAirport,
   masterCityFlight,
   masterHotelInternal,
+  masterProvider,
+  masterFlightRoute,
+  masterFlightTicket,
 }
 
 export default apiServices

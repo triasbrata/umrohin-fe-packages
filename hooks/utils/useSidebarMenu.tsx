@@ -4,12 +4,15 @@ import {
   ShoppingBagCheck,
   HomeSimpleDoor,
   UserStar,
+  UserBag,
   ViewGrid,
   SeaAndSun,
   Medal,
   Group,
   VerifiedUser,
   Building,
+  Airplane,
+  Strategy,
 } from 'iconoir-react'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
@@ -22,14 +25,10 @@ type getItemType = {
   icon?: React.ReactNode
   type?: MenuItemGroupType['type'] | MenuDividerType['type']
   children?: getItemType[]
-  permissions?: string[]
 }
 
 export const useSidebarMenu = () => {
   const { data: session } = useSession()
-  const permissions = Object.entries(session?.user.userPermission ?? {})
-    .filter(([key, value]) => value.active)
-    .map(([key]) => key)
 
   const sidebarMenuList = useMemo(() => {
     const menus: getItemType[] = [
@@ -42,19 +41,38 @@ export const useSidebarMenu = () => {
         key: '/customers',
         label: 'Data Customer',
         type: 'group',
-        permissions: ['get.customer', 'get.transaction'],
         children: [
           {
             key: '/customer/list',
             icon: <UserCrown height={24} width={24} />,
             label: <Link href="/customer/list">Customer</Link>,
-            permissions: ['get.customer'],
           },
           {
             key: '/customer/order',
             icon: <ShoppingBagCheck height={24} width={24} />,
             label: <Link href="/customer/order">Transaksi</Link>,
-            permissions: ['get.order'],
+          },
+        ],
+      },
+      {
+        key: '/packages',
+        label: 'Paket',
+        type: 'group',
+        children: [
+          {
+            key: '/package/package',
+            icon: <LiaKaabaSolid size={24} />,
+            label: <Link href="/package/package">Umroh Tokoh</Link>,
+          },
+          {
+            key: '/package/flight-ticket',
+            icon: <Airplane height={24} width={24} />,
+            label: <Link href="/package/flight-ticket">Tiket Pesawat</Link>,
+          },
+          {
+            key: '/package/hotel-internal',
+            icon: <Building height={24} width={24} />,
+            label: <Link href="/package/hotel-internal">Hotel</Link>,
           },
         ],
       },
@@ -62,55 +80,41 @@ export const useSidebarMenu = () => {
         key: '/master',
         label: 'Data Master',
         type: 'group',
-        permissions: ['get.agency'],
         children: [
-          {
-            key: '/master/package',
-            icon: <LiaKaabaSolid size={24} />,
-            label: <Link href="/master/package">Paket</Link>,
-            permissions: ['get.package'],
-          },
           {
             key: '/master/travel-partner',
             icon: <VerifiedUser height={24} width={24} />,
             label: <Link href="/master/travel-partner">Mitra Travel</Link>,
-            permissions: ['get.travel-partner'],
           },
           {
             key: '/master/tour-leader',
             icon: <UserStar height={24} width={24} />,
             label: <Link href="/master/tour-leader">Pembimbing</Link>,
-            permissions: ['get.tour-leader'],
           },
           {
-            key: '/master/figure',
-            icon: <UserStar height={24} width={24} />,
-            label: <Link href="/master/figure">Tokoh</Link>,
-            permissions: ['get.figure'],
+            key: '/master/provider',
+            icon: <UserBag height={24} width={24} />,
+            label: <Link href="/master/provider">Provider</Link>,
           },
           {
             key: '/master/thematics',
             icon: <ViewGrid height={24} width={24} style={{ transform: 'rotate(45deg)' }} />,
             label: <Link href="/master/thematics">Tema</Link>,
-            permissions: ['get.thematic'],
           },
           {
             key: '/master/tour-location',
             icon: <SeaAndSun height={24} width={24} />,
             label: <Link href="/master/tour-location">Objek Wisata</Link>,
-            permissions: ['get.tour-location'],
           },
           {
             key: '/master/facilities',
             icon: <Medal height={24} width={24} />,
             label: <Link href="/master/facilities">Fasilitas</Link>,
-            permissions: ['get.facility'],
           },
           {
-            key: '/master/hotel-internal',
-            icon: <Building height={24} width={24} />,
-            label: <Link href="/master/hotel-internal">Hotel Internal</Link>,
-            permissions: ['get.hotel-internal'],
+            key: '/master/flight-route',
+            icon: <Strategy height={24} width={24} />,
+            label: <Link href="/master/flight-route">Rute Penerbangan</Link>,
           },
         ],
       },
@@ -118,43 +122,17 @@ export const useSidebarMenu = () => {
         key: '/umrohin',
         label: 'Umrohin',
         type: 'group',
-        permissions: ['get.user'],
         children: [
           {
             key: '/umrohin/internal-user',
             icon: <Group height={24} width={24} />,
             label: <Link href="/umrohin/internal-user">Internal User</Link>,
-            permissions: ['get.user'],
           },
         ],
       },
     ]
 
-    const filteredMenu =
-      permissions.length > 1
-        ? menus
-            .map((item) => {
-              if (item.permissions && !item.permissions.some((permission) => permissions.includes(permission))) {
-                return null // Exclude items with no matching permissions
-              }
-
-              if (item.children) {
-                const filteredChildren = item.children.filter((child) => {
-                  return !child.permissions || child.permissions.some((permission) => permissions.includes(permission))
-                })
-
-                if (filteredChildren.length === 0) {
-                  return null // Exclude parent item if all children are filtered out
-                }
-
-                return { ...item, children: filteredChildren }
-              }
-
-              return item
-            })
-            .filter(Boolean)
-        : menus
-    return filteredMenu
+    return menus
   }, [session])
 
   return { sidebarMenuList }
