@@ -4,14 +4,14 @@ import { z } from 'zod'
 
 import { apiCall } from '../apiService'
 
-export const MasterFlightTicketListParamsSchema = z.object({
+export const PackageFlightTicketListParamsSchema = z.object({
   search: z.string().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
 })
-export type MasterFlightTicketListParams = z.infer<typeof MasterFlightTicketListParamsSchema>
+export type PackageFlightTicketListParams = z.infer<typeof PackageFlightTicketListParamsSchema>
 
-export const MasterFlightTicketListItemSchema = z.object({
+export const PackageFlightTicketListItemSchema = z.object({
   id: z.string(),
   rute_id: z.string(),
   rute: z.object({
@@ -68,16 +68,16 @@ export const MasterFlightTicketListItemSchema = z.object({
   tickets_count: z.string(),
   tickets_ready: z.string(),
 })
-export type MasterFlightTicketListItem = z.infer<typeof MasterFlightTicketListItemSchema>
+export type PackageFlightTicketListItem = z.infer<typeof PackageFlightTicketListItemSchema>
 
-export const MasterFlightTicketListResponseSchema = httpGetListResponseSchemaBuilder(MasterFlightTicketListItemSchema)
-export type MasterFlightTicketListResponse = z.infer<typeof MasterFlightTicketListResponseSchema>
+export const PackageFlightTicketListResponseSchema = httpGetListResponseSchemaBuilder(PackageFlightTicketListItemSchema)
+export type PackageFlightTicketListResponse = z.infer<typeof PackageFlightTicketListResponseSchema>
 
-export const getList = async <ResponseType = MasterFlightTicketListResponse>({
+export const getList = async <ResponseType = PackageFlightTicketListResponse>({
   params,
   options,
 }: {
-  params: MasterFlightTicketListParams
+  params: PackageFlightTicketListParams
   options?: AxiosRequestConfig
 }) => {
   const response: AxiosResponse<ResponseType> = await apiCall({

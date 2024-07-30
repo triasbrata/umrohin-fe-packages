@@ -5,7 +5,7 @@ import { zfd } from 'zod-form-data'
 
 import { apiCall } from '../apiService'
 
-export const MasterFlightTicketCreateItemBodySchema = zfd.formData({
+export const PackageFlightTicketCreateItemBodySchema = zfd.formData({
   rute_id: z.any(),
   rute_from_airport_id: zfd.text().optional(),
   rute_to_airport_id: zfd.text().optional(),
@@ -36,9 +36,9 @@ export const MasterFlightTicketCreateItemBodySchema = zfd.formData({
   baggage: zfd.text(),
   cabin_baggage: zfd.text(),
 })
-export type MasterFlightTicketCreateItemBody = z.infer<typeof MasterFlightTicketCreateItemBodySchema>
+export type PackageFlightTicketCreateItemBody = z.infer<typeof PackageFlightTicketCreateItemBodySchema>
 
-export const MasterFlightTicketCreateItemResultSchema = z.object({
+export const PackageFlightTicketCreateItemResultSchema = z.object({
   id: z.string(),
   rute_id: z.string(),
   airline_id: z.string(),
@@ -60,18 +60,18 @@ export const MasterFlightTicketCreateItemResultSchema = z.object({
   baggage: z.string(),
   cabin_baggage: z.string(),
 })
-export type MasterFlightTicketCreateItemResult = z.infer<typeof MasterFlightTicketCreateItemResultSchema>
+export type PackageFlightTicketCreateItemResult = z.infer<typeof PackageFlightTicketCreateItemResultSchema>
 
-export const MasterFlightTicketCreateItemResponseSchema = httpGetDetailResponseSchemaBuilder(
-  MasterFlightTicketCreateItemResultSchema.nullable()
+export const PackageFlightTicketCreateItemResponseSchema = httpGetDetailResponseSchemaBuilder(
+  PackageFlightTicketCreateItemResultSchema.nullable()
 )
-export type MasterFlightTicketCreateItemResponse = z.infer<typeof MasterFlightTicketCreateItemResponseSchema>
+export type PackageFlightTicketCreateItemResponse = z.infer<typeof PackageFlightTicketCreateItemResponseSchema>
 
-export const createItem = async <ResponseType = MasterFlightTicketCreateItemResponse>({
+export const createItem = async <ResponseType = PackageFlightTicketCreateItemResponse>({
   body,
   options,
 }: {
-  body: MasterFlightTicketCreateItemBody
+  body: PackageFlightTicketCreateItemBody
   options?: AxiosRequestConfig
 }) => {
   const response: AxiosResponse<ResponseType> = await apiCall({

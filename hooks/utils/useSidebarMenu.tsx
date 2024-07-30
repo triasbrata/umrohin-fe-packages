@@ -70,9 +70,9 @@ export const useSidebarMenu = () => {
             label: <Link href="/package/flight-ticket">Tiket Pesawat</Link>,
           },
           {
-            key: '/package/hotel-internal',
+            key: '/package/hotel-vendor',
             icon: <Building height={24} width={24} />,
-            label: <Link href="/package/hotel-internal">Hotel</Link>,
+            label: <Link href="/package/hotel-vendor">Hotel</Link>,
           },
         ],
       },

@@ -5,10 +5,10 @@ import { zfd } from 'zod-form-data'
 
 import { apiCall } from '../apiService'
 
-export const MasterFlightTicketUpdateItemParamsSchema = z.object({ id: z.string().optional() })
-export type MasterFlightTicketUpdateItemParams = z.infer<typeof MasterFlightTicketUpdateItemParamsSchema>
+export const PackageFlightTicketUpdateItemParamsSchema = z.object({ id: z.string().optional() })
+export type PackageFlightTicketUpdateItemParams = z.infer<typeof PackageFlightTicketUpdateItemParamsSchema>
 
-export const MasterFlightTicketUpdateItemBodySchema = zfd.formData({
+export const PackageFlightTicketUpdateItemBodySchema = zfd.formData({
   rute_id: z.any(),
   rute_from_airport_id: zfd.text().optional(),
   rute_to_airport_id: zfd.text().optional(),
@@ -41,9 +41,9 @@ export const MasterFlightTicketUpdateItemBodySchema = zfd.formData({
 
   list_tickets: zfd.text().array().optional(),
 })
-export type MasterFlightTicketUpdateItemBody = z.infer<typeof MasterFlightTicketUpdateItemBodySchema>
+export type PackageFlightTicketUpdateItemBody = z.infer<typeof PackageFlightTicketUpdateItemBodySchema>
 
-export const MasterFlightTicketUpdateItemResultSchema = z.object({
+export const PackageFlightTicketUpdateItemResultSchema = z.object({
   id: z.string(),
   rute_id: z.string(),
   airline_id: z.string(),
@@ -66,20 +66,20 @@ export const MasterFlightTicketUpdateItemResultSchema = z.object({
   cabin_baggage: z.string(),
   list_tickets: z.any(),
 })
-export type MasterFlightTicketUpdateItemResult = z.infer<typeof MasterFlightTicketUpdateItemResultSchema>
+export type PackageFlightTicketUpdateItemResult = z.infer<typeof PackageFlightTicketUpdateItemResultSchema>
 
-export const MasterFlightTicketUpdateItemResponseSchema = httpGetDetailResponseSchemaBuilder(
-  MasterFlightTicketUpdateItemResultSchema
+export const PackageFlightTicketUpdateItemResponseSchema = httpGetDetailResponseSchemaBuilder(
+  PackageFlightTicketUpdateItemResultSchema
 )
-export type MasterFlightTicketUpdateItemResponse = z.infer<typeof MasterFlightTicketUpdateItemResponseSchema>
+export type PackageFlightTicketUpdateItemResponse = z.infer<typeof PackageFlightTicketUpdateItemResponseSchema>
 
-export const updateItem = async <ResponseType = MasterFlightTicketUpdateItemResponse>({
+export const updateItem = async <ResponseType = PackageFlightTicketUpdateItemResponse>({
   params,
   body,
   options,
 }: {
-  params: MasterFlightTicketUpdateItemParams
-  body: MasterFlightTicketUpdateItemBody
+  params: PackageFlightTicketUpdateItemParams
+  body: PackageFlightTicketUpdateItemBody
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
@@ -96,22 +96,22 @@ export const updateItem = async <ResponseType = MasterFlightTicketUpdateItemResp
 }
 
 // Activation
-export const MasterFlightTicketActivationItemParamsSchema = z.object({ id: z.string().optional() })
-export type MasterFlightTicketActivationItemParams = z.infer<typeof MasterFlightTicketActivationItemParamsSchema>
+export const PackageFlightTicketActivationItemParamsSchema = z.object({ id: z.string().optional() })
+export type PackageFlightTicketActivationItemParams = z.infer<typeof PackageFlightTicketActivationItemParamsSchema>
 
-export const MasterFlightTicketActivationItemBodySchema = zfd.formData({ is_active: z.boolean() })
-export type MasterFlightTicketActivationItemBody = z.infer<typeof MasterFlightTicketActivationItemBodySchema>
+export const PackageFlightTicketActivationItemBodySchema = zfd.formData({ is_active: z.boolean() })
+export type PackageFlightTicketActivationItemBody = z.infer<typeof PackageFlightTicketActivationItemBodySchema>
 
-export const MasterFlightTicketActivationItemResponseSchema = HttpBaseResponseMetaSchema
-export type MasterFlightTicketActivationItemResponse = z.infer<typeof MasterFlightTicketActivationItemResponseSchema>
+export const PackageFlightTicketActivationItemResponseSchema = HttpBaseResponseMetaSchema
+export type PackageFlightTicketActivationItemResponse = z.infer<typeof PackageFlightTicketActivationItemResponseSchema>
 
-export const activateItem = async <ResponseType = MasterFlightTicketActivationItemResponse>({
+export const activateItem = async <ResponseType = PackageFlightTicketActivationItemResponse>({
   params,
   body,
   options,
 }: {
-  params: MasterFlightTicketActivationItemParams
-  body: MasterFlightTicketActivationItemBody
+  params: PackageFlightTicketActivationItemParams
+  body: PackageFlightTicketActivationItemBody
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
