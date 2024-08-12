@@ -23,6 +23,7 @@ import * as masterTourLocation from './master-tour-location'
 import * as packageFlightTicket from './package-flight-ticket'
 import * as packageHotelVendor from './package-hotel-vendor'
 import * as packageListTicket from './package-list-ticket'
+import * as transactionTicket from './transaction-ticket'
 
 const apiServices = {
   auth,
@@ -50,6 +51,7 @@ const apiServices = {
   packageFlightTicket,
   packageListTicket,
   packageHotelVendor,
+  transactionTicket,
 }
 
 export default apiServices
