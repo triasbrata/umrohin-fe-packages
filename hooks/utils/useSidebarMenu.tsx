@@ -1,21 +1,21 @@
 import { MenuDividerType, MenuItemGroupType } from 'antd/es/menu/hooks/useItems'
 import {
-  UserCrown,
-  ShoppingBagCheck,
-  HomeSimpleDoor,
-  UserStar,
-  UserBag,
-  ViewGrid,
-  SeaAndSun,
-  Medal,
-  Group,
-  VerifiedUser,
-  Building,
   Airplane,
+  Building,
+  Group,
+  HomeSimpleDoor,
+  Medal,
+  SeaAndSun,
+  ShoppingBagCheck,
   Strategy,
+  UserBag,
+  UserCrown,
+  UserStar,
+  VerifiedUser,
+  ViewGrid,
 } from 'iconoir-react'
-import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 import { useMemo } from 'react'
 import { LiaKaabaSolid } from 'react-icons/lia'
 
@@ -50,7 +50,14 @@ export const useSidebarMenu = () => {
           {
             key: '/customer/order',
             icon: <ShoppingBagCheck height={24} width={24} />,
-            label: <Link href="/customer/order">Transaksi</Link>,
+            label: 'Transaksi',
+            children: [
+              {
+                key: '/customer/ticket',
+                icon: <UserCrown height={24} width={24} />,
+                label: <Link href="/customer/ticket">Tiket Pesawat</Link>,
+              },
+            ],
           },
         ],
       },
