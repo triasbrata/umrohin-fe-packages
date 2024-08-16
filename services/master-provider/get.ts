@@ -13,13 +13,16 @@ export type MasterProviderListParams = z.infer<typeof MasterProviderListParamsSc
 
 export const MasterProviderListItemSchema = z.object({
   id: z.string(),
-  name: z.string(),
-  pic_name: z.string(),
-  pic_phone: z.string(),
-  address: z.string(),
-  type: z.string(),
+  name: z.string().nullable(),
+  pic_name: z.string().nullable(),
+  pic_phone: z.string().nullable(),
+  address: z.string().nullable(),
+  type: z.string().nullable(),
   is_active: z.boolean(),
+  created_at: z.string(),
+  updated_at: z.string(),
 })
+
 export type MasterProviderListItem = z.infer<typeof MasterProviderListItemSchema>
 
 export const MasterProviderListResponseSchema = httpGetListResponseSchemaBuilder(MasterProviderListItemSchema)

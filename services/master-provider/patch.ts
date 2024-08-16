@@ -1,4 +1,4 @@
-import { httpGetDetailResponseSchemaBuilder, HttpBaseResponseMetaSchema } from '@apps/packages/services/BaseResponse'
+import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -42,16 +42,14 @@ export const updateItem = async <ResponseType = MasterProviderUpdateItemResponse
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
-  const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
 
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: formData,
+    data: body,
     ...options,
     method: 'put',
     url: `/v1/ticket_providers/${id}`,
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   })
   return response?.data

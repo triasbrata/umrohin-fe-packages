@@ -13,11 +13,15 @@ export type MasterTourLocationListParams = z.infer<typeof MasterTourLocationList
 
 export const MasterTourLocationListItemSchema = z.object({
   id: z.string(),
+  city_id: z.string().nullable(),
   name: z.string(),
   description: z.string(),
-  image: z.string(),
-  is_active: z.string(),
+  image: z.string().nullable(),
+  is_active: z.boolean(),
+  created_at: z.string(),
+  updated_at: z.string(),
 })
+
 export type MasterTourLocationListItem = z.infer<typeof MasterTourLocationListItemSchema>
 
 export const MasterTourLocationListResponseSchema = httpGetListResponseSchemaBuilder(MasterTourLocationListItemSchema)
