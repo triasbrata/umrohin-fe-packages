@@ -12,6 +12,7 @@ export const MasterProviderCreateItemBodySchema = zfd.formData({
   address: zfd.text(),
   type: zfd.text(),
 })
+
 export type MasterProviderCreateItemBody = z.infer<typeof MasterProviderCreateItemBodySchema>
 
 export const MasterProviderCreateItemResultSchema = z.object({
@@ -22,6 +23,7 @@ export const MasterProviderCreateItemResultSchema = z.object({
   address: z.string(),
   type: z.string(),
 })
+
 export type MasterProviderCreateItemResult = z.infer<typeof MasterProviderCreateItemResultSchema>
 
 export const MasterProviderCreateItemResponseSchema = httpGetDetailResponseSchemaBuilder(
@@ -36,16 +38,13 @@ export const createItem = async <ResponseType = MasterProviderCreateItemResponse
   body: MasterProviderCreateItemBody
   options?: AxiosRequestConfig
 }) => {
-  const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
-
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: formData,
+    data: body,
     ...options,
     method: 'post',
     url: '/v1/ticket_providers',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   })
   return response?.data

@@ -14,8 +14,12 @@ export type MasterFacilityListParams = z.infer<typeof MasterFacilityListParamsSc
 export const MasterFacilityListItemSchema = z.object({
   id: z.string(),
   name: z.string(),
-  icon: z.string(),
+  icon: z.string().nullable(),
+  created_at: z.string(),
+  updated_at: z.string(),
+  type: z.string().nullable(),
 })
+
 export type MasterFacilityListItem = z.infer<typeof MasterFacilityListItemSchema>
 
 export const MasterFacilityListResponseSchema = httpGetListResponseSchemaBuilder(MasterFacilityListItemSchema)

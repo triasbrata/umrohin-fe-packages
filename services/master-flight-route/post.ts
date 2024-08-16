@@ -5,9 +5,12 @@ import { zfd } from 'zod-form-data'
 
 import { apiCall } from '../apiService'
 
+const booleanFromText = zfd.text().transform((val) => val === 'true')
+
 export const MasterFlightRouteCreateItemBodySchema = zfd.formData({
   from_airport_id: zfd.text(),
   to_airport_id: zfd.text(),
+  is_active: booleanFromText,
 })
 export type MasterFlightRouteCreateItemBody = z.infer<typeof MasterFlightRouteCreateItemBodySchema>
 
@@ -15,6 +18,7 @@ export const MasterFlightRouteCreateItemResultSchema = z.object({
   id: z.string(),
   from_airport_id: z.string(),
   to_airport_id: z.string(),
+  is_active: z.boolean(),
 })
 export type MasterFlightRouteCreateItemResult = z.infer<typeof MasterFlightRouteCreateItemResultSchema>
 
@@ -31,7 +35,14 @@ export const createItem = async <ResponseType = MasterFlightRouteCreateItemRespo
   options?: AxiosRequestConfig
 }) => {
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+
+  Object.entries(body).forEach(([key, value]) => {
+    if (typeof value === 'boolean') {
+      formData.append(key, value.toString())
+    } else {
+      formData.append(key, value as string)
+    }
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,
