@@ -19,7 +19,7 @@ type useMasterPackageListConfig = {
 }
 
 export const useMasterPackageList = (opt?: useMasterPackageListConfig) => {
-  const { queryKey = [queryKeyMasterPackage.MASTER_PACKAGE_LIST], params = { page: 0, size: 10 }, options } = opt ?? {}
+  const { queryKey = [queryKeyMasterPackage.MASTER_PACKAGE_LIST], params = { page: 1, size: 10 }, options } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterPackageListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),
