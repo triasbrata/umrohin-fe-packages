@@ -17,7 +17,7 @@ export const MasterPartnerListItemSchema = z.object({
   director_name: z.string(),
   phone: z.string(),
   sk_number: z.string(),
-  sk_year: z.string(),
+  sk_year: z.number(),
   office_status: z.string(),
   office_address: z.string(),
   logo: z.string(),
@@ -26,6 +26,10 @@ export const MasterPartnerListItemSchema = z.object({
   account_name: z.string(),
   account_number: z.string(),
   status: z.string(),
+  created_at: z.string(),
+  updated_at: z.string(),
+  ppiu_number: z.string().nullable(),
+  pihk_number: z.string().nullable(),
 })
 export type MasterPartnerListItem = z.infer<typeof MasterPartnerListItemSchema>
 

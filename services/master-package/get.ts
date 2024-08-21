@@ -16,8 +16,8 @@ export const MasterPackageListItemSchema = z.object({
   name: z.string(),
   day: z.string(),
   night: z.string(),
-  hotel_name: z.string(),
-  bedroom: z.string(),
+  hotel_name: z.string().nullable(),
+  bedroom: z.string().nullable(),
   short_description: z.string(),
   description: z.string(),
   airport_departure: z.string(),
@@ -28,32 +28,66 @@ export const MasterPackageListItemSchema = z.object({
   discount: z.string(),
   discount_price: z.string(),
   status: z.string(),
-  featured_image: z.string(),
-  image: z.string(),
-  facilities: z.string().array(),
-  leaders: z.string().array(),
-  partner_id: z.string(),
-  hotels: z.string().array(),
-  flights: z.array(
-    z.object({
-      airline_id: z.string(),
-      airport_from_id: z.string(),
-      airport_to_id: z.string(),
-      from_city_id: z.string(),
-      to_city_id: z.string(),
-      flight_time: z.string(),
-    })
-  ),
+  featured_image: z.string().nullable(),
+  images: z
+    .array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        url: z.string(),
+      })
+    )
+    .nullable()
+    .optional(),
+
+  facilities: z
+    .array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        icon: z.string().nullable(),
+        created_at: z.string(),
+        updated_at: z.string(),
+        type: z.string().nullable(),
+      })
+    )
+    .default([]),
+  leaders: z.array(z.string()).default([]),
+  partner_id: z.string().nullable(),
+  hotels: z.array(z.string()).default([]),
+  flights: z
+    .array(
+      z.object({
+        airline_id: z.string(),
+        airport_from_id: z.string(),
+        airport_to_id: z.string(),
+        from_city_id: z.string(),
+        to_city_id: z.string(),
+        flight_time: z.string(),
+      })
+    )
+    .default([]),
   highlight: z.boolean(),
-  price_quad: z.string(),
-  price_double: z.string(),
-  price_triple: z.string(),
-  object_wisata: z.string().array(),
-  tema_id: z.string(),
+  price_quad: z.string().nullable(),
+  price_double: z.string().nullable(),
+  price_triple: z.string().nullable(),
+  discount_quad: z.string().nullable(),
+  discount_double: z.string().nullable(),
+  discount_triple: z.string().nullable(),
+  discount_price_quad: z.string().nullable(),
+  discount_price_double: z.string().nullable(),
+  discount_price_triple: z.string().nullable(),
+  object_wisata: z.array(z.string()).default([]),
+  tema_id: z.string().nullable(),
+  others_fee: z.string().nullable(),
+  tax_percentage: z.string().nullable(),
+  tax_price: z.string().nullable(),
 })
+
 export type MasterPackageListItem = z.infer<typeof MasterPackageListItemSchema>
 
 export const MasterPackageListResponseSchema = httpGetListResponseSchemaBuilder(MasterPackageListItemSchema)
+
 export type MasterPackageListResponse = z.infer<typeof MasterPackageListResponseSchema>
 
 export const getList = async <ResponseType = MasterPackageListResponse>({
