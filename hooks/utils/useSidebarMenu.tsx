@@ -94,9 +94,9 @@ export const useSidebarMenu = () => {
             label: <Link href="/master/travel-partner">Mitra Travel</Link>,
           },
           {
-            key: '/master/tour-leader',
+            key: '/master/tokoh',
             icon: <UserStar height={24} width={24} />,
-            label: <Link href="/master/tour-leader">Pembimbing</Link>,
+            label: <Link href="/master/tokoh">Tokoh</Link>,
           },
           {
             key: '/master/provider',
@@ -122,6 +122,11 @@ export const useSidebarMenu = () => {
             key: '/master/flight-route',
             icon: <Strategy height={24} width={24} />,
             label: <Link href="/master/flight-route">Rute Penerbangan</Link>,
+          },
+          {
+            key: '/master/tour-leader',
+            icon: <UserStar height={24} width={24} />,
+            label: <Link href="/master/tour-leader">Pembimbing</Link>,
           },
         ],
       },
