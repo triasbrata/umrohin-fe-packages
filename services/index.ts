@@ -18,6 +18,7 @@ import * as masterPartner from './master-partner'
 import * as masterProvider from './master-provider'
 import * as masterSkill from './master-skill'
 import * as masterThematic from './master-thematics'
+import * as masterTokoh from './master-tokoh'
 import * as masterTourLeader from './master-tour-leader'
 import * as masterTourLocation from './master-tour-location'
 import * as packageFlightTicket from './package-flight-ticket'
@@ -52,6 +53,7 @@ const apiServices = {
   packageListTicket,
   packageHotelVendor,
   transactionTicket,
+  masterTokoh,
 }
 
 export default apiServices

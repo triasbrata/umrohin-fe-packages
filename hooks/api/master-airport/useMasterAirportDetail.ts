@@ -24,7 +24,9 @@ export const useMasterAirportDetail = (opt?: useMasterAirportDetailConfig) => {
     local_city: '',
     country_code: '',
     country_vendor_id: '',
-    is_active: '',
+    is_active: true,
+    created_at: '',
+    updated_at: '',
   }
 
   return useQuery<MasterAirportListItem>({

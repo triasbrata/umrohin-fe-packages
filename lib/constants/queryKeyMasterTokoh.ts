@@ -1,0 +1,4 @@
+export const queryKeyMasterTokoh = {
+  MASTER_TOKOH_LIST: 'MASTER_TOKOH_LIST',
+  MASTER_TOKOH_DETAIL: 'MASTER_TOKOH_DETAIL',
+}
