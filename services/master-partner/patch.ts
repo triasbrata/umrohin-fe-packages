@@ -29,8 +29,8 @@ export const MasterPartnerUpdateItemBodySchema = zfd.formData({
 export type MasterPartnerUpdateItemBody = z.infer<typeof MasterPartnerUpdateItemBodySchema>
 
 export const MasterPartnerUpdateVerifItemBodySchema = zfd.formData({
-  verification_status: zfd.text().nullable().optional(),
-  reason: zfd.text().nullable().optional(),
+  verification_status: zfd.text(),
+  reason: zfd.text().optional(),
 })
 
 export type MasterPartnerUpdateVerifItemBody = z.infer<typeof MasterPartnerUpdateVerifItemBodySchema>
@@ -41,7 +41,7 @@ export const MasterPartnerUpdateItemResultSchema = z.object({
   director_name: z.string(),
   phone: z.string(),
   sk_number: z.string(),
-  sk_year: z.string(),
+  sk_year: z.number(),
   office_status: z.string(),
   office_address: z.string(),
   logo: z.string(),
@@ -69,7 +69,16 @@ export const updateItem = async <ResponseType = MasterPartnerUpdateItemResponse>
 }) => {
   const { id } = params
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  // Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (value !== null && value !== undefined) {
+      if (typeof value === 'number') {
+        formData.append(key, value.toString())
+      } else if (typeof value === 'string' || value instanceof Blob) {
+        formData.append(key, value)
+      }
+    }
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,
