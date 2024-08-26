@@ -13,7 +13,7 @@ export const MasterPartnerUpdateItemBodySchema = zfd.formData({
   director_name: zfd.text(),
   phone: zfd.text(),
   sk_number: zfd.text(),
-  sk_year: zfd.text(),
+  sk_year: zfd.numeric(),
   office_status: zfd.text(),
   office_address: zfd.text(),
   logo: z.union([zfd.file(), z.string()]),
@@ -22,8 +22,18 @@ export const MasterPartnerUpdateItemBodySchema = zfd.formData({
   account_name: zfd.text(),
   account_number: zfd.text(),
   status: zfd.text(),
+  verification_status: zfd.text().nullable().optional(),
+  reason: zfd.text().nullable().optional(),
 })
+
 export type MasterPartnerUpdateItemBody = z.infer<typeof MasterPartnerUpdateItemBodySchema>
+
+export const MasterPartnerUpdateVerifItemBodySchema = zfd.formData({
+  verification_status: zfd.text().nullable().optional(),
+  reason: zfd.text().nullable().optional(),
+})
+
+export type MasterPartnerUpdateVerifItemBody = z.infer<typeof MasterPartnerUpdateVerifItemBodySchema>
 
 export const MasterPartnerUpdateItemResultSchema = z.object({
   id: z.string(),
@@ -55,6 +65,31 @@ export const updateItem = async <ResponseType = MasterPartnerUpdateItemResponse>
 }: {
   params: MasterPartnerUpdateItemParams
   body: MasterPartnerUpdateItemBody
+  options?: AxiosRequestConfig
+}) => {
+  const { id } = params
+  const formData = new FormData()
+  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    data: formData,
+    ...options,
+    method: 'put',
+    url: `/v1/partners/${id}`,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+  return response?.data
+}
+
+export const updateVerifItem = async <ResponseType = MasterPartnerUpdateItemResponse>({
+  params,
+  body,
+  options,
+}: {
+  params: MasterPartnerUpdateItemParams
+  body: MasterPartnerUpdateVerifItemBody
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
