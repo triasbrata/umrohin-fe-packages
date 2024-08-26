@@ -53,7 +53,16 @@ export const createItem = async <ResponseType = MasterPartnerCreateItemResponse>
   options?: AxiosRequestConfig
 }) => {
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  // Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (value !== null && value !== undefined) {
+      if (typeof value === 'number') {
+        formData.append(key, value.toString())
+      } else if (typeof value === 'string' || value instanceof Blob) {
+        formData.append(key, value)
+      }
+    }
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,

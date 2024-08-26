@@ -16,7 +16,7 @@ export const useMasterPartnerDetail = (opt?: useMasterPartnerDetailConfig) => {
     director_name: '',
     phone: '',
     sk_number: '',
-    sk_year: '',
+    sk_year: 0,
     office_status: '',
     office_address: '',
     logo: '',
@@ -25,6 +25,8 @@ export const useMasterPartnerDetail = (opt?: useMasterPartnerDetailConfig) => {
     account_name: '',
     account_number: '',
     status: '',
+    verification_status: '',
+    reason: '',
   }
 
   return useQuery<MasterPartnerListItem>({
