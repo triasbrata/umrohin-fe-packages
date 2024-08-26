@@ -32,6 +32,7 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   hotels: zfd.text().array(),
   flights: z.array(
     z.object({
+      urutan: z.string(),
       airline_id: z.string(),
       airport_from_id: z.string(),
       airport_to_id: z.string(),
@@ -74,6 +75,7 @@ export const PackageUpdateItemResultSchema = z.object({
   hotels: z.string().array(),
   flights: z.array(
     z.object({
+      urutan: z.string(),
       airline_id: z.string(),
       airport_from_id: z.string(),
       airport_to_id: z.string(),

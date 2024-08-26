@@ -1,4 +1,4 @@
-import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -47,6 +47,35 @@ export const updateItem = async <ResponseType = MasterFacilityUpdateItemResponse
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+  })
+  return response?.data
+}
+
+// ACTIVATION FACILITY
+export const MasterFacilityActivationItemParamsSchema = z.object({ id: z.string().optional() })
+export type MasterFacilityActivationItemParams = z.infer<typeof MasterFacilityActivationItemParamsSchema>
+
+export const MasterFacilityActivationItemBodySchema = zfd.formData({ is_active: z.boolean() })
+export type MasterFacilityActivationItemBody = z.infer<typeof MasterFacilityActivationItemBodySchema>
+
+export const MasterFacilityActivationItemResponseSchema = HttpBaseResponseMetaSchema
+export type MasterFacilityActivationItemResponse = z.infer<typeof MasterFacilityActivationItemResponseSchema>
+
+export const activateItem = async <ResponseType = MasterFacilityActivationItemResponse>({
+  params,
+  body,
+  options,
+}: {
+  params: MasterFacilityActivationItemParams
+  body: MasterFacilityActivationItemBody
+  options?: AxiosRequestConfig
+}) => {
+  const { id } = params
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    data: body,
+    ...options,
+    method: 'put',
+    url: `/v1/facilities/${id}`,
   })
   return response?.data
 }

@@ -1,3 +1,4 @@
+export * from './useActivateFacility'
 export * from './useCreateFacility'
 export * from './useDeleteFacility'
 export * from './useMasterFacilityDetail'
