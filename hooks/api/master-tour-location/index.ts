@@ -1,3 +1,4 @@
+export * from './useActivateTourLocation'
 export * from './useCreateTourLocation'
 export * from './useDeleteTourLocation'
 export * from './useMasterTourLocationDetail'

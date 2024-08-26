@@ -18,6 +18,7 @@ export const MasterFacilityListItemSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   type: z.string().nullable(),
+  is_active: z.boolean(),
 })
 
 export type MasterFacilityListItem = z.infer<typeof MasterFacilityListItemSchema>
