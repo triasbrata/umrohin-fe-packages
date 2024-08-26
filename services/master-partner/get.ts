@@ -8,6 +8,7 @@ export const MasterPartnerListParamsSchema = z.object({
   search: z.string().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  verification_status: z.string().optional(),
 })
 export type MasterPartnerListParams = z.infer<typeof MasterPartnerListParamsSchema>
 
@@ -25,6 +26,8 @@ export const MasterPartnerListItemSchema = z.object({
   bank_name: z.string(),
   account_name: z.string(),
   account_number: z.string(),
+  verification_status: z.string().nullable(),
+  reason: z.string().nullable(),
   status: z.string(),
   created_at: z.string(),
   updated_at: z.string(),
