@@ -1,6 +1,6 @@
 import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { any, z } from 'zod'
+import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 
 import { apiCall } from '../apiService'
