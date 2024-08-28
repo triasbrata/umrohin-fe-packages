@@ -50,6 +50,8 @@ export const CustomerOrderListItemSchema = z.object({
   user: z.any(),
   user_id: z.string(),
   product_id: z.string(),
+  members: z.any(),
+  items: z.any(),
   discount_price: z.string(),
 })
 export type CustomerOrderListItem = z.infer<typeof CustomerOrderListItemSchema>

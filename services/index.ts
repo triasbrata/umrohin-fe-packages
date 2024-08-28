@@ -25,6 +25,8 @@ import * as packageFlightTicket from './package-flight-ticket'
 import * as packageHotelVendor from './package-hotel-vendor'
 import * as packageListTicket from './package-list-ticket'
 import * as transactionTicket from './transaction-ticket'
+import * as transactionUmroh from './transaction-umroh'
+import * as role from './role'
 
 const apiServices = {
   auth,
@@ -53,7 +55,9 @@ const apiServices = {
   packageListTicket,
   packageHotelVendor,
   transactionTicket,
+  transactionUmroh,
   masterTokoh,
+  role,
 }
 
 export default apiServices

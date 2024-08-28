@@ -54,8 +54,13 @@ export const useSidebarMenu = () => {
             children: [
               {
                 key: '/customer/ticket',
-                icon: <UserCrown height={24} width={24} />,
+                icon: '',
                 label: <Link href="/customer/ticket">Tiket Pesawat</Link>,
+              },
+              {
+                key: '/customer/umrah',
+                icon: '',
+                label: <Link href="/customer/umrah">Paket Umroh</Link>,
               },
             ],
           },
