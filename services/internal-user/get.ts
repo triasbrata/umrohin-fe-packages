@@ -15,11 +15,23 @@ export const InternalUserListItemSchema = z.object({
   id: z.string(),
   name: z.string(),
   email: z.string(),
-  password: z.string(),
+  password: z.string().nullable().optional(),
   role_id: z.string(),
   status: z.string(),
+  role: z.any(),
+})
+
+export const InternalUserListWithoutPasswordItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string(),
+  // password: z.string().nullable(),
+  role_id: z.string(),
+  status: z.string(),
+  role: z.any(),
 })
 export type InternalUserListItem = z.infer<typeof InternalUserListItemSchema>
+export type InternalUserListWithoutPasswordItem = z.infer<typeof InternalUserListWithoutPasswordItemSchema>
 
 export const InternalUserListResponseSchema = httpGetListResponseSchemaBuilder(InternalUserListItemSchema)
 export type InternalUserListResponse = z.infer<typeof InternalUserListResponseSchema>
