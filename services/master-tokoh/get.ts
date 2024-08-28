@@ -18,14 +18,14 @@ export const MasterTokohListItemSchema = z.object({
   short_description: z.string().nullable(),
   description: z.string().nullable(),
   year_experience: z.number().nullable(),
-  price: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
+  // price: z
+  //   .string()
+  //   .nullable()
+  //   .transform((val) => (val ? parseFloat(val) : null)),
+  // discount: z
+  //   .string()
+  //   .nullable()
+  //   .transform((val) => (val ? parseFloat(val) : null)),
   status: z.string().nullable(),
   created_at: z.string().nullable(),
   updated_at: z.string().nullable(),

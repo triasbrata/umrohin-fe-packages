@@ -21,7 +21,7 @@ type useMasterFlightRouteListConfig = {
 export const useMasterFlightRouteList = (opt?: useMasterFlightRouteListConfig) => {
   const {
     queryKey = [queryKeyMasterFlightRoute.MASTER_FLIGHT_ROUTE_LIST],
-    params = { page: 1, page_size: 10 },
+    params = { page: 1, page_size: 10, export_data: false },
     options,
   } = opt ?? {}
   const queryClient = useQueryClient()

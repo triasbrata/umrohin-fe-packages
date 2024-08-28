@@ -14,9 +14,11 @@ export const PackageHotelVendorCreateItemBodySchema = zfd.formData({
 
   start_date: zfd.text(),
   end_date: zfd.text(),
-  date_period: zfd.text().optional(),
+  // date_period: zfd.text().optional(),
+  date_period: z.array(z.string()).optional(),
 
-  image: z.union([zfd.file(), z.string()]),
+  featured_image: z.union([zfd.file(), z.string()]),
+  // image: z.union([zfd.file(), z.string()]),
   facilities: zfd.text(),
 
   rooms: z

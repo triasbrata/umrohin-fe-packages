@@ -16,6 +16,7 @@ import * as masterLanguage from './master-language'
 import * as masterPackage from './master-package'
 import * as masterPartner from './master-partner'
 import * as masterProvider from './master-provider'
+import * as masterSeatClass from './master-seat-class'
 import * as masterSkill from './master-skill'
 import * as masterThematic from './master-thematics'
 import * as masterTokoh from './master-tokoh'
@@ -24,9 +25,9 @@ import * as masterTourLocation from './master-tour-location'
 import * as packageFlightTicket from './package-flight-ticket'
 import * as packageHotelVendor from './package-hotel-vendor'
 import * as packageListTicket from './package-list-ticket'
+import * as role from './role'
 import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
-import * as role from './role'
 
 const apiServices = {
   auth,
@@ -58,6 +59,7 @@ const apiServices = {
   transactionUmroh,
   masterTokoh,
   role,
+  masterSeatClass,
 }
 
 export default apiServices

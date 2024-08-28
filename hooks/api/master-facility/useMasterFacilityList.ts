@@ -21,7 +21,7 @@ type useMasterFacilityListConfig = {
 export const useMasterFacilityList = (opt?: useMasterFacilityListConfig) => {
   const {
     queryKey = [queryKeyMasterFacility.MASTER_FACILITY_LIST],
-    params = { page: 1, page_size: 10 },
+    params = { page: 1, page_size: 10, export_data: false },
     options,
   } = opt ?? {}
   const queryClient = useQueryClient()

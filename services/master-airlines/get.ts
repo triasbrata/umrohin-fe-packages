@@ -8,6 +8,7 @@ export const MasterAirlinesListParamsSchema = z.object({
   search: z.string().nullable().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  export_data: z.boolean().optional(),
 })
 export type MasterAirlinesListParams = z.infer<typeof MasterAirlinesListParamsSchema>
 
@@ -16,7 +17,9 @@ export const MasterAirlinesListItemSchema = z.object({
   code: z.string(),
   name: z.string(),
   logo: z.string(),
-  is_active: z.string(),
+  is_active: z.boolean(),
+  created_at: z.string(),
+  updated_at: z.string(),
 })
 export type MasterAirlinesListItem = z.infer<typeof MasterAirlinesListItemSchema>
 
