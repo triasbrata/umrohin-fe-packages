@@ -19,12 +19,13 @@ export const PackageFlightTicketCreateItemBodySchema = zfd.formData({
   provider_address: zfd.text().optional(),
   provider_type: zfd.text().optional(),
 
-  departure_date: zfd.text(),
-  arrived_date: zfd.text(),
-  departure_time: zfd.text(),
-  arrived_time: zfd.text(),
+  departure_date: z.any(),
+  arrived_date: z.any(),
+  departure_time: z.any(),
+  arrived_time: z.any(),
   class_id: zfd.text(),
-  price: zfd.text(),
+  price: zfd.numeric(),
+  price_baby: zfd.numeric(),
   discount_percentage: zfd.text(),
   discount_price: zfd.text(),
   final_price: zfd.text(),
@@ -35,6 +36,15 @@ export const PackageFlightTicketCreateItemBodySchema = zfd.formData({
   terminal_arrived: zfd.text(),
   baggage: zfd.text(),
   cabin_baggage: zfd.text(),
+  // KEPULANGAN
+  back_rute_id: z.any(),
+  back_airline_id: zfd.text(),
+  back_provider_id: z.any(),
+  back_departure_date: z.any(),
+  back_departure_time: z.any(),
+  back_arrived_date: z.any(),
+  back_arrived_time: z.any(),
+  back_flight_code: zfd.text(),
 })
 export type PackageFlightTicketCreateItemBody = z.infer<typeof PackageFlightTicketCreateItemBodySchema>
 
@@ -48,7 +58,8 @@ export const PackageFlightTicketCreateItemResultSchema = z.object({
   departure_time: z.string(),
   arrived_time: z.string(),
   class_id: z.string(),
-  price: z.string(),
+  price: z.number(),
+  price_baby: z.number(),
   discount_percentage: z.string(),
   discount_price: z.string(),
   final_price: z.string(),
@@ -59,6 +70,15 @@ export const PackageFlightTicketCreateItemResultSchema = z.object({
   terminal_arrived: z.string(),
   baggage: z.string(),
   cabin_baggage: z.string(),
+  // KEPULANGAN
+  back_rute_id: z.string(),
+  back_airline_id: z.string(),
+  back_provider_id: z.string(),
+  back_departure_date: z.string(),
+  back_departure_time: z.string(),
+  back_arrived_date: z.string(),
+  back_arrived_time: z.string(),
+  back_flight_code: z.string(),
 })
 export type PackageFlightTicketCreateItemResult = z.infer<typeof PackageFlightTicketCreateItemResultSchema>
 
@@ -80,7 +100,7 @@ export const createItem = async <ResponseType = PackageFlightTicketCreateItemRes
     method: 'post',
     url: '/v1/flights_tickets',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   })
   return response?.data

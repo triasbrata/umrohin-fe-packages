@@ -8,6 +8,9 @@ export const MasterCityFlightListParamsSchema = z.object({
   search: z.string().nullable().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  sort_by: z.string().optional(),
+  order_by: z.string().optional(),
+  export_data: z.boolean().optional(),
 })
 export type MasterCityFlightListParams = z.infer<typeof MasterCityFlightListParamsSchema>
 

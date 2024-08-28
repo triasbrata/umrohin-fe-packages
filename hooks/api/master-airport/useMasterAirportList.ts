@@ -19,7 +19,11 @@ type useMasterAirportListConfig = {
 }
 
 export const useMasterAirportList = (opt?: useMasterAirportListConfig) => {
-  const { queryKey = [queryKeyMasterAirport.MASTER_AIRPORT_LIST], params = { page: 1, size: 10 }, options } = opt ?? {}
+  const {
+    queryKey = [queryKeyMasterAirport.MASTER_AIRPORT_LIST],
+    params = { page: 1, size: 10, export_data: false },
+    options,
+  } = opt ?? {}
   const queryClient = useQueryClient()
   const placeholderData: MasterAirportListResponse = useMemo(
     () => queryClient.getQueryData(queryKey) ?? placeholderListBuilder(),

@@ -1,4 +1,4 @@
-import { httpGetDetailResponseSchemaBuilder, HttpBaseResponseMetaSchema } from '@apps/packages/services/BaseResponse'
+import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -17,9 +17,10 @@ export const PackageHotelVendorUpdateItemBodySchema = zfd.formData({
 
   start_date: zfd.text(),
   end_date: zfd.text(),
-  date_period: zfd.text().optional(),
+  // date_period: zfd.text().optional(),
+  date_period: z.array(z.string()).optional(),
 
-  image: z.union([zfd.file(), z.string()]),
+  featured_image: z.union([zfd.file(), z.string()]),
   facilities: zfd.text(),
 
   rooms: z

@@ -1,4 +1,4 @@
-import { httpGetDetailResponseSchemaBuilder, HttpBaseResponseMetaSchema } from '@apps/packages/services/BaseResponse'
+import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -22,12 +22,13 @@ export const PackageFlightTicketUpdateItemBodySchema = zfd.formData({
   provider_address: zfd.text().optional(),
   provider_type: zfd.text().optional(),
 
-  departure_date: zfd.text(),
-  arrived_date: zfd.text(),
-  departure_time: zfd.text(),
-  arrived_time: zfd.text(),
+  departure_date: z.any(),
+  arrived_date: z.any(),
+  departure_time: z.any(),
+  arrived_time: z.any(),
   class_id: zfd.text(),
-  price: zfd.text(),
+  price: zfd.numeric(),
+  price_baby: zfd.numeric(),
   discount_percentage: zfd.text(),
   discount_price: zfd.text(),
   final_price: zfd.text(),
@@ -38,8 +39,16 @@ export const PackageFlightTicketUpdateItemBodySchema = zfd.formData({
   terminal_arrived: zfd.text(),
   baggage: zfd.text(),
   cabin_baggage: zfd.text(),
-
   list_tickets: zfd.text().array().optional(),
+  // KEPULANGAN
+  back_rute_id: z.any(),
+  back_airline_id: zfd.text(),
+  back_provider_id: z.any(),
+  back_departure_date: zfd.text(),
+  back_departure_time: zfd.text(),
+  back_arrived_date: zfd.text(),
+  back_arrived_time: zfd.text(),
+  back_flight_code: zfd.text(),
 })
 export type PackageFlightTicketUpdateItemBody = z.infer<typeof PackageFlightTicketUpdateItemBodySchema>
 
@@ -53,7 +62,7 @@ export const PackageFlightTicketUpdateItemResultSchema = z.object({
   departure_time: z.string(),
   arrived_time: z.string(),
   class_id: z.string(),
-  price: z.string(),
+  price: z.number(),
   discount_percentage: z.string(),
   discount_price: z.string(),
   final_price: z.string(),
@@ -65,6 +74,15 @@ export const PackageFlightTicketUpdateItemResultSchema = z.object({
   baggage: z.string(),
   cabin_baggage: z.string(),
   list_tickets: z.any(),
+  // KEPULANGAN
+  back_rute_id: z.string(),
+  back_airline_id: z.string(),
+  back_provider_id: z.string(),
+  back_departure_date: z.string(),
+  back_departure_time: z.string(),
+  back_arrived_date: z.string(),
+  back_arrived_time: z.string(),
+  back_flight_code: z.string(),
 })
 export type PackageFlightTicketUpdateItemResult = z.infer<typeof PackageFlightTicketUpdateItemResultSchema>
 
@@ -89,7 +107,7 @@ export const updateItem = async <ResponseType = PackageFlightTicketUpdateItemRes
     method: 'put',
     url: `/v1/flights_tickets/${id}`,
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   })
   return response?.data
