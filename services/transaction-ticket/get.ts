@@ -74,7 +74,7 @@ export const getList = async <ResponseType = TransactionTicketListResponse>({
     params,
     ...options,
     method: 'get',
-    url: '/v1/orders?sort_by=asc&order_by=created_at',
+    url: '/v1/orders?sort_by=desc&order_by=created_at',
   })
   return response?.data
 }
