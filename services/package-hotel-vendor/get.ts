@@ -46,13 +46,14 @@ export const PackageHotelVendorListItemSchema = z.object({
     .nullable(),
   // facilities: z.string().array(),
   rooms: z
-    .object({
-      name: z.string(),
-      quota: z.number(),
-      is_unlimited: z.boolean(),
-      price: z.string(),
-    })
-    .array()
+    .array(
+      z.object({
+        name: z.string(),
+        quota: z.any(),
+        is_unlimited: z.boolean(),
+        price: z.string(),
+      })
+    )
     .nullable(),
   is_active: z.boolean(),
 })
