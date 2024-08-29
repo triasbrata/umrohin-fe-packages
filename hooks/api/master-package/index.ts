@@ -1,3 +1,4 @@
+export * from './useActivatePackage'
 export * from './useCreatePackage'
 export * from './useDeletePackage'
 export * from './useMasterPackageDetail'
