@@ -19,7 +19,7 @@ type useTransactionTicketListConfig = {
 export const useTransactionTicketList = (opt?: useTransactionTicketListConfig) => {
   const {
     queryKey = ['transactionTicketList'],
-    params = { sort_by: 'asc', order_by: 'created_at', page: 1, page_size: 10 },
+    params = { sort_by: 'desc', order_by: 'created_at', page: 1, page_size: 10 },
     options,
   } = opt ?? {}
   const queryClient = useQueryClient()
