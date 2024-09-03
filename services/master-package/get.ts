@@ -18,8 +18,8 @@ export const MasterPackageListItemSchema = z.object({
   night: z.string().nullable(),
   hotel_name: z.string().nullable(),
   bedroom: z.string().nullable(),
-  short_description: z.string(),
-  description: z.string(),
+  short_description: z.string().nullable(),
+  description: z.string().nullable(),
   airport_departure: z.string(),
   date_departure: z.any(),
   date_arrived: z.any(),
@@ -95,11 +95,11 @@ export const MasterPackageListItemSchema = z.object({
       z
         .object({
           airline_id: z.string(),
-          airport_from_id: z.string(),
-          airport_to_id: z.string(),
-          from_city_id: z.string(),
-          to_city_id: z.string(),
-          flight_time: z.string(),
+          airport_from_id: z.string().nullable(),
+          airport_to_id: z.string().nullable(),
+          from_city_id: z.string().nullable(),
+          to_city_id: z.string().nullable(),
+          flight_time: z.string().nullable(),
         })
         .nullable()
     )
