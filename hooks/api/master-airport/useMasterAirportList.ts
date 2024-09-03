@@ -21,7 +21,7 @@ type useMasterAirportListConfig = {
 export const useMasterAirportList = (opt?: useMasterAirportListConfig) => {
   const {
     queryKey = [queryKeyMasterAirport.MASTER_AIRPORT_LIST],
-    params = { page: 1, size: 10, export_data: false },
+    params = { page: 1, size: 10, export_data: false, sort_by: '', order_by: '' },
     options,
   } = opt ?? {}
   const queryClient = useQueryClient()
