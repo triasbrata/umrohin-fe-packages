@@ -1,4 +1,4 @@
-import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
+import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -49,6 +49,35 @@ export const updateItem = async <ResponseType = ThematicUpdateItemResponse>({
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+  })
+  return response?.data
+}
+
+// Activation
+export const ThematicActivationItemParamsSchema = z.object({ id: z.string().optional() })
+export type ThematicActivationItemParams = z.infer<typeof ThematicActivationItemParamsSchema>
+
+export const ThematicActivationItemBodySchema = zfd.formData({ is_active: z.boolean() })
+export type ThematicActivationItemBody = z.infer<typeof ThematicActivationItemBodySchema>
+
+export const ThematicActivationItemResponseSchema = HttpBaseResponseMetaSchema
+export type ThematicActivationItemResponse = z.infer<typeof ThematicActivationItemResponseSchema>
+
+export const activateItem = async <ResponseType = ThematicActivationItemResponse>({
+  params,
+  body,
+  options,
+}: {
+  params: ThematicActivationItemParams
+  body: ThematicActivationItemBody
+  options?: AxiosRequestConfig
+}) => {
+  const { id } = params
+  const response: AxiosResponse<ResponseType> = await apiCall({
+    data: body,
+    ...options,
+    method: 'put',
+    url: `/v1/tema/${id}`,
   })
   return response?.data
 }

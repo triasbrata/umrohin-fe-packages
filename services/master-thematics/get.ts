@@ -16,6 +16,7 @@ export const ThematicListItemSchema = z.object({
   name: z.string(),
   description: z.string(),
   image: z.string(),
+  is_active: z.boolean(),
 })
 export type ThematicListItem = z.infer<typeof ThematicListItemSchema>
 

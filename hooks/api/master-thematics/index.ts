@@ -1,3 +1,4 @@
+export * from './useActivateThematic'
 export * from './useCreateThematic'
 export * from './useDeleteThematic'
 export * from './useMasterThematicList'
