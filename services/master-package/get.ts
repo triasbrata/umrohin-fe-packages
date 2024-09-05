@@ -131,6 +131,43 @@ export const MasterPackageListItemSchema = z.object({
   others_fee: z.string().nullable(),
   tax_percentage: z.string().nullable(),
   tax_price: z.string().nullable(),
+  tema: z
+    .object({
+      id: z.string(),
+      name: z.string(),
+      image: z.string(),
+      description: z.string().nullable(),
+      is_active: z.boolean(),
+      created_at: z.string(),
+      updated_at: z.string(),
+      is_deleted: z.boolean(),
+    })
+    .nullable(),
+  partner: z
+    .object({
+      id: z.string(),
+      name: z.string(),
+      director_name: z.string().nullable(),
+      phone: z.string(),
+      sk_number: z.string().nullable(),
+      sk_year: z.number().nullable(),
+      office_status: z.string().nullable(),
+      office_address: z.string().nullable(),
+      logo: z.string().nullable(),
+      banner: z.string().nullable(),
+      bank_name: z.string().nullable(),
+      account_name: z.string().nullable(),
+      account_number: z.string().nullable(),
+      status: z.string(),
+      created_at: z.string(),
+      updated_at: z.string(),
+      ppiu_number: z.string().nullable(),
+      pihk_number: z.string().nullable(),
+      verification_status: z.string().nullable(),
+      reason: z.string().nullable(),
+      is_deleted: z.boolean(),
+    })
+    .nullable(),
 })
 
 export type MasterPackageListItem = z.infer<typeof MasterPackageListItemSchema>
