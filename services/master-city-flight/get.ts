@@ -11,6 +11,7 @@ export const MasterCityFlightListParamsSchema = z.object({
   sort_by: z.string().optional(),
   order_by: z.string().optional(),
   export_data: z.boolean().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type MasterCityFlightListParams = z.infer<typeof MasterCityFlightListParamsSchema>
 

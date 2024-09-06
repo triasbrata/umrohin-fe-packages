@@ -13,6 +13,7 @@ export const MasterBankListParamsSchema = z.object({
   name: z.string().optional(),
   ob: z.string().optional(),
   or: z.string().optional(),
+  is_deleted: z.boolean().optional(),
 })
 
 export type MasterBankListParams = z.infer<typeof MasterBankListParamsSchema>

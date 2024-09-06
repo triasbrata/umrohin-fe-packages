@@ -9,6 +9,7 @@ export const MasterAirlinesListParamsSchema = z.object({
   page: z.number().optional(),
   size: z.number().optional(),
   export_data: z.boolean().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type MasterAirlinesListParams = z.infer<typeof MasterAirlinesListParamsSchema>
 

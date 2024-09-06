@@ -10,6 +10,7 @@ export const TransactionTicketListParamsSchema = z.object({
   order_by: z.string().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type TransactionTicketListParams = z.infer<typeof TransactionTicketListParamsSchema>
 
