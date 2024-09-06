@@ -8,6 +8,7 @@ export const MasterPackageListParamsSchema = z.object({
   search: z.string().nullable().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type MasterPackageListParams = z.infer<typeof MasterPackageListParamsSchema>
 

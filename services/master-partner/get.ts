@@ -9,6 +9,7 @@ export const MasterPartnerListParamsSchema = z.object({
   page: z.number().optional(),
   size: z.number().optional(),
   verification_status: z.string().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type MasterPartnerListParams = z.infer<typeof MasterPartnerListParamsSchema>
 

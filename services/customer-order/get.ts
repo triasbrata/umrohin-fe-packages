@@ -8,6 +8,7 @@ export const CustomerOrderListParamsSchema = z.object({
   search: z.string().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type CustomerOrderListParams = z.infer<typeof CustomerOrderListParamsSchema>
 

@@ -10,6 +10,7 @@ export const TransactionUmrohListParamsSchema = z.object({
   order_by: z.string().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type TransactionUmrohListParams = z.infer<typeof TransactionUmrohListParamsSchema>
 

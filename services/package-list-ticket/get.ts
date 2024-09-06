@@ -9,6 +9,7 @@ export const PackageListTicketListParamsSchema = z.object({
   page: z.number().optional(),
   size: z.number().optional(),
   flight_id: z.string().optional(),
+  is_deleted: z.boolean().optional(),
 })
 export type PackageListTicketListParams = z.infer<typeof PackageListTicketListParamsSchema>
 
