@@ -54,6 +54,25 @@ export const CustomerOrderListItemSchema = z.object({
   members: z.any(),
   items: z.any(),
   discount_price: z.string(),
+  pp_from: z
+    .object({
+      airport_from: z
+        .object({
+          code: z.string(),
+        })
+        .nullable(),
+    })
+    .nullable(),
+
+  pp_to: z
+    .object({
+      airport_to: z
+        .object({
+          code: z.string(),
+        })
+        .nullable(),
+    })
+    .nullable(),
 })
 export type CustomerOrderListItem = z.infer<typeof CustomerOrderListItemSchema>
 
