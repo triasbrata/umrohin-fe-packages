@@ -3,12 +3,14 @@
 import { Button, Col, Dropdown, Layout, Row, Space, Typography } from 'antd'
 import { BellNotification, LogOut, PasswordPass } from 'iconoir-react'
 import Image from 'next/image'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next13-progressbar'
 import { BiSolidUser } from 'react-icons/bi'
 
 export const HeaderNav = () => {
   const router = useRouter()
+
+  const { data: session } = useSession()
 
   return (
     <Layout.Header className="border-b border-b-[#E5E7EB] bg-white leading-none h-[72px] p-4 pr-12">
@@ -31,9 +33,11 @@ export const HeaderNav = () => {
                     </div>
                   </Col>
                   <Col>
-                    <Typography.Paragraph className="text-sm font-semibold mb-1">John Doe</Typography.Paragraph>
+                    <Typography.Paragraph className="text-sm font-semibold mb-1">
+                      {session?.user.userName}
+                    </Typography.Paragraph>
                     <Typography.Paragraph className="text-xs text-[#4B5563] font-semibold m-0">
-                      doejohn@example.com
+                      {session?.user.userEmail}
                     </Typography.Paragraph>
                   </Col>
                 </Row>
