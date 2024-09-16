@@ -5,6 +5,7 @@ import { z } from 'zod'
 const UserAccountSchema = z.object({
   userID: z.string(),
   userName: z.string(),
+  userEmail: z.string(),
   jwtToken: z.string(),
   refreshToken: z.string(),
   userPermission: z
