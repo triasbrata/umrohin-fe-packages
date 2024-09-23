@@ -28,6 +28,7 @@ import * as packageListTicket from './package-list-ticket'
 import * as role from './role'
 import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
+import * as masterBanner from './master-banner'
 
 const apiServices = {
   auth,
@@ -60,6 +61,7 @@ const apiServices = {
   masterTokoh,
   role,
   masterSeatClass,
+  masterBanner,
 }
 
 export default apiServices
