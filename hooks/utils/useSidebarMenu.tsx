@@ -87,6 +87,11 @@ export const useSidebarMenu = () => {
             icon: <Building height={24} width={24} />,
             label: <Link href="/package/hotel-vendor">Hotel</Link>,
           },
+          {
+            key: '/package/hotel-internal',
+            icon: <Building height={24} width={24} />,
+            label: <Link href="/package/hotel-internal">Hotel Paket Tokoh</Link>,
+          },
         ],
       },
       {
