@@ -29,6 +29,7 @@ import * as role from './role'
 import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
 import * as masterBanner from './master-banner'
+import * as customerVisa from './customer-visa'
 
 const apiServices = {
   auth,
@@ -46,6 +47,7 @@ const apiServices = {
   masterFigure,
   masterPackage,
   customerOrder,
+  customerVisa,
   masterPartner,
   masterAirlines,
   masterAirport,
