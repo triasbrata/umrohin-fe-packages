@@ -16,7 +16,7 @@ export const CustomerListItemSchema = z.object({
   id: z.string(),
   name: z.string(),
   email: z.string(),
-  password: z.string(),
+  password: z.string().optional().nullable(),
   status: z.string(),
 })
 export type CustomerListItem = z.infer<typeof CustomerListItemSchema>
