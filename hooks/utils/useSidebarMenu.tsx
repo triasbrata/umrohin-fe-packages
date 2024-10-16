@@ -115,6 +115,11 @@ export const useSidebarMenu = () => {
             label: <Link href="/master/tokoh">Tokoh</Link>,
           },
           {
+            key: '/master/tour-leader',
+            icon: <UserStar height={24} width={24} />,
+            label: <Link href="/master/tour-leader">Pembimbing</Link>,
+          },
+          {
             key: '/master/provider',
             icon: <UserBag height={24} width={24} />,
             label: <Link href="/master/provider">Provider</Link>,
@@ -139,11 +144,7 @@ export const useSidebarMenu = () => {
             icon: <Strategy height={24} width={24} />,
             label: <Link href="/master/flight-route">Rute Penerbangan</Link>,
           },
-          {
-            key: '/master/tour-leader',
-            icon: <UserStar height={24} width={24} />,
-            label: <Link href="/master/tour-leader">Pembimbing</Link>,
-          },
+
           {
             key: '/master/banner',
             icon: <MediaImageList height={24} width={24} />,
