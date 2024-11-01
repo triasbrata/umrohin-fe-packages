@@ -119,11 +119,11 @@ export const useSidebarMenu = () => {
             icon: <UserStar height={24} width={24} />,
             label: <Link href="/master/tokoh">Tokoh</Link>,
           },
-          {
-            key: '/master/tour-leader',
-            icon: <UserStar height={24} width={24} />,
-            label: <Link href="/master/tour-leader">Pembimbing</Link>,
-          },
+          // {
+          //   key: '/master/tour-leader',
+          //   icon: <UserStar height={24} width={24} />,
+          //   label: <Link href="/master/tour-leader">Pembimbing</Link>,
+          // },
           {
             key: '/master/provider',
             icon: <UserBag height={24} width={24} />,
