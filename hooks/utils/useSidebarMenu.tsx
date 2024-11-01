@@ -2,14 +2,19 @@ import { MenuDividerType, MenuItemGroupType } from 'antd/es/menu/hooks/useItems'
 import {
   Airplane,
   Building,
+  City,
+  Flower,
   Group,
+  Home,
   HomeSimpleDoor,
   Medal,
   MediaImageList,
+  PathArrow,
   SeaAndSun,
   ShoppingBagCheck,
   Strategy,
   UserBag,
+  UserCart,
   UserCrown,
   UserStar,
   VerifiedUser,
@@ -35,7 +40,7 @@ export const useSidebarMenu = () => {
     const menus: getItemType[] = [
       {
         key: '/',
-        icon: <HomeSimpleDoor height={24} width={24} />,
+        icon: <Home height={24} width={24} />,
         label: <Link href="/">Dashboard</Link>,
       },
       {
@@ -50,7 +55,7 @@ export const useSidebarMenu = () => {
           },
           {
             key: '/customer/order',
-            icon: <ShoppingBagCheck height={24} width={24} />,
+            icon: <UserCart height={24} width={24} />,
             label: 'Transaksi',
             children: [
               {
@@ -89,14 +94,14 @@ export const useSidebarMenu = () => {
           },
           {
             key: '/package/hotel-vendor',
-            icon: <Building height={24} width={24} />,
-            label: <Link href="/package/hotel-vendor">Hotel</Link>,
+            icon: <City height={24} width={24} />,
+            label: <Link href="/package/hotel-vendor">Booking Hotel</Link>,
           },
-          {
-            key: '/package/hotel-internal',
-            icon: <Building height={24} width={24} />,
-            label: <Link href="/package/hotel-internal">Hotel Paket Tokoh</Link>,
-          },
+          // {
+          //   key: '/package/hotel-internal',
+          //   icon: <Building height={24} width={24} />,
+          //   label: <Link href="/package/hotel-internal">Hotel Paket Tokoh</Link>,
+          // },
         ],
       },
       {
@@ -114,15 +119,20 @@ export const useSidebarMenu = () => {
             icon: <UserStar height={24} width={24} />,
             label: <Link href="/master/tokoh">Tokoh</Link>,
           },
-          {
-            key: '/master/tour-leader',
-            icon: <UserStar height={24} width={24} />,
-            label: <Link href="/master/tour-leader">Pembimbing</Link>,
-          },
+          // {
+          //   key: '/master/tour-leader',
+          //   icon: <UserStar height={24} width={24} />,
+          //   label: <Link href="/master/tour-leader">Pembimbing</Link>,
+          // },
           {
             key: '/master/provider',
             icon: <UserBag height={24} width={24} />,
             label: <Link href="/master/provider">Provider</Link>,
+          },
+          {
+            key: '/master/hotel-internal',
+            icon: <Building height={24} width={24} />,
+            label: <Link href="/master/hotel-internal">Hotel Paket Tokoh</Link>,
           },
           {
             key: '/master/thematics',
@@ -136,12 +146,12 @@ export const useSidebarMenu = () => {
           },
           {
             key: '/master/facilities',
-            icon: <Medal height={24} width={24} />,
+            icon: <Flower height={24} width={24} />,
             label: <Link href="/master/facilities">Fasilitas</Link>,
           },
           {
             key: '/master/flight-route',
-            icon: <Strategy height={24} width={24} />,
+            icon: <PathArrow height={24} width={24} />,
             label: <Link href="/master/flight-route">Rute Penerbangan</Link>,
           },
 
