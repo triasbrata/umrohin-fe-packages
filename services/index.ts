@@ -30,6 +30,7 @@ import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
 import * as masterBanner from './master-banner'
 import * as customerVisa from './customer-visa'
+import * as transactionHotel from './transaction-hotel'
 
 const apiServices = {
   auth,
@@ -64,6 +65,7 @@ const apiServices = {
   role,
   masterSeatClass,
   masterBanner,
+  transactionHotel
 }
 
 export default apiServices
