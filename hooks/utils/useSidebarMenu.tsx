@@ -64,6 +64,11 @@ export const useSidebarMenu = () => {
                 label: <Link href="/customer/ticket">Tiket Pesawat</Link>,
               },
               {
+                key: '/customer/hotel',
+                icon: '',
+                label: <Link href="/customer/hotel">Hotel</Link>,
+              },
+              {
                 key: '/customer/umrah',
                 icon: '',
                 label: <Link href="/customer/umrah">Paket Umroh</Link>,
