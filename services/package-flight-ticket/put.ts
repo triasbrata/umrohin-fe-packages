@@ -24,16 +24,16 @@ export const PackageFlightTicketUpdateItemBodySchema = zfd.formData({
 
   departure_date: z.any(),
   arrived_date: z.any(),
-  departure_time: z.any(),
-  arrived_time: z.any(),
+  departure_time: z.any().optional(),
+  arrived_time: z.any().optional(),
   class_id: zfd.text(),
   price: zfd.numeric(),
-  price_baby: zfd.numeric(),
+  price_baby: zfd.numeric().optional().nullable(),
   discount_percentage: zfd.text(),
   discount_price: zfd.text(),
   final_price: zfd.text(),
   is_transit: z.boolean(),
-  flight_code: zfd.text(),
+  flight_code: zfd.text().optional().nullable(),
   ticket_no: zfd.text(),
   meals: z.boolean(),
   terminal_arrived: zfd.text(),
@@ -45,10 +45,10 @@ export const PackageFlightTicketUpdateItemBodySchema = zfd.formData({
   back_airline_id: zfd.text(),
   back_provider_id: z.any(),
   back_departure_date: zfd.text(),
-  back_departure_time: zfd.text(),
+  back_departure_time: zfd.text().optional().nullable(),
   back_arrived_date: zfd.text(),
-  back_arrived_time: zfd.text(),
-  back_flight_code: zfd.text(),
+  back_arrived_time: zfd.text().optional().nullable(),
+  back_flight_code: zfd.text().optional().nullable(),
 })
 export type PackageFlightTicketUpdateItemBody = z.infer<typeof PackageFlightTicketUpdateItemBodySchema>
 
@@ -67,7 +67,7 @@ export const PackageFlightTicketUpdateItemResultSchema = z.object({
   discount_price: z.string(),
   final_price: z.string(),
   is_transit: z.boolean(),
-  flight_code: z.string(),
+  flight_code: z.string().nullable(),
   ticket_no: z.string(),
   meals: z.boolean(),
   terminal_arrived: z.string(),
@@ -79,10 +79,10 @@ export const PackageFlightTicketUpdateItemResultSchema = z.object({
   back_airline_id: z.string(),
   back_provider_id: z.string(),
   back_departure_date: z.string(),
-  back_departure_time: z.string(),
+  back_departure_time: z.string().nullable(),
   back_arrived_date: z.string(),
-  back_arrived_time: z.string(),
-  back_flight_code: z.string(),
+  back_arrived_time: z.string().nullable(),
+  back_flight_code: z.string().nullable(),
 })
 export type PackageFlightTicketUpdateItemResult = z.infer<typeof PackageFlightTicketUpdateItemResultSchema>
 
