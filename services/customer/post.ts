@@ -34,16 +34,16 @@ export const createItem = async <ResponseType = CustomerCreateItemResponse>({
   body: CustomerCreateItemBody
   options?: AxiosRequestConfig
 }) => {
-  const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  // const formData = new FormData()
+  // Object.entries(body).forEach(([key, value]) => formData.append(key, value))
 
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: formData,
+    data: body,
     ...options,
     method: 'post',
     url: '/v1/customers',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   })
   return response?.data
