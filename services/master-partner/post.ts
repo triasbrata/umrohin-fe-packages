@@ -19,6 +19,8 @@ export const MasterPartnerCreateItemBodySchema = zfd.formData({
   account_name: zfd.text(),
   account_number: zfd.text(),
   status: zfd.text(),
+  ppiu_number: zfd.text(),
+  pihk_number: zfd.text(),
 })
 export type MasterPartnerCreateItemBody = z.infer<typeof MasterPartnerCreateItemBodySchema>
 
@@ -37,6 +39,8 @@ export const MasterPartnerCreateItemResultSchema = z.object({
   account_name: z.string().optional(),
   account_number: z.string().optional(),
   status: z.string(),
+  ppiu_string: z.string(),
+  pihk_number: z.string(),
 })
 export type MasterPartnerCreateItemResult = z.infer<typeof MasterPartnerCreateItemResultSchema>
 
