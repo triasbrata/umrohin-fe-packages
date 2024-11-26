@@ -73,6 +73,7 @@ export const CustomerOrderListItemSchema = z.object({
         .nullable(),
     })
     .nullable(),
+    created_at: z.any().nullable(),
 })
 export type CustomerOrderListItem = z.infer<typeof CustomerOrderListItemSchema>
 
