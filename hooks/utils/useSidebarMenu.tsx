@@ -6,13 +6,9 @@ import {
   Flower,
   Group,
   Home,
-  HomeSimpleDoor,
-  Medal,
   MediaImageList,
   PathArrow,
   SeaAndSun,
-  ShoppingBagCheck,
-  Strategy,
   UserBag,
   UserCart,
   UserCrown,
@@ -71,7 +67,7 @@ export const useSidebarMenu = () => {
               {
                 key: '/customer/umrah',
                 icon: '',
-                label: <Link href="/customer/umrah">Paket Umroh</Link>,
+                label: <Link href="/customer/umrah">Program Umroh</Link>,
               },
               {
                 key: '/customer/visa',
@@ -84,13 +80,13 @@ export const useSidebarMenu = () => {
       },
       {
         key: '/packages',
-        label: 'Paket',
+        label: 'Data Program',
         type: 'group',
         children: [
           {
             key: '/package/package',
             icon: <LiaKaabaSolid size={24} />,
-            label: <Link href="/package/package">Umroh Tokoh</Link>,
+            label: <Link href="/package/package">Program Umroh</Link>,
           },
           {
             key: '/package/flight-ticket',
@@ -105,7 +101,7 @@ export const useSidebarMenu = () => {
           // {
           //   key: '/package/hotel-internal',
           //   icon: <Building height={24} width={24} />,
-          //   label: <Link href="/package/hotel-internal">Hotel Paket Tokoh</Link>,
+          //   label: <Link href="/package/hotel-internal">Hotel Program Umroh</Link>,
           // },
         ],
       },
@@ -137,7 +133,7 @@ export const useSidebarMenu = () => {
           {
             key: '/master/hotel-internal',
             icon: <Building height={24} width={24} />,
-            label: <Link href="/master/hotel-internal">Hotel Paket Tokoh</Link>,
+            label: <Link href="/master/hotel-internal">Hotel Program Umroh</Link>,
           },
           {
             key: '/master/thematics',
