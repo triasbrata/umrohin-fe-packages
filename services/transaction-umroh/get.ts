@@ -59,6 +59,7 @@ export const TransactionUmrohListItemSchema = z.object({
   members: z.any(),
   discount_price: z.string().nullable(),
   booking_id: z.string().nullable(),
+  created_at: z.any().nullable(),
 })
 export type TransactionTicketListItem = z.infer<typeof TransactionUmrohListItemSchema>
 
