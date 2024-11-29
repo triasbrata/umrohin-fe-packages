@@ -11,7 +11,11 @@
 }
 
 .basicUpload :global(.ant-upload-list-item-container) {
-  @apply !h-[138px] !w-full !m-0;
+  @apply !h-[138px] !w-full !-mb-0 !mx-0;
+}
+
+.basicUpload :global(.ant-upload-list-picture-card) {
+  @apply !space-y-2 mt-2;
 }
 
 .basicUpload :global(.ant-upload-list-item) {

@@ -10,19 +10,31 @@ export const MasterHotelInternalCreateItemBodySchema = zfd.formData({
   hotel_name: zfd.text(),
   short_description: zfd.text(),
   stars: zfd.text(),
-  distance_meter: zfd.text(),
-  distance_from: zfd.text(),
+  city_flight_select: zfd.text().optional(),
+  city_flight_id: zfd.text(),
+  image: z.union([zfd.file(), z.string()]).optional(),
+  arrounds: zfd
+    .json(
+      z.array(
+        z.object({
+          name: z.string(),
+          distance: z.string(),
+        })
+      )
+    )
+    .optional(),
 })
 export type MasterHotelInternalCreateItemBody = z.infer<typeof MasterHotelInternalCreateItemBodySchema>
 
 export const MasterHotelInternalCreateItemResultSchema = z.object({
-  id: z.string(),
-  featured_image: z.string(),
-  hotel_name: z.string(),
-  short_description: z.string(),
-  stars: z.string(),
-  distance_meter: z.string(),
-  distance_from: z.string(),
+  featured_image: z.union([zfd.file(), z.string()]),
+  hotel_name: zfd.text(),
+  short_description: zfd.text(),
+  stars: zfd.text(),
+  city_flight_select: zfd.text(),
+  city_flight_id: zfd.text(),
+  image: z.union([zfd.file(), z.string()]).optional(),
+  arrounds: z.array(z.object({ name: z.string(), distance: z.string() })).optional(),
 })
 export type MasterHotelInternalCreateItemResult = z.infer<typeof MasterHotelInternalCreateItemResultSchema>
 
@@ -39,7 +51,13 @@ export const createItem = async <ResponseType = MasterHotelInternalCreateItemRes
   options?: AxiosRequestConfig
 }) => {
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      formData.append(key, JSON.stringify(value))
+    } else {
+      formData.append(key, value)
+    }
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,

@@ -13,8 +13,19 @@ export const MasterHotelInternalUpdateItemBodySchema = zfd.formData({
   hotel_name: zfd.text(),
   short_description: zfd.text(),
   stars: zfd.text(),
-  distance_meter: zfd.text(),
-  distance_from: zfd.text(),
+  city_flight_select: zfd.text().optional(),
+  city_flight_id: zfd.text(),
+  image: z.union([zfd.file(), z.string()]).optional(),
+  arrounds: zfd
+    .json(
+      z.array(
+        z.object({
+          name: z.string(),
+          distance: z.string(),
+        })
+      )
+    )
+    .optional(),
 })
 export type MasterHotelInternalUpdateItemBody = z.infer<typeof MasterHotelInternalUpdateItemBodySchema>
 
@@ -45,7 +56,13 @@ export const updateItem = async <ResponseType = MasterHotelInternalUpdateItemRes
 }) => {
   const { id } = params
   const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => formData.append(key, value))
+  Object.entries(body).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      formData.append(key, JSON.stringify(value))
+    } else {
+      formData.append(key, value)
+    }
+  })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: formData,
