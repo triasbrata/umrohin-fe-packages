@@ -21,7 +21,7 @@ export const MasterHotelInternalUpdateItemBodySchema = zfd.formData({
       z.array(
         z.object({
           name: z.string(),
-          distance: z.string(),
+          distance: z.union([z.string(), z.number()]),
         })
       )
     )

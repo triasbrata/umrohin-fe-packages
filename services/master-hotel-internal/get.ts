@@ -18,12 +18,20 @@ export const MasterHotelInternalListItemSchema = z.object({
   hotel_name: z.string(),
   short_description: z.string(),
   stars: z.any(),
-  image: z.any(),
-  arrounds: z.array(z.object({ name: z.string(), distance: z.string() })).optional(),
+  image: z.any().optional(),
   city_flight_id: z.string(),
   city_flight: z.object({
     name: z.string(),
   }),
+  arrounds: z
+    .array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        distance: z.number(),
+      })
+    )
+    .optional(),
 })
 export type MasterHotelInternalListItem = z.infer<typeof MasterHotelInternalListItemSchema>
 
