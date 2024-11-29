@@ -12,11 +12,12 @@ export const MasterHotelInternalCreateItemBodySchema = zfd.formData({
   stars: zfd.text(),
   city_flight_select: zfd.text().optional(),
   city_flight_id: zfd.text(),
-  image: z.union([zfd.file(), z.string()]).optional(),
+  image: z.array(z.union([zfd.file(), z.string()])).optional(),
   arrounds: zfd
     .json(
       z.array(
         z.object({
+          id: z.string().optional(),
           name: z.string(),
           distance: z.union([z.string(), z.number()]),
         })
@@ -52,7 +53,11 @@ export const createItem = async <ResponseType = MasterHotelInternalCreateItemRes
 }) => {
   const formData = new FormData()
   Object.entries(body).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
+    if (key === 'image') {
+      ;(value as File[]).forEach((file, index) => {
+        formData.append(key, file)
+      })
+    } else if (Array.isArray(value)) {
       formData.append(key, JSON.stringify(value))
     } else {
       formData.append(key, value)
