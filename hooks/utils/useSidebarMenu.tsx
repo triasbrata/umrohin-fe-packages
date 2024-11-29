@@ -133,7 +133,7 @@ export const useSidebarMenu = () => {
           {
             key: '/master/hotel-internal',
             icon: <Building height={24} width={24} />,
-            label: <Link href="/master/hotel-internal">Hotel Program Umroh</Link>,
+            label: <Link href="/master/hotel-internal">Hotel Umroh &amp; Haji</Link>,
           },
           {
             key: '/master/thematics',
