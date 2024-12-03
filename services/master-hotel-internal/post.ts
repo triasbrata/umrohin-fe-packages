@@ -8,7 +8,7 @@ import { apiCall } from '../apiService'
 export const MasterHotelInternalCreateItemBodySchema = zfd.formData({
   featured_image: z.union([zfd.file(), z.string()]),
   hotel_name: zfd.text(),
-  short_description: zfd.text(),
+  short_description: zfd.text().optional(),
   stars: zfd.text(),
   city_flight_select: zfd.text().optional(),
   city_flight_id: zfd.text(),
@@ -30,7 +30,7 @@ export type MasterHotelInternalCreateItemBody = z.infer<typeof MasterHotelIntern
 export const MasterHotelInternalCreateItemResultSchema = z.object({
   featured_image: z.union([zfd.file(), z.string()]),
   hotel_name: zfd.text(),
-  short_description: zfd.text(),
+  short_description: zfd.text().optional(),
   stars: zfd.text(),
   city_flight_select: zfd.text(),
   city_flight_id: zfd.text(),
@@ -54,7 +54,7 @@ export const createItem = async <ResponseType = MasterHotelInternalCreateItemRes
   const formData = new FormData()
   Object.entries(body).forEach(([key, value]) => {
     if (key === 'image') {
-      ;(value as File[]).forEach((file, index) => {
+      ;(value as File[]).forEach((file) => {
         formData.append(key, file)
       })
     } else if (Array.isArray(value)) {

@@ -16,7 +16,7 @@ export const MasterHotelInternalListItemSchema = z.object({
   id: z.string(),
   featured_image: z.string().nullish(),
   hotel_name: z.string(),
-  short_description: z.string(),
+  short_description: z.string().nullish(),
   stars: z.any(),
   image: z.array(z.any()).optional(),
   city_flight_id: z.string(),
