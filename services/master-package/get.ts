@@ -31,7 +31,7 @@ export const MasterPackageListItemSchema = z.object({
   status: z.string().nullable(),
   featured_image: z.any(),
   image: z.any().nullable(),
-  images: z.any(),
+  images: z.any().nullable(),
   // images: z
   //   .array(
   //     z
@@ -84,13 +84,30 @@ export const MasterPackageListItemSchema = z.object({
           hotel_name: z.string(),
           short_description: z.string(),
           stars: z.number(),
-          distance_meter: z.number(),
-          distance_from: z.string(),
+          distance_meter: z.number().nullish(),
+          distance_from: z.string().nullish(),
         })
         .nullable()
     )
     .default([])
     .nullable(),
+  hotel_transit: z
+    .array(
+      z
+        .object({
+          id: z.string(),
+          featured_image: z.string().nullish(),
+          hotel_name: z.string(),
+          short_description: z.string(),
+          stars: z.number(),
+          distance_meter: z.number().nullish(),
+          distance_from: z.string().nullish(),
+        })
+        .nullable()
+    )
+    .default([])
+    .nullable()
+    .nullish(),
   flights: z
     .array(
       z
@@ -101,6 +118,8 @@ export const MasterPackageListItemSchema = z.object({
           from_city_id: z.string().nullable(),
           to_city_id: z.string().nullable(),
           flight_time: z.string().nullable(),
+          bagage_capacity: z.string().optional().nullable(),
+          bagage_cabin: z.string().optional().nullable(),
         })
         .nullable()
     )
