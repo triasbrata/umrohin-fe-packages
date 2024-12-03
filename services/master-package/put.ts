@@ -116,6 +116,7 @@ export const updateItem = async <ResponseType = PackageUpdateItemResponse>({
   const formData = new FormData()
 
   Object.entries(body).forEach(([key, value]) => {
+    if (!value) return
     if (key === 'image') {
       ;(value as File[]).forEach((file) => {
         formData.append(key, file)
