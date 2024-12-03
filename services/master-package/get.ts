@@ -82,7 +82,7 @@ export const MasterPackageListItemSchema = z.object({
           id: z.string(),
           featured_image: z.string(),
           hotel_name: z.string(),
-          short_description: z.string(),
+          short_description: z.string().nullish(),
           stars: z.number(),
           distance_meter: z.number().nullish(),
           distance_from: z.string().nullish(),
@@ -118,8 +118,8 @@ export const MasterPackageListItemSchema = z.object({
           from_city_id: z.string().nullable(),
           to_city_id: z.string().nullable(),
           flight_time: z.string().nullable(),
-          bagage_capacity: z.string().optional().nullable(),
-          bagage_cabin: z.string().optional().nullable(),
+          bagage_capacity: z.number().optional().nullable(),
+          bagage_cabin: z.number().optional().nullable(),
         })
         .nullable()
     )

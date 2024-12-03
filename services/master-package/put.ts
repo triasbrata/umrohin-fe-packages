@@ -25,8 +25,8 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   discount_price: zfd.text(),
   status: zfd.text(),
   featured_image: z.any(),
-  image: z.any().optional().nullable(),
-  facilities: zfd.text().array(),
+  image: z.array(zfd.file().optional().nullable()).optional(),
+  facilities: zfd.text().array().optional(),
   leaders: zfd.text().array().optional().nullable(),
   partner_id: zfd.text(),
   hotels: zfd.text().array(),
@@ -112,8 +112,30 @@ export const updateItem = async <ResponseType = PackageUpdateItemResponse>({
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
+
+  const formData = new FormData()
+
+  Object.entries(body).forEach(([key, value]) => {
+    if (key === 'image') {
+      ;(value as File[]).forEach((file) => {
+        formData.append(key, file)
+      })
+    } else if (key === 'flights') {
+      value.forEach((val: Record<string, any>, i: number) => {
+        Object.entries(val).forEach(([key2, value2]) => {
+          if (!value2) return
+          formData.append(`flights[${i}][${key2}]`, value2 as string)
+        })
+      })
+    } else if (Array.isArray(value)) {
+      value.map((val) => formData.append(`${key}[]`, val))
+    } else {
+      formData.append(key, value)
+    }
+  })
+
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: body,
+    data: formData,
     ...options,
     method: 'put',
     url: `/v1/products/${id}`,
@@ -144,6 +166,7 @@ export const activateItem = async <ResponseType = MasterPackageItemResponse>({
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
+
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: body,
     ...options,

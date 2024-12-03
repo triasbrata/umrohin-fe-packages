@@ -22,8 +22,8 @@ export const PackageCreateItemBodySchema = zfd.formData({
   discount_price: zfd.text(),
   status: zfd.text(),
   featured_image: zfd.file(),
-  image: zfd.file().optional().nullable(),
-  facilities: zfd.text().array(),
+  image: z.array(zfd.file().optional().nullable()).optional(),
+  facilities: zfd.text().array().optional(),
   leaders: zfd.text().array().optional().nullable(),
   partner_id: zfd.text(),
   hotels: zfd.text().array(),
@@ -106,8 +106,29 @@ export const createItem = async <ResponseType = PackageCreateItemResponse>({
   body: PackageCreateItemBody
   options?: AxiosRequestConfig
 }) => {
+  const formData = new FormData()
+
+  Object.entries(body).forEach(([key, value]) => {
+    if (key === 'image') {
+      ;(value as File[]).forEach((file) => {
+        formData.append(key, file)
+      })
+    } else if (key === 'flights') {
+      value.forEach((val: Record<string, any>, i: number) => {
+        Object.entries(val).forEach(([key2, value2]) => {
+          if (!value2) return
+          formData.append(`flights[${i}][${key2}]`, value2 as string)
+        })
+      })
+    } else if (Array.isArray(value)) {
+      value.map((val) => formData.append(`${key}[]`, val))
+    } else {
+      formData.append(key, value)
+    }
+  })
+
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: body,
+    data: formData,
     ...options,
     method: 'post',
     url: '/v1/products',
