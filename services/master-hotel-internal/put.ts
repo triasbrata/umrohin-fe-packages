@@ -9,9 +9,9 @@ export const MasterHotelInternalUpdateItemParamsSchema = z.object({ id: z.string
 export type MasterHotelInternalUpdateItemParams = z.infer<typeof MasterHotelInternalUpdateItemParamsSchema>
 
 export const MasterHotelInternalUpdateItemBodySchema = zfd.formData({
-  featured_image: z.union([zfd.file(), z.string()]),
+  featured_image: z.union([zfd.file(), z.string()]).optional(),
   hotel_name: zfd.text(),
-  short_description: zfd.text(),
+  short_description: zfd.text().optional(),
   stars: zfd.text(),
   city_flight_select: zfd.text().optional(),
   city_flight_id: zfd.text(),
@@ -34,7 +34,7 @@ export const MasterHotelInternalUpdateItemResultSchema = z.object({
   id: z.string(),
   featured_image: z.string(),
   hotel_name: z.string(),
-  short_description: z.string(),
+  short_description: z.string().optional(),
   stars: z.string(),
   distance_meter: z.string(),
   distance_from: z.string(),
@@ -59,7 +59,7 @@ export const updateItem = async <ResponseType = MasterHotelInternalUpdateItemRes
   const formData = new FormData()
   Object.entries(body).forEach(([key, value]) => {
     if (key === 'image') {
-      ;(value as File[]).forEach((file, index) => {
+      ;(value as File[]).forEach((file) => {
         formData.append(key, file)
       })
     } else if (Array.isArray(value)) {

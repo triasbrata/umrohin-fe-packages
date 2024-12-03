@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 import styles from './BasicUpload.module.css'
 
-export const BasicUpload = (props: DraggerProps) => {
+export const BasicUpload = ({ id, ...props }: DraggerProps) => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export const BasicUpload = (props: DraggerProps) => {
     >
       {(props.multiple || fileList.length < 1) && (
         <Flex
+          id={id}
           align="center"
           justify="center"
           vertical

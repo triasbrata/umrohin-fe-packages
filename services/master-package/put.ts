@@ -30,6 +30,7 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   leaders: zfd.text().array().optional().nullable(),
   partner_id: zfd.text(),
   hotels: zfd.text().array(),
+  hotels_transit: zfd.text().array(),
   flights: z.array(
     z.object({
       urutan: z.string(),
@@ -39,6 +40,8 @@ export const PackageUpdateItemBodySchema = zfd.formData({
       from_city_id: z.string().optional().nullable(),
       to_city_id: z.string().optional().nullable(),
       flight_time: z.string().optional().nullable(),
+      bagage_capacity: z.number().optional().nullable(),
+      bagage_cabin: z.number().optional().nullable(),
     })
   ),
   highlight: zfd.text(),
@@ -73,6 +76,7 @@ export const PackageUpdateItemResultSchema = z.object({
   leaders: z.string().array().optional().nullable(),
   partner_id: z.string(),
   hotels: z.string().array(),
+  hotels_transit: z.string().array(),
   flights: z.array(
     z.object({
       urutan: z.string(),
@@ -82,6 +86,8 @@ export const PackageUpdateItemResultSchema = z.object({
       from_city_id: z.string().optional().nullable(),
       to_city_id: z.string().optional().nullable(),
       flight_time: z.string().optional().nullable(),
+      bagage_capacity: z.number().optional().nullable(),
+      bagage_cabin: z.number().optional().nullable(),
     })
   ),
   highlight: z.boolean(),
