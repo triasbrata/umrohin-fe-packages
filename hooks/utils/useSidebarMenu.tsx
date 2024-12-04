@@ -89,6 +89,11 @@ export const useSidebarMenu = () => {
             label: <Link href="/package/package">Program Umroh</Link>,
           },
           {
+            key: '/package/package-haji',
+            icon: <LiaKaabaSolid size={24} />,
+            label: <Link href="/package/package-haji">Program Haji</Link>,
+          },
+          {
             key: '/package/flight-ticket',
             icon: <Airplane height={24} width={24} />,
             label: <Link href="/package/flight-ticket">Tiket Pesawat</Link>,
