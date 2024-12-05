@@ -20,3 +20,13 @@
     -moz-appearance: textfield;
   }
 }
+
+@layer components {
+  .product-detail-section {
+    @apply space-y-4 p-4;
+  }
+
+  .ui-product-banner .swiper-pagination {
+    @apply text-white bg-black/50 w-fit px-3 py-[6px] ring-2 ring-white ring-inset rounded-md text-xs right-4 left-auto bottom-4 top-auto -translate-y-12;
+  }
+}
