@@ -14,24 +14,26 @@ export type MasterHotelInternalListParams = z.infer<typeof MasterHotelInternalLi
 
 export const MasterHotelInternalListItemSchema = z.object({
   id: z.string(),
-  featured_image: z.string().nullish(),
-  hotel_name: z.string(),
-  short_description: z.string().nullish(),
-  stars: z.any(),
-  image: z.array(z.any()).optional(),
-  city_flight_id: z.string(),
-  city_flight: z.object({
-    name: z.string(),
-  }),
+  featured_image: z.string().nullable(),
+  hotel_name: z.string().nullable(),
+  short_description: z.string().nullable(),
+  stars: z.any().nullable(),
+  image: z.array(z.any()).nullable(),
+  city_flight_id: z.string().nullable(),
+  city_flight: z
+    .object({
+      name: z.string().nullable(),
+    })
+    .nullable(),
   arrounds: z
     .array(
       z.object({
-        id: z.string(),
-        name: z.string(),
-        distance: z.number(),
+        id: z.string().nullable(),
+        name: z.string().nullable(),
+        distance: z.number().nullable(),
       })
     )
-    .optional(),
+    .nullable(),
 })
 
 export type MasterHotelInternalListItem = z.infer<typeof MasterHotelInternalListItemSchema>
