@@ -67,13 +67,28 @@ export const MasterPackageHajiListItemSchema = z.object({
     .array(
       z
         .object({
-          id: z.string(),
-          featured_image: z.string(),
-          hotel_name: z.string(),
+          id: z.string().nullable(),
+          featured_image: z.string().nullable(),
+          hotel_name: z.string().nullable(),
           short_description: z.string().nullish(),
-          stars: z.number(),
+          stars: z.number().nullable(),
           distance_meter: z.number().nullish(),
           distance_from: z.string().nullish(),
+          arrounds: z.array(
+            z
+              .object({
+                distance: z.number().nullable(),
+                name: z.string().nullable(),
+              })
+              .nullable()
+          ),
+          city_flight: z
+            .object({
+              id: z.string().nullable(),
+              code: z.string().nullable(),
+              name: z.string().nullable(),
+            })
+            .nullable(),
         })
         .nullable()
     )
@@ -83,24 +98,39 @@ export const MasterPackageHajiListItemSchema = z.object({
     .array(
       z
         .object({
-          id: z.string(),
-          featured_image: z.string().nullish(),
-          hotel_name: z.string(),
-          short_description: z.string(),
-          stars: z.number(),
-          distance_meter: z.number().nullish(),
-          distance_from: z.string().nullish(),
+          id: z.string().nullable(),
+          featured_image: z.string().nullable(),
+          hotel_name: z.string().nullable(),
+          short_description: z.string().nullable(),
+          stars: z.number().nullable(),
+          distance_meter: z.number().nullable(),
+          distance_from: z.string().nullable(),
+          arrounds: z.array(
+            z
+              .object({
+                distance: z.number().nullable(),
+                name: z.string().nullable(),
+              })
+              .nullable()
+          ),
+          city_flight: z
+            .object({
+              id: z.string().nullable(),
+              code: z.string().nullable(),
+              name: z.string().nullable(),
+            })
+            .nullable(),
         })
         .nullable()
     )
     .default([])
-    .nullable()
-    .nullish(),
+    .nullable(),
   flights: z
     .array(
       z
         .object({
-          airline_id: z.string(),
+          urutan: z.number().nullable(),
+          airline_id: z.string().nullable(),
           airport_from_id: z.string().nullable(),
           airport_to_id: z.string().nullable(),
           from_city_id: z.string().nullable(),
@@ -108,6 +138,42 @@ export const MasterPackageHajiListItemSchema = z.object({
           flight_time: z.string().nullable(),
           bagage_capacity: z.number().optional().nullable(),
           bagage_cabin: z.number().optional().nullable(),
+          airline: z
+            .object({
+              id: z.string().nullable(),
+              code: z.string().nullable(),
+              name: z.string().nullable(),
+              logo: z.string().nullable(),
+            })
+            .nullable(),
+          airport_from: z
+            .object({
+              id: z.string().nullable(),
+              country_id: z.string().nullable(),
+              city_id: z.string().nullable(),
+              code: z.string().nullable(),
+              city_name: z.string().nullable(),
+              area_code: z.string().nullable(),
+              international_name: z.string().nullable(),
+              airport_code: z.string().nullable(),
+              local_name: z.string().nullable(),
+              local_city: z.string().nullable(),
+            })
+            .nullable(),
+          airport_to: z
+            .object({
+              id: z.string().nullable(),
+              country_id: z.string().nullable(),
+              city_id: z.string().nullable(),
+              code: z.string().nullable(),
+              city_name: z.string().nullable(),
+              area_code: z.string().nullable(),
+              international_name: z.string().nullable(),
+              airport_code: z.string().nullable(),
+              local_name: z.string().nullable(),
+              local_city: z.string().nullable(),
+            })
+            .nullable(),
         })
         .nullable()
     )
