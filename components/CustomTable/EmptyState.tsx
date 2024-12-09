@@ -7,10 +7,11 @@ type Props = {
   isSearch?: boolean
   description: string
   buttonProps: ButtonProps & { text?: string }
+  withButton?: boolean
 }
 
 export const EmptyState = (props: Props) => {
-  const { description, buttonProps, isSearch } = props
+  const { description, buttonProps, isSearch, withButton = true } = props
   const { text = 'Action', ...restButtonProps } = buttonProps
 
   return (
@@ -22,7 +23,7 @@ export const EmptyState = (props: Props) => {
       <Typography.Paragraph className="text-center m-0 mt-1">
         {isSearch ? 'Silahkan memasukkan keyword pencarian lainnya' : description}
       </Typography.Paragraph>
-      {!isSearch ? (
+      {!isSearch && withButton ? (
         <Button
           type="primary"
           className="flex items-center rounded-lg text-base font-semibold h-10 mt-8"

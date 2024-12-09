@@ -32,6 +32,7 @@ import * as role from './role'
 import * as transactionHotel from './transaction-hotel'
 import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
+import * as transactionUmrohPlanner from './transaction-umroh-planner'
 
 const apiServices = {
   auth,
@@ -63,6 +64,7 @@ const apiServices = {
   packageHotelVendor,
   transactionTicket,
   transactionUmroh,
+  transactionUmrohPlanner,
   masterTokoh,
   role,
   masterSeatClass,
