@@ -142,6 +142,7 @@ export const MasterPackageListItemSchema = z.object({
     .array(
       z
         .object({
+          urutan: z.number().nullable(),
           airline_id: z.string().nullable(),
           airport_from_id: z.string().nullable(),
           airport_to_id: z.string().nullable(),
