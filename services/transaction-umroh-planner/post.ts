@@ -9,6 +9,8 @@ export const TransactionUmrohPlannerUpdateHistoryItemBodySchema = z.object({
   status: z.string(),
   title: z.string(),
   description: z.string(),
+  status_no: z.number(),
+  is_paid: z.boolean(),
 })
 export type TransactionUmrohPlannerUpdateHistoryItemBody = z.infer<
   typeof TransactionUmrohPlannerUpdateHistoryItemBodySchema
@@ -19,6 +21,8 @@ const TransactionUmrohPlannerUpdateHistoryResponseSchema = z.object({
   status: z.string(),
   description: z.string(),
   id: z.string(),
+  status_no: z.number(),
+  is_paid: z.boolean(),
 })
 
 export const TransactionUmrohPlannerUpdateHistoryResponse = httpGetListResponseSchemaBuilder(
