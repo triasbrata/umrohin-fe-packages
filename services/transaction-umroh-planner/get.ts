@@ -84,20 +84,19 @@ export const TransactionUmrohPlannerListItemSchema = z.object({
       international_name: z.string().nullable(),
     }),
   }),
-  histories: z
-    .array(
-      z.object({
-        id: z.string(),
-        order_id: z.string(),
-        status: z.string().nullable(),
-        title: z.string().nullable(),
-        description: z.string().nullable(),
-        created_at: z.string().nullable(),
-        updated_at: z.string().nullable(),
-      })
-    )
-    .optional()
-    .nullable(),
+  histories: z.array(
+    z.object({
+      id: z.string(),
+      order_id: z.string(),
+      status: z.string(),
+      title: z.string().nullable(),
+      description: z.string(),
+      created_at: z.string(),
+      updated_at: z.string(),
+      status_no: z.number().nullable(),
+      is_paid: z.boolean().nullable(),
+    })
+  ),
   items: z.any().nullable(),
   members: z.any().nullable(),
   discount_price: z.string().nullable(),
