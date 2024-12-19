@@ -78,23 +78,32 @@ export const TransactionUmrohPlannerListItemSchema = z.object({
     created_at: z.string().nullable(),
     updated_at: z.string().nullable(),
     tourist_destination: z.any(),
-    airport: z.object({
-      code: z.string().nullable(),
-      airport_code: z.string().nullable(),
-      international_name: z.string().nullable(),
-    }),
+    airport: z
+      .object({
+        code: z.string().nullable(),
+        airport_code: z.string().nullable(),
+        international_name: z.string().nullable(),
+      })
+      .optional()
+      .nullable(),
   }),
   histories: z.array(
     z.object({
       id: z.string(),
       order_id: z.string(),
-      status: z.string(),
-      title: z.string().nullable(),
-      description: z.string(),
       created_at: z.string(),
       updated_at: z.string(),
-      status_no: z.number().nullable(),
-      is_paid: z.boolean().nullable(),
+      is_paid: z.boolean(),
+      status_id: z.string(),
+      status: z.object({
+        id: z.string(),
+        name: z.string(),
+        description: z.string(),
+        order: z.number(),
+        is_active: z.boolean(),
+        created_at: z.string(),
+        updated_at: z.string(),
+      }),
     })
   ),
   items: z.any().nullable(),
@@ -123,5 +132,6 @@ export const getList = async <ResponseType = TransactionUmrohPlannerListResponse
     method: 'get',
     url: '/v1/orders?sort_by=desc&order_by=created_at&type=planner',
   })
+
   return response?.data
 }
