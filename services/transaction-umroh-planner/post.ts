@@ -6,10 +6,7 @@ import { apiCall } from '../apiService'
 
 export const TransactionUmrohPlannerUpdateHistoryItemBodySchema = z.object({
   order_id: z.string(),
-  status: z.string(),
-  title: z.string(),
-  description: z.string(),
-  status_no: z.number(),
+  status_id: z.string(),
   is_paid: z.boolean(),
 })
 export type TransactionUmrohPlannerUpdateHistoryItemBody = z.infer<
@@ -18,10 +15,8 @@ export type TransactionUmrohPlannerUpdateHistoryItemBody = z.infer<
 
 const TransactionUmrohPlannerUpdateHistoryResponseSchema = z.object({
   order_id: z.string(),
-  status: z.string(),
-  description: z.string(),
+  status_id: z.string(),
   id: z.string(),
-  status_no: z.number(),
   is_paid: z.boolean(),
 })
 
