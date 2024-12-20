@@ -255,6 +255,10 @@ export const MasterPackageListItemSchema = z.object({
       is_deleted: z.boolean(),
     })
     .nullable(),
+  down_payment: z.string().nullable(),
+  dp_expired_date: z.any().nullable(),
+  dp_expired_time: z.any().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 
 export type MasterPackageListItem = z.infer<typeof MasterPackageListItemSchema>

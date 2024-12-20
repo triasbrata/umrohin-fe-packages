@@ -31,6 +31,7 @@ export const useMasterPackageList = (opt?: useMasterPackageListConfig) => {
     queryFn: () => apiServices.masterPackage.getList({ params }),
     refetchOnWindowFocus: false,
     placeholderData,
+    // @ts-ignore
     select: (response) => {
       return apiResponseValidation({
         response,
