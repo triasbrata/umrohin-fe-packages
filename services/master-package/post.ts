@@ -47,6 +47,10 @@ export const PackageCreateItemBodySchema = zfd.formData({
   price_triple: zfd.text(),
   object_wisata: zfd.text().array().optional().nullable(),
   tema_id: zfd.text().optional().nullable(),
+  down_payment: z.number(),
+  dp_expired_date: z.any(),
+  dp_expired_time: z.any(),
+  dp_instruction: z.string(),
 })
 export type PackageCreateItemBody = z.infer<typeof PackageCreateItemBodySchema>
 
@@ -93,6 +97,10 @@ export const PackageCreateItemResultSchema = z.object({
   price_triple: z.string(),
   object_wisata: z.string().array().optional().nullable(),
   tema_id: z.string().optional().nullable(),
+  down_payment: z.string().nullable(),
+  dp_expired_date: z.any().nullable(),
+  dp_expired_time: z.any().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 export type PackageCreateItemResult = z.infer<typeof PackageCreateItemResultSchema>
 

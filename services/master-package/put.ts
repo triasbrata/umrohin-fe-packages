@@ -50,6 +50,10 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   price_triple: zfd.text(),
   object_wisata: zfd.text().array().optional().nullable(),
   tema_id: zfd.text().optional().nullable(),
+  down_payment: z.number().nullable(),
+  dp_expired_date: z.string().nullable(),
+  dp_expired_time: z.string().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 export type PackageUpdateItemBody = z.infer<typeof PackageUpdateItemBodySchema>
 
@@ -96,6 +100,10 @@ export const PackageUpdateItemResultSchema = z.object({
   price_triple: z.string(),
   object_wisata: z.string().array().optional().nullable(),
   tema_id: z.string().optional().nullable(),
+  down_payment: z.string().nullable(),
+  dp_expired_date: z.any().nullable(),
+  dp_expired_time: z.any().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 export type PackageUpdateItemResult = z.infer<typeof PackageUpdateItemResultSchema>
 
