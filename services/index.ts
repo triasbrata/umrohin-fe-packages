@@ -34,6 +34,7 @@ import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
 import * as transactionUmrohPlanner from './transaction-umroh-planner'
 import * as statusHistory from './status-history'
+import * as CSPenempatan from './cs-penempatan'
 
 const apiServices = {
   auth,
@@ -72,6 +73,7 @@ const apiServices = {
   masterBanner,
   transactionHotel,
   statusHistory,
+  CSPenempatan,
 }
 
 export default apiServices
