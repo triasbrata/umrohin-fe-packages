@@ -15,6 +15,7 @@ import {
   UserStar,
   VerifiedUser,
   ViewGrid,
+  HeadsetHelp,
 } from 'iconoir-react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -182,6 +183,21 @@ export const useSidebarMenu = () => {
             key: '/umrohin/internal-user',
             icon: <Group height={24} width={24} />,
             label: <Link href="/umrohin/internal-user">Internal User</Link>,
+          },
+          {
+            key: '/umrohin/cs',
+            icon: <HeadsetHelp height={24} width={24} />,
+            label: 'Tim CS',
+            children: [
+              // {
+              //   key: '/umrohin/customer-service',
+              //   label: <Link href="/umrohin/customer-service">Customer Service</Link>,
+              // },
+              {
+                key: '/umrohin/penempatan',
+                label: <Link href="/umrohin/penempatan">Penempatan</Link>,
+              },
+            ],
           },
         ],
       },

@@ -1,0 +1,4 @@
+export const queryKeyCSPenempatan = {
+  CS_PENEMPATAN_LIST: 'CS_PENEMPATAN_LIST',
+  CS_PENEMPATAN_DETAIL: 'CS_PENEMPATAN_DETAIL',
+}
