@@ -1,4 +1,5 @@
 import * as auth from './auth'
+import * as CSPenempatan from './cs-penempatan'
 import * as customer from './customer'
 import * as customerOrder from './customer-order'
 import * as customerVisa from './customer-visa'
@@ -10,6 +11,7 @@ import * as masterAirport from './master-airport'
 import * as masterBank from './master-bank'
 import * as masterBanner from './master-banner'
 import * as masterCityFlight from './master-city-flight'
+import * as masterPositions from './master-customer-service'
 import * as masterFacility from './master-facility'
 import * as masterFigure from './master-figure'
 import * as masterFlightRoute from './master-flight-route'
@@ -29,12 +31,11 @@ import * as packageFlightTicket from './package-flight-ticket'
 import * as packageHotelVendor from './package-hotel-vendor'
 import * as packageListTicket from './package-list-ticket'
 import * as role from './role'
+import * as statusHistory from './status-history'
 import * as transactionHotel from './transaction-hotel'
 import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
 import * as transactionUmrohPlanner from './transaction-umroh-planner'
-import * as statusHistory from './status-history'
-import * as CSPenempatan from './cs-penempatan'
 
 const apiServices = {
   auth,
@@ -74,6 +75,7 @@ const apiServices = {
   transactionHotel,
   statusHistory,
   CSPenempatan,
+  masterPositions,
 }
 
 export default apiServices

@@ -5,6 +5,7 @@ import {
   City,
   Flower,
   Group,
+  HeadsetHelp,
   Home,
   MediaImageList,
   PathArrow,
@@ -15,7 +16,6 @@ import {
   UserStar,
   VerifiedUser,
   ViewGrid,
-  HeadsetHelp,
 } from 'iconoir-react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -189,10 +189,10 @@ export const useSidebarMenu = () => {
             icon: <HeadsetHelp height={24} width={24} />,
             label: 'Tim CS',
             children: [
-              // {
-              //   key: '/umrohin/customer-service',
-              //   label: <Link href="/umrohin/customer-service">Customer Service</Link>,
-              // },
+              {
+                key: '/umrohin/customer-service',
+                label: <Link href="/umrohin/customer-service">Customer Service</Link>,
+              },
               {
                 key: '/umrohin/penempatan',
                 label: <Link href="/umrohin/penempatan">Penempatan</Link>,
