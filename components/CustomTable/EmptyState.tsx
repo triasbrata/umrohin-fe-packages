@@ -1,6 +1,7 @@
 'use client'
 
 import { Button, ButtonProps, Typography } from 'antd'
+import { Plus } from 'iconoir-react'
 import Image from 'next/image'
 
 type Props = {
@@ -26,9 +27,14 @@ export const EmptyState = (props: Props) => {
       {!isSearch && withButton ? (
         <Button
           type="primary"
-          className="flex items-center rounded-lg text-base font-semibold h-10 mt-8"
+          className="flex items-center rounded-full text-sm font-semibold h-10 mt-8"
+          style={{
+            backgroundColor: '#EE204D',
+            color: '#FFFFFF',
+          }}
           {...restButtonProps}
         >
+          <Plus />
           {text}
         </Button>
       ) : null}

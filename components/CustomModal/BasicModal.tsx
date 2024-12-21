@@ -1,6 +1,6 @@
 'use client'
 
-import { Modal, Typography, Row, Col, Button, ButtonProps } from 'antd'
+import { Button, ButtonProps, Col, Modal, Row, Typography } from 'antd'
 import clsx from 'clsx'
 
 type Props = {
@@ -48,7 +48,7 @@ export const BasicModal = (props: Props) => {
             onClick={onCancel}
             {...cancelButtonProps}
             className={clsx(
-              'flex items-center justify-center rounded-lg text-base font-semibold h-10',
+              'flex items-center justify-center rounded-full text-base font-semibold h-10',
               cancelButtonProps?.className
             )}
           >
@@ -62,9 +62,13 @@ export const BasicModal = (props: Props) => {
             onClick={onSubmit}
             {...submitButtonProps}
             className={clsx(
-              'flex items-center justify-center rounded-lg text-base font-semibold h-10',
+              'flex items-center justify-center rounded-full text-base font-semibold h-10',
               submitButtonProps?.className
             )}
+            style={{
+              backgroundColor: '#EE204D',
+              color: '#FFFFFF',
+            }}
           >
             {submitText}
           </Button>

@@ -22,6 +22,7 @@ export const CSPenempatanListItemSchema = z.object({
   is_active: z.boolean(),
   total_interaction: z.string().nullable(),
   cs_count: z.string(),
+  contacts: z.array(z.any()).optional().nullable(),
 })
 
 export type CSPenempatanListItem = z.infer<typeof CSPenempatanListItemSchema>

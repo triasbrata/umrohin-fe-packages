@@ -1,5 +1,6 @@
 export * from './apiResponseValidation'
-export * from './currencyFormatter'
 export * from './capitalizeFirstLetter'
+export * from './currencyFormatter'
 export * from './dateFormatter'
 export * from './errorHandling'
+export * from './handleInputPhoneNumber'
