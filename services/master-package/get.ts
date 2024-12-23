@@ -32,19 +32,6 @@ export const MasterPackageListItemSchema = z.object({
   featured_image: z.any().nullable(),
   image: z.any().nullable(),
   images: z.any().nullable(),
-  // images: z
-  //   .array(
-  //     z
-  //       .object({
-  //         id: z.string(),
-  //         name: z.string(),
-  //         url: z.string(),
-  //       })
-  //       .nullable()
-  //   )
-  //   .nullable()
-  //   .optional(),
-
   facilities: z
     .array(
       z.object({

@@ -51,6 +51,10 @@ export const PackageHajiUpdateItemBodySchema = zfd.formData({
   price_triple: zfd.text(),
   object_wisata: zfd.text().array().optional().nullable(),
   tema_id: zfd.text().optional().nullable(),
+  down_payment: z.string().nullable(),
+  dp_expired_date: z.any().nullable(),
+  dp_expired_time: z.any().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 export type PackageHajiUpdateItemBody = z.infer<typeof PackageHajiUpdateItemBodySchema>
 
@@ -98,6 +102,10 @@ export const PackageHajiUpdateItemResultSchema = z.object({
   price_triple: z.string(),
   object_wisata: z.string().array().optional().nullable(),
   tema_id: z.string().optional().nullable(),
+  down_payment: z.string().nullable(),
+  dp_expired_date: z.any().nullable(),
+  dp_expired_time: z.any().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 export type PackageHajiUpdateItemResult = z.infer<typeof PackageHajiUpdateItemResultSchema>
 

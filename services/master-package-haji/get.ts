@@ -36,13 +36,14 @@ export const MasterPackageHajiListItemSchema = z.object({
   facilities: z
     .array(
       z.object({
-        id: z.string(),
-        name: z.string(),
+        id: z.string().nullable(),
+        name: z.string().nullable(),
         icon: z.string().nullable(),
         type: z.string().nullable(),
       })
     )
-    .default([]),
+    .default([])
+    .nullable(),
   leaders: z
     .array(
       z
@@ -192,11 +193,11 @@ export const MasterPackageHajiListItemSchema = z.object({
   object_wisata: z
     .array(
       z.object({
-        id: z.string(),
-        name: z.string(),
-        image: z.string(),
-        description: z.string(),
-        is_active: z.boolean(),
+        id: z.string().nullable(),
+        name: z.string().nullable(),
+        image: z.string().nullable(),
+        description: z.string().nullable(),
+        is_active: z.boolean().nullable(),
       })
     )
     .nullable()
@@ -242,6 +243,10 @@ export const MasterPackageHajiListItemSchema = z.object({
       is_deleted: z.boolean(),
     })
     .nullable(),
+  down_payment: z.string().nullable(),
+  dp_expired_date: z.any().nullable(),
+  dp_expired_time: z.any().nullable(),
+  dp_instruction: z.string().nullable(),
 })
 
 export type MasterPackageHajiListItem = z.infer<typeof MasterPackageHajiListItemSchema>
