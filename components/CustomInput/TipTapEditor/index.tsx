@@ -48,7 +48,7 @@ export const TipTapEditor = (props: Props) => {
   return (
     <div className={styles.editor}>
       {editor && !disabled && <MenuBar editor={editor} />}
-      <EditorContent editor={editor} className={styles.editorContent} />
+      <EditorContent editor={editor} className={`${styles.editorContent} editor-content`} />
     </div>
   )
 }
