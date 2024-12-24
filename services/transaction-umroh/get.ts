@@ -60,14 +60,35 @@ export const TransactionUmrohListItemSchema = z.object({
   discount_price: z.string().nullable(),
   booking_id: z.string().nullable(),
   created_at: z.any().nullable(),
+  histories: z
+    .array(
+      z.object({
+        id: z.string().nullable(),
+        order_id: z.string().nullable(),
+        created_at: z.string().nullable(),
+        updated_at: z.string().nullable(),
+        is_paid: z.boolean().nullable(),
+        status_id: z.string().nullable(),
+        status: z
+          .object({
+            id: z.string().nullable(),
+            name: z.string().nullable(),
+            description: z.string().nullable(),
+            order: z.number().nullable(),
+            is_active: z.boolean().nullable(),
+            created_at: z.string().nullable(),
+            updated_at: z.string().nullable(),
+          })
+          .nullable(),
+      })
+    )
+    .nullable(),
 })
-export type TransactionTicketListItem = z.infer<typeof TransactionUmrohListItemSchema>
+export type TransactionUmrohListItem = z.infer<typeof TransactionUmrohListItemSchema>
 
-// Build the schema for the list response using the item schema
 export const TransactionUmrohListResponseSchema = httpGetListResponseSchemaBuilder(TransactionUmrohListItemSchema)
 export type TransactionUmrohListResponse = z.infer<typeof TransactionUmrohListResponseSchema>
 
-// Function to fetch the list of transaction tickets
 export const getList = async <ResponseType = TransactionUmrohListResponse>({
   params,
   options,
@@ -79,7 +100,7 @@ export const getList = async <ResponseType = TransactionUmrohListResponse>({
     params,
     ...options,
     method: 'get',
-    url: '/v1/orders?sort_by=desc&order_by=created_at&type=package',
+    url: '/v1/orders?sort_by=desc&order_by=created_at&type=package&is_haji=false',
   })
   return response?.data
 }
