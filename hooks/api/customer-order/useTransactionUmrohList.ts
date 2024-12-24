@@ -9,6 +9,7 @@ import {
   TransactionUmrohListResponse,
   TransactionUmrohListResponseSchema,
 } from '@apps/packages/services/transaction-umroh'
+import { queryKeyTransactionUmroh } from '@apps/packages/lib/constants/queryKeyTransactionUmroh'
 
 type useTransactionUmrohListConfig = {
   queryKey?: QueryKey
@@ -18,7 +19,7 @@ type useTransactionUmrohListConfig = {
 
 export const useTransactionUmrohList = (opt?: useTransactionUmrohListConfig) => {
   const {
-    queryKey = ['transactionUmrohList'],
+    queryKey = [queryKeyTransactionUmroh.TRANSACTION_UMROH_LIST],
     params = { sort_by: 'asc', order_by: 'created_at', page: 1, page_size: 10 },
     options,
   } = opt ?? {}
