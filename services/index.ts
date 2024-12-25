@@ -35,6 +35,7 @@ import * as statusHistory from './status-history'
 import * as transactionHotel from './transaction-hotel'
 import * as transactionTicket from './transaction-ticket'
 import * as transactionUmroh from './transaction-umroh'
+import * as transactionHaji from './transaction-haji'
 import * as transactionUmrohPlanner from './transaction-umroh-planner'
 
 const apiServices = {
@@ -67,6 +68,7 @@ const apiServices = {
   packageHotelVendor,
   transactionTicket,
   transactionUmroh,
+  transactionHaji,
   transactionUmrohPlanner,
   masterTokoh,
   role,
