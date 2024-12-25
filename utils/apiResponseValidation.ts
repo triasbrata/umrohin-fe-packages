@@ -11,6 +11,6 @@ export const apiResponseValidation = <T>({ response, schema, placeholderData, ur
   const parseData = schema.safeParse(response)
   if (parseData.success) return parseData.data
   console.error(process.env.NODE_ENV === 'development' && url ? `[${url}] INVALID RESPONSE!` : 'INVALID RESPONSE!')
-  console.error({ response, parseData, error: parseData.error })
+  console.error({ response, parseData, error: parseData.error, url })
   return placeholderData
 }

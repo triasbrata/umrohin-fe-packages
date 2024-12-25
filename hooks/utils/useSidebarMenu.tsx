@@ -71,6 +71,11 @@ export const useSidebarMenu = () => {
                 label: <Link href="/customer/umrah">Program Umroh</Link>,
               },
               {
+                key: '/customer/haji',
+                icon: '',
+                label: <Link href="/customer/haji">Program Haji</Link>,
+              },
+              {
                 key: '/customer/visa',
                 icon: '',
                 label: <Link href="/customer/visa">Visa</Link>,
