@@ -38,6 +38,7 @@ import * as transactionUmroh from './transaction-umroh'
 import * as transactionHaji from './transaction-haji'
 import * as transactionUmrohPlanner from './transaction-umroh-planner'
 import * as masterBenefit from './master-benefit'
+import * as masterFAQ from './master-faq'
 
 const apiServices = {
   auth,
@@ -80,6 +81,7 @@ const apiServices = {
   CSPenempatan,
   masterPositions,
   masterBenefit,
+  masterFAQ,
 }
 
 export default apiServices
