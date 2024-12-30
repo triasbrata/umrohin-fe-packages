@@ -9,6 +9,7 @@ export const MasterTokohListParamsSchema = z.object({
   page: z.number().optional(),
   size: z.number().optional(),
   is_deleted: z.boolean().optional(),
+  export_data: z.boolean().optional(),
 })
 export type MasterTokohListParams = z.infer<typeof MasterTokohListParamsSchema>
 
@@ -31,6 +32,8 @@ export const MasterTokohListItemSchema = z.object({
   created_at: z.string().nullable(),
   updated_at: z.string().nullable(),
   type: z.string(),
+  quote: z.string().nullable().optional(),
+  biografi: z.string().nullable().optional(),
 })
 
 export type MasterTokohListItem = z.infer<typeof MasterTokohListItemSchema>

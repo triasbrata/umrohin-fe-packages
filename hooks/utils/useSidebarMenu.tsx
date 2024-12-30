@@ -134,7 +134,17 @@ export const useSidebarMenu = () => {
           {
             key: '/master/tokoh',
             icon: <UserStar height={24} width={24} />,
-            label: <Link href="/master/tokoh">Tokoh</Link>,
+            label: 'Tokoh',
+            children: [
+              {
+                key: '/master/tokoh/list',
+                label: <Link href="/master/tokoh/list">List</Link>,
+              },
+              {
+                key: '/master/tokoh/benefit',
+                label: <Link href="/master/tokoh/benefit">Benefit</Link>,
+              },
+            ],
           },
           // {
           //   key: '/master/tour-leader',

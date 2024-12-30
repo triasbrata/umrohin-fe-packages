@@ -9,6 +9,8 @@ export const TokohCreateItemBodySchema = zfd.formData({
   name: zfd.text(),
   type: zfd.text(),
   featured_image: zfd.file(),
+  quote: z.string(),
+  biografi: z.string(),
 })
 
 export type TokohCreateItemBody = z.infer<typeof TokohCreateItemBodySchema>
@@ -17,6 +19,8 @@ export const TokohCreateItemResultSchema = z.object({
   name: z.string(),
   type: z.string(),
   featured_image: z.string(),
+  quote: z.string(),
+  biografi: z.string(),
 })
 export type TokohCreateItemResult = z.infer<typeof TokohCreateItemResultSchema>
 
