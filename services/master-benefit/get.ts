@@ -10,6 +10,8 @@ export const BenefitListParamsSchema = z.object({
   size: z.number().optional(),
   is_active: z.boolean().optional(),
   is_general: z.boolean().optional(),
+  order_by: z.string().optional(),
+  sort_by: z.enum(['asc', 'desc']).optional(),
 })
 export type BenefitListParams = z.infer<typeof BenefitListParamsSchema>
 
