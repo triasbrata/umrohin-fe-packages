@@ -144,6 +144,10 @@ export const useSidebarMenu = () => {
                 key: '/master/tokoh/benefit',
                 label: <Link href="/master/tokoh/benefit">Benefit</Link>,
               },
+              {
+                key: '/master/tokoh/faq',
+                label: <Link href="/master/tokoh/faq">FAQ</Link>,
+              },
             ],
           },
           // {
