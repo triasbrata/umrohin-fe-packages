@@ -17,6 +17,7 @@ export const CustomerServiceListItemSchema = z.object({
   name: z.string(),
   wa_number: z.string().nullable(),
   visit: z.any(),
+  total_count: z.any(),
   created_at: z.string(),
   updated_at: z.string(),
   is_active: z.boolean(),
@@ -30,6 +31,7 @@ export const CustomerServiceListItemSchema = z.object({
         updated_at: z.string(),
         text_message: z.string(),
         is_active: z.boolean(),
+        visitor_count: z.any(),
       })
     )
     .nullable(),
