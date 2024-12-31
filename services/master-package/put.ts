@@ -27,10 +27,10 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   featured_image: z.any(),
   image: z.array(zfd.file().optional().nullable()).optional(),
   facilities: zfd.text().array().optional(),
-  leaders: zfd.text().array().optional().nullable(),
+  leaders: zfd.repeatableOfType(zfd.text()).optional(),
   partner_id: zfd.text(),
-  hotels: zfd.text().array(),
-  hotels_transit: zfd.text().array(),
+  hotels: zfd.repeatableOfType(zfd.text()),
+  hotels_transit: zfd.repeatableOfType(zfd.text()).optional(),
   flights: z.array(
     z.object({
       urutan: z.string(),
@@ -48,7 +48,7 @@ export const PackageUpdateItemBodySchema = zfd.formData({
   price_quad: zfd.text(),
   price_double: zfd.text(),
   price_triple: zfd.text(),
-  object_wisata: zfd.text().array().optional().nullable(),
+  object_wisata: zfd.repeatableOfType(zfd.text()).optional(),
   tema_id: zfd.text().optional().nullable(),
   down_payment: z.number().nullable(),
   dp_expired_date: z.string().nullable(),
@@ -121,30 +121,46 @@ export const updateItem = async <ResponseType = PackageUpdateItemResponse>({
 }) => {
   const { id } = params
 
-  const formData = new FormData()
+  // const formData = new FormData()
 
-  Object.entries(body).forEach(([key, value]) => {
-    if (!value) return
-    if (key === 'image') {
-      ;(value as File[]).forEach((file) => {
-        formData.append(key, file)
-      })
-    } else if (key === 'flights') {
-      value.forEach((val: Record<string, any>, i: number) => {
-        Object.entries(val).forEach(([key2, value2]) => {
-          if (!value2) return
-          formData.append(`flights[${i}][${key2}]`, value2 as string)
-        })
-      })
-    } else if (Array.isArray(value)) {
-      value.map((val) => formData.append(`${key}[]`, val))
-    } else {
-      formData.append(key, value)
-    }
-  })
+  // Object.entries(body).forEach(([key, value]) => {
+  //   if (key === 'image' && Array.isArray(value)) {
+  //     if (value.length === 0) {
+  //       // Kirim array kosong
+  //       formData.append(key, '[]')
+  //     } else {
+  //       value.forEach((file) => {
+  //         formData.append(key, file)
+  //       })
+  //     }
+  //   } else if (key === 'flights' && Array.isArray(value)) {
+  //     if (value.length === 0) {
+  //       formData.append(key, '[]')
+  //     } else {
+  //       value.forEach((val: Record<string, any>, i: number) => {
+  //         Object.entries(val).forEach(([key2, value2]) => {
+  //           if (!value2) return
+  //           formData.append(`flights[${i}][${key2}]`, value2 as string)
+  //         })
+  //       })
+  //     }
+  //   } else if (Array.isArray(value)) {
+  //     if (value.length === 0) {
+  //       // Jika array kosong, tambahkan nilai kosong
+  //       formData.append(`${key}[]`, '')
+  //     } else {
+  //       value.forEach((val) => formData.append(`${key}[]`, val))
+  //     }
+  //   } else if (value === null || value === undefined) {
+  //     // Skip jika nilai null/undefined
+  //     return
+  //   } else {
+  //     formData.append(key, value)
+  //   }
+  // })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: formData,
+    data: body,
     ...options,
     method: 'put',
     url: `/v1/products/${id}`,
