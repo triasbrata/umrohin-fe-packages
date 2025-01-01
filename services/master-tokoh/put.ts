@@ -12,15 +12,70 @@ export const TokohUpdateItemBodySchema = zfd.formData({
   name: zfd.text(),
   type: zfd.text(),
   featured_image: z.union([zfd.file(), z.string()]),
+  description: zfd.text(),
+  short_description: zfd.text(),
+  instagram: zfd.text(),
+  tiktok: zfd.text(),
+  youtube: zfd.text(),
+  facebook: zfd.text(),
+  twitter: zfd.text(),
+  website: zfd.text(),
+  leaders_testimonials: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
+  leaders_media: z
+    .array(
+      z.object({
+        title: z.string(),
+        image: z.union([zfd.file(), z.any()]),
+        link: z.string(),
+        thumbnail: z.any(),
+      })
+    )
+    .optional()
+    .nullable(),
 })
 export type TokohUpdateItemBody = z.infer<typeof TokohUpdateItemBodySchema>
 
 export const TokohUpdateItemResultSchema = z.object({
   id: z.string(),
-  name: z.string(),
-  type: z.string(),
-  featured_image: z.string(),
-  updated_at: z.string(),
+  name: zfd.text(),
+  type: zfd.text(),
+  featured_image: zfd.file(),
+  description: zfd.text(),
+  short_description: zfd.text(),
+  instagram: zfd.text(),
+  tiktok: zfd.text(),
+  youtube: zfd.text(),
+  facebook: zfd.text(),
+  twitter: zfd.text(),
+  website: zfd.text(),
+  leaders_testimonials: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
+  leaders_media: z
+    .array(
+      z.object({
+        title: z.string(),
+        image: z.union([zfd.file(), z.any()]),
+        link: z.string(),
+        thumbnail: z.any(),
+      })
+    )
+    .optional()
+    .nullable(),
 })
 export type TokohUpdateItemResult = z.infer<typeof TokohUpdateItemResultSchema>
 
@@ -37,13 +92,9 @@ export const updateItem = async <ResponseType = TokohUpdateItemResponse>({
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
-  const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => {
-    if (typeof value === 'object') formData.append(key, value)
-    else formData.append(key, value.toString())
-  })
+
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: formData,
+    data: body,
     ...options,
     method: 'put',
     url: `/v1/tokoh/${id}`,

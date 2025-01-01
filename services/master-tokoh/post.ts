@@ -9,18 +9,69 @@ export const TokohCreateItemBodySchema = zfd.formData({
   name: zfd.text(),
   type: zfd.text(),
   featured_image: zfd.file(),
-  quote: z.string(),
-  biografi: z.string(),
+  description: zfd.text(),
+  short_description: zfd.text(),
+  instagram: zfd.text(),
+  tiktok: zfd.text(),
+  youtube: zfd.text(),
+  facebook: zfd.text(),
+  twitter: zfd.text(),
+  website: zfd.text(),
+  leaders_testimonials: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
+  leaders_media: z
+    .array(
+      z.object({
+        title: z.string(),
+        image: z.union([zfd.file(), z.any()]),
+        link: z.string(),
+        thumbnail: z.any(),
+      })
+    )
+    .optional()
+    .nullable(),
 })
 
 export type TokohCreateItemBody = z.infer<typeof TokohCreateItemBodySchema>
 
 export const TokohCreateItemResultSchema = z.object({
-  name: z.string(),
-  type: z.string(),
-  featured_image: z.string(),
-  quote: z.string(),
-  biografi: z.string(),
+  name: z.string().nullable(),
+  type: z.string().nullable(),
+  featured_image: z.any().nullable(),
+  description: z.string().nullable(),
+  short_description: z.string().nullable(),
+  instagram: z.string().nullable(),
+  tiktok: z.string().nullable(),
+  youtube: z.string().nullable(),
+  facebook: z.string().nullable(),
+  twitter: z.string().nullable(),
+  website: z.string().nullable(),
+  leaders_testimonials: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
+  leaders_media: z
+    .array(
+      z.object({
+        title: z.string(),
+        image: z.any(),
+        link: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
 })
 export type TokohCreateItemResult = z.infer<typeof TokohCreateItemResultSchema>
 
@@ -34,14 +85,8 @@ export const createTokohItem = async <ResponseType = TokohCreateItemResponse>({
   body: TokohCreateItemBody
   options?: AxiosRequestConfig
 }) => {
-  const formData = new FormData()
-  Object.entries(body).forEach(([key, value]) => {
-    if (typeof value === 'object') formData.append(key, value)
-    else formData.append(key, value.toString())
-  })
-
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: formData,
+    data: body,
     ...options,
     method: 'post',
     url: '/v1/tokoh',

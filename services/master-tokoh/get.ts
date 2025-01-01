@@ -18,22 +18,38 @@ export const MasterTokohListItemSchema = z.object({
   name: z.string(),
   featured_image: z.string().nullable(),
   short_description: z.string().nullable(),
-  description: z.string().nullable(),
   year_experience: z.number().nullable(),
-  // price: z
-  //   .string()
-  //   .nullable()
-  //   .transform((val) => (val ? parseFloat(val) : null)),
-  // discount: z
-  //   .string()
-  //   .nullable()
-  //   .transform((val) => (val ? parseFloat(val) : null)),
   status: z.string().nullable(),
   created_at: z.string().nullable(),
   updated_at: z.string().nullable(),
   type: z.string(),
-  quote: z.string().nullable().optional(),
+  description: z.string().nullable().optional(),
   biografi: z.string().nullable().optional(),
+  instagram: z.string().nullable(),
+  tiktok: z.string().nullable(),
+  youtube: z.string().nullable(),
+  facebook: z.string().nullable(),
+  twitter: z.string().nullable(),
+  website: z.string().nullable(),
+  testimonials: z
+    .array(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
+  media: z
+    .array(
+      z.object({
+        title: z.string(),
+        image: z.string(),
+        link: z.string(),
+      })
+    )
+    .optional()
+    .nullable(),
 })
 
 export type MasterTokohListItem = z.infer<typeof MasterTokohListItemSchema>
