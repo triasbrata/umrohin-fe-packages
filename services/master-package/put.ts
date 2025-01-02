@@ -8,29 +8,29 @@ import { apiCall } from '../apiService'
 export const PackageUpdateItemParamsSchema = z.object({ id: z.string().optional() })
 export type PackageUpdateItemParams = z.infer<typeof PackageUpdateItemParamsSchema>
 
-export const PackageUpdateItemBodySchema = zfd.formData({
-  name: zfd.text(),
-  day: zfd.text(),
-  night: zfd.text(),
-  hotel_name: zfd.text(),
-  bedroom: zfd.text(),
-  short_description: zfd.text(),
-  description: zfd.text(),
-  airport_departure: zfd.text().optional().nullable(),
+export const PackageUpdateItemBodySchema = z.object({
+  name: z.string(),
+  day: z.string(),
+  night: z.string(),
+  hotel_name: z.string(),
+  bedroom: z.string().optional().nullable(),
+  short_description: z.string(),
+  description: z.string(),
+  airport_departure: z.string().optional().nullable(),
   date_departure: z.any(),
   date_arrived: z.any(),
-  capacity: zfd.text().optional().nullable(),
-  price: zfd.text(),
-  discount: zfd.text(),
-  discount_price: zfd.text(),
-  status: zfd.text(),
+  capacity: z.string().optional().nullable(),
+  price: z.string(),
+  discount: z.string(),
+  discount_price: z.string(),
+  status: z.string(),
   featured_image: z.any(),
-  image: z.array(zfd.file().optional().nullable()).optional(),
-  facilities: zfd.text().array().optional(),
-  leaders: zfd.repeatableOfType(zfd.text()).optional(),
-  partner_id: zfd.text(),
-  hotels: zfd.repeatableOfType(zfd.text()),
-  hotels_transit: zfd.repeatableOfType(zfd.text()).optional(),
+  image: z.array(z.any().optional().nullable()).optional().nullable(),
+  facilities: z.string().array().optional().nullable(),
+  leaders: z.array(z.string()).optional().nullable(),
+  partner_id: z.string(),
+  hotels: z.array(z.string()),
+  hotels_transit: z.array(z.string()).optional(),
   flights: z.array(
     z.object({
       urutan: z.string(),
@@ -44,16 +44,17 @@ export const PackageUpdateItemBodySchema = zfd.formData({
       bagage_cabin: z.number().optional().nullable(),
     })
   ),
-  highlight: zfd.text(),
-  price_quad: zfd.text(),
-  price_double: zfd.text(),
-  price_triple: zfd.text(),
-  object_wisata: zfd.repeatableOfType(zfd.text()).optional(),
-  tema_id: zfd.text().optional().nullable(),
-  down_payment: z.number().nullable(),
-  dp_expired_date: z.string().nullable(),
-  dp_expired_time: z.string().nullable(),
-  dp_instruction: z.string().nullable(),
+  highlight: z.string(),
+  price_quad: z.string(),
+  price_double: z.string(),
+  price_triple: z.string(),
+  object_wisata: z.array(z.string()).optional().nullable(),
+  tema_id: z.string().optional().nullable(),
+  down_payment: z.number().optional().nullable(),
+  dp_expired_date: z.string().optional().nullable(),
+  dp_expired_time: z.string().optional().nullable(),
+  dp_instruction: z.string().optional().nullable(),
+  with_dp: z.boolean(),
 })
 export type PackageUpdateItemBody = z.infer<typeof PackageUpdateItemBodySchema>
 
@@ -76,11 +77,11 @@ export const PackageUpdateItemResultSchema = z.object({
   status: z.string(),
   featured_image: z.any(),
   image: z.any().optional().nullable(),
-  facilities: z.string().array(),
-  leaders: z.string().array().optional().nullable(),
+  facilities: z.array(z.string()).optional().nullable(),
+  leaders: z.array(z.string()).optional().nullable(),
   partner_id: z.string(),
-  hotels: z.string().array(),
-  hotels_transit: z.string().array(),
+  hotels: z.array(z.string()).optional().nullable(),
+  hotels_transit: z.array(z.string()).optional().nullable(),
   flights: z.array(
     z.object({
       urutan: z.string(),
@@ -104,6 +105,7 @@ export const PackageUpdateItemResultSchema = z.object({
   dp_expired_date: z.any().nullable(),
   dp_expired_time: z.any().nullable(),
   dp_instruction: z.string().nullable(),
+  with_dp: z.boolean().nullable(),
 })
 export type PackageUpdateItemResult = z.infer<typeof PackageUpdateItemResultSchema>
 
@@ -120,44 +122,6 @@ export const updateItem = async <ResponseType = PackageUpdateItemResponse>({
   options?: AxiosRequestConfig
 }) => {
   const { id } = params
-
-  // const formData = new FormData()
-
-  // Object.entries(body).forEach(([key, value]) => {
-  //   if (key === 'image' && Array.isArray(value)) {
-  //     if (value.length === 0) {
-  //       // Kirim array kosong
-  //       formData.append(key, '[]')
-  //     } else {
-  //       value.forEach((file) => {
-  //         formData.append(key, file)
-  //       })
-  //     }
-  //   } else if (key === 'flights' && Array.isArray(value)) {
-  //     if (value.length === 0) {
-  //       formData.append(key, '[]')
-  //     } else {
-  //       value.forEach((val: Record<string, any>, i: number) => {
-  //         Object.entries(val).forEach(([key2, value2]) => {
-  //           if (!value2) return
-  //           formData.append(`flights[${i}][${key2}]`, value2 as string)
-  //         })
-  //       })
-  //     }
-  //   } else if (Array.isArray(value)) {
-  //     if (value.length === 0) {
-  //       // Jika array kosong, tambahkan nilai kosong
-  //       formData.append(`${key}[]`, '')
-  //     } else {
-  //       value.forEach((val) => formData.append(`${key}[]`, val))
-  //     }
-  //   } else if (value === null || value === undefined) {
-  //     // Skip jika nilai null/undefined
-  //     return
-  //   } else {
-  //     formData.append(key, value)
-  //   }
-  // })
 
   const response: AxiosResponse<ResponseType> = await apiCall({
     data: body,

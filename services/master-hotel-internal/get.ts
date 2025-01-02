@@ -8,7 +8,12 @@ export const MasterHotelInternalListParamsSchema = z.object({
   search: z.string().optional(),
   page: z.number().optional(),
   size: z.number().optional(),
+  export_data: z.boolean().optional(),
   is_deleted: z.boolean().optional(),
+  is_default: z.boolean().optional(),
+  is_nondefault: z.boolean().optional(),
+  sort_by: z.string().optional(),
+  order_by: z.string().optional(),
 })
 export type MasterHotelInternalListParams = z.infer<typeof MasterHotelInternalListParamsSchema>
 

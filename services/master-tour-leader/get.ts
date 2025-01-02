@@ -9,93 +9,23 @@ export const MasterTourLeaderListParamsSchema = z.object({
   page: z.number().optional(),
   size: z.number().optional(),
   is_deleted: z.boolean().optional(),
+  export_data: z.boolean().optional(),
+  status: z.string().optional(),
+  is_active: z.boolean().optional(),
+  sort_by: z.string().optional(),
+  order_by: z.string().optional(),
 })
 export type MasterTourLeaderListParams = z.infer<typeof MasterTourLeaderListParamsSchema>
-
-export const ProductSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  featured_image: z.string().nullable(),
-  day: z.string(),
-  night: z.string(),
-  hotel_name: z.string(),
-  bedroom: z.string(),
-  short_description: z.string(),
-  description: z.string(),
-  ittenary: z.string(),
-  airport_departure: z.string(),
-  date_departure: z.string(),
-  date_arrived: z.string(),
-  capacity: z.string().transform((val) => parseFloat(val)),
-  price: z.string().transform((val) => parseFloat(val)),
-  discount: z.string().transform((val) => parseFloat(val)),
-  discount_price: z.string().transform((val) => parseFloat(val)),
-  status: z.string(),
-  created_at: z.string(),
-  updated_at: z.string(),
-  partner_id: z.string(),
-  price_quad: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  price_double: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  price_triple: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount_quad: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount_double: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount_triple: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount_price_quad: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount_price_double: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  discount_price_triple: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  promo_type: z.string(),
-  highlight: z.boolean(),
-  others_fee: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  tax_percentage: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  tax_price: z
-    .string()
-    .nullable()
-    .transform((val) => (val ? parseFloat(val) : null)),
-  tema_id: z.string().nullable(),
-})
 
 export const MasterTourLeaderListItemSchema = z.object({
   id: z.string(),
   name: z.string(),
-  short_description: z.string(),
-  description: z.string().optional(),
+  short_description: z.string().nullable(),
+  description: z.string().nullable(),
   year_experience: z.number().nullable(),
-  price: z.string().transform((val) => parseFloat(val)),
-  discount: z.string().transform((val) => parseFloat(val)),
-  status: z.string(),
+  price: z.string().nullable(),
+  discount: z.string().nullable(),
+  status: z.string().nullable(),
   featured_image: z.string(),
   images: z.array(
     z.object({
@@ -104,10 +34,10 @@ export const MasterTourLeaderListItemSchema = z.object({
       url: z.string(),
     })
   ),
-  skills: z.array(z.string()),
-  languages: z.array(z.string()),
-  type: z.string(),
-  products: z.array(ProductSchema),
+  skills: z.array(z.string()).nullable(),
+  languages: z.array(z.string()).nullable(),
+  type: z.string().nullable(),
+  products: z.array(z.any()).nullable(),
 })
 
 export type MasterTourLeaderListItem = z.infer<typeof MasterTourLeaderListItemSchema>

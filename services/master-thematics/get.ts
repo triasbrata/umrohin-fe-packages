@@ -9,6 +9,10 @@ export const ThematicListParamsSchema = z.object({
   page: z.number().optional(),
   size: z.number().optional(),
   is_deleted: z.boolean().optional(),
+  export_data: z.boolean().optional(),
+  is_active: z.boolean().optional(),
+  sort_by: z.string().optional(),
+  order_by: z.string().optional(),
 })
 export type ThematicListParams = z.infer<typeof ThematicListParamsSchema>
 

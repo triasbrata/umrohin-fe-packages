@@ -10,6 +10,8 @@ export const MasterAirlinesListParamsSchema = z.object({
   size: z.number().optional(),
   export_data: z.boolean().optional(),
   is_deleted: z.boolean().optional(),
+  sort_by: z.string().optional(),
+  order_by: z.string().optional(),
 })
 export type MasterAirlinesListParams = z.infer<typeof MasterAirlinesListParamsSchema>
 

@@ -40,6 +40,7 @@ import * as transactionUmrohPlanner from './transaction-umroh-planner'
 import * as masterBenefit from './master-benefit'
 import * as masterFAQ from './master-faq'
 import * as masterStatusHistory from './master-status-history'
+import * as masterObjekWisata from './master-objek-wisata'
 
 const apiServices = {
   auth,
@@ -84,6 +85,7 @@ const apiServices = {
   masterBenefit,
   masterFAQ,
   masterStatusHistory,
+  masterObjekWisata,
 }
 
 export default apiServices
