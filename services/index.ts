@@ -39,6 +39,7 @@ import * as transactionHaji from './transaction-haji'
 import * as transactionUmrohPlanner from './transaction-umroh-planner'
 import * as masterBenefit from './master-benefit'
 import * as masterFAQ from './master-faq'
+import * as masterStatusHistory from './master-status-history'
 
 const apiServices = {
   auth,
@@ -82,6 +83,7 @@ const apiServices = {
   masterPositions,
   masterBenefit,
   masterFAQ,
+  masterStatusHistory,
 }
 
 export default apiServices
