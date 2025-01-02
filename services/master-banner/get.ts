@@ -15,10 +15,10 @@ export type BannerListParams = z.infer<typeof BannerListParamsSchema>
 export const BannerListItemSchema = z.object({
   id: z.string(),
   name: z.string(),
-  description: z.string(),
-  image: z.string(),
-  title: z.string(),
-  link: z.string(),
+  description: z.string()?.nullable(),
+  image: z.string()?.nullable(),
+  title: z.string()?.nullable(),
+  link: z.string()?.nullable(),
   is_active: z.boolean(),
 })
 export type BannerListItem = z.infer<typeof BannerListItemSchema>

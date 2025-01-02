@@ -19,7 +19,7 @@ export const TableData = (props: Props) => {
         <Table
           rowClassName="align-top"
           {...tableProps}
-          scroll={{ y: 'calc(100vh - 400px)', ...tableProps.scroll }}
+          scroll={{ y: 'calc(100vh - 310px)', ...tableProps.scroll }}
           pagination={false}
         />
       </div>
