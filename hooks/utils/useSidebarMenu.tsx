@@ -9,6 +9,7 @@ import {
   Home,
   MediaImageList,
   PathArrow,
+  RefreshDouble,
   SeaAndSun,
   UserBag,
   UserCart,
@@ -150,11 +151,6 @@ export const useSidebarMenu = () => {
               },
             ],
           },
-          // {
-          //   key: '/master/tour-leader',
-          //   icon: <UserStar height={24} width={24} />,
-          //   label: <Link href="/master/tour-leader">Pembimbing</Link>,
-          // },,,
           {
             key: '/master/provider',
             icon: <UserBag height={24} width={24} />,
@@ -190,6 +186,11 @@ export const useSidebarMenu = () => {
             key: '/master/banner',
             icon: <MediaImageList height={24} width={24} />,
             label: <Link href="/master/banner">Banner</Link>,
+          },
+          {
+            key: '/master/status-history',
+            icon: <RefreshDouble height={24} width={24} />,
+            label: <Link href="/master/status-history">Status History</Link>,
           },
         ],
       },
