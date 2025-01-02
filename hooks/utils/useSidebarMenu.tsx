@@ -1,3 +1,4 @@
+import CustomKaabaIcon from '@apps/assets/icons/CustomKaabaIcon'
 import { MenuDividerType, MenuItemGroupType } from 'antd/es/menu/hooks/useItems'
 import {
   Airplane,
@@ -102,7 +103,7 @@ export const useSidebarMenu = () => {
           },
           {
             key: '/package/package-haji',
-            icon: <LiaKaabaSolid size={24} />,
+            icon: <CustomKaabaIcon />,
             label: <Link href="/package/package-haji">Program Haji</Link>,
           },
           {

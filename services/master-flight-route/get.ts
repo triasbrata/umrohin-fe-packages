@@ -14,7 +14,38 @@ export const MasterFlightRouteListParamsSchema = z.object({
   sort_by: z.string().optional(),
   order_by: z.string().optional(),
 })
+
 export type MasterFlightRouteListParams = z.infer<typeof MasterFlightRouteListParamsSchema>
+
+const CitySchema = z.object({
+  id: z.string(),
+  code: z.string(),
+  name: z.string(),
+  created_at: z.string(),
+  updated_at: z.string(),
+  is_custom: z.boolean().optional(),
+})
+
+const AirportSchema = z.object({
+  id: z.string(),
+  country_id: z.string(),
+  city_id: z.string().nullable(),
+  code: z.string(),
+  city_name: z.string(),
+  area_code: z.string(),
+  timezone: z.string(),
+  international_name: z.string(),
+  airport_code: z.string(),
+  local_name: z.string(),
+  local_city: z.string().nullable(),
+  country_code: z.string(),
+  country_vendor_id: z.string(),
+  is_active: z.boolean(),
+  created_at: z.string(),
+  updated_at: z.string(),
+  city_flight_id: z.string().nullable(),
+  is_custom: z.boolean().optional(),
+})
 
 export const MasterFlightRouteListItemSchema = z.object({
   id: z.string(),
@@ -25,56 +56,10 @@ export const MasterFlightRouteListItemSchema = z.object({
   is_active: z.boolean(),
   created_at: z.string(),
   updated_at: z.string(),
-  city_from: z.object({
-    id: z.string(),
-    code: z.string(),
-    name: z.string(),
-    created_at: z.string(),
-    updated_at: z.string(),
-  }),
-  city_to: z.object({
-    id: z.string(),
-    code: z.string(),
-    name: z.string(),
-    created_at: z.string(),
-    updated_at: z.string(),
-  }),
-  airport_from: z.object({
-    id: z.string(),
-    country_id: z.string(),
-    city_id: z.string().nullable(),
-    code: z.string(),
-    city_name: z.string(),
-    area_code: z.string(),
-    timezone: z.string(),
-    international_name: z.string(),
-    airport_code: z.string(),
-    local_name: z.string(),
-    local_city: z.string().nullable(),
-    country_code: z.string(),
-    country_vendor_id: z.string(),
-    is_active: z.boolean(),
-    created_at: z.string(),
-    updated_at: z.string(),
-  }),
-  airport_to: z.object({
-    id: z.string(),
-    country_id: z.string(),
-    city_id: z.string().nullable(),
-    code: z.string(),
-    city_name: z.string(),
-    area_code: z.string(),
-    timezone: z.string(),
-    international_name: z.string(),
-    airport_code: z.string(),
-    local_name: z.string(),
-    local_city: z.string().nullable(),
-    country_code: z.string(),
-    country_vendor_id: z.string(),
-    is_active: z.boolean(),
-    created_at: z.string(),
-    updated_at: z.string(),
-  }),
+  city_from: CitySchema.nullable(),
+  city_to: CitySchema.nullable(),
+  airport_from: AirportSchema.nullable(),
+  airport_to: AirportSchema.nullable(),
 })
 
 export type MasterFlightRouteListItem = z.infer<typeof MasterFlightRouteListItemSchema>
@@ -95,5 +80,13 @@ export const getList = async <ResponseType = MasterFlightRouteListResponse>({
     method: 'get',
     url: '/v1/flights_route',
   })
-  return response?.data
+
+  try {
+    MasterFlightRouteListResponseSchema.parse(response.data)
+  } catch (e) {
+    console.error('Validation error:', e)
+    throw new Error('Data format does not match schema.')
+  }
+
+  return response.data
 }
