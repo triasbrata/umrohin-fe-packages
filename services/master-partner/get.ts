@@ -10,6 +10,10 @@ export const MasterPartnerListParamsSchema = z.object({
   size: z.number().optional(),
   verification_status: z.string().optional(),
   is_deleted: z.boolean().optional(),
+  export_data: z.boolean().optional(),
+  order_by: z.string().optional(),
+  sort_by: z.string().optional(),
+  status: z.string().optional(),
 })
 export type MasterPartnerListParams = z.infer<typeof MasterPartnerListParamsSchema>
 

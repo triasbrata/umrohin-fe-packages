@@ -246,6 +246,7 @@ export const MasterPackageListItemSchema = z.object({
   dp_expired_date: z.any().nullable(),
   dp_expired_time: z.any().nullable(),
   dp_instruction: z.string().nullable(),
+  with_dp: z.boolean().nullable(),
 })
 
 export type MasterPackageListItem = z.infer<typeof MasterPackageListItemSchema>
