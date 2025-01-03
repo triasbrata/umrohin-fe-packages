@@ -37,7 +37,8 @@ export const MasterTokohListItemSchema = z.object({
     .array(
       z.object({
         name: z.string(),
-        description: z.string(),
+        description: z.string().nullable(),
+        description_html: z.string().nullable(),
       })
     )
     .optional()
