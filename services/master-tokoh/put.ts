@@ -23,7 +23,7 @@ export const TokohUpdateItemBodySchema = z.object({
     .array(
       z.object({
         name: z.string(),
-        description: z.string(),
+        description_html: z.string(),
       })
     )
     .optional()
