@@ -1,25 +1,24 @@
 import { HttpBaseResponseMetaSchema, httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
-import { zfd } from 'zod-form-data'
 
 import { apiCall } from '../apiService'
 
 export const TokohUpdateItemParamsSchema = z.object({ id: z.string().optional() })
 export type TokohUpdateItemParams = z.infer<typeof TokohUpdateItemParamsSchema>
 
-export const TokohUpdateItemBodySchema = zfd.formData({
-  name: zfd.text(),
-  type: zfd.text(),
-  featured_image: z.union([zfd.file(), z.string()]),
-  description: zfd.text(),
-  short_description: zfd.text(),
-  instagram: zfd.text(),
-  tiktok: zfd.text(),
-  youtube: zfd.text(),
-  facebook: zfd.text(),
-  twitter: zfd.text(),
-  website: zfd.text(),
+export const TokohUpdateItemBodySchema = z.object({
+  name: z.string(),
+  type: z.string(),
+  featured_image: z.union([z.any(), z.string()]),
+  description_html: z.string(),
+  short_html: z.string(),
+  instagram: z.string(),
+  tiktok: z.string(),
+  youtube: z.string(),
+  facebook: z.string(),
+  twitter: z.string(),
+  website: z.string(),
   leaders_testimonials: z
     .array(
       z.object({
@@ -33,7 +32,7 @@ export const TokohUpdateItemBodySchema = zfd.formData({
     .array(
       z.object({
         title: z.string(),
-        image: z.union([zfd.file(), z.any()]),
+        image: z.string(),
         link: z.string(),
         thumbnail: z.any(),
       })
@@ -45,17 +44,17 @@ export type TokohUpdateItemBody = z.infer<typeof TokohUpdateItemBodySchema>
 
 export const TokohUpdateItemResultSchema = z.object({
   id: z.string(),
-  name: zfd.text(),
-  type: zfd.text(),
-  featured_image: zfd.file(),
-  description: zfd.text(),
-  short_description: zfd.text(),
-  instagram: zfd.text(),
-  tiktok: zfd.text(),
-  youtube: zfd.text(),
-  facebook: zfd.text(),
-  twitter: zfd.text(),
-  website: zfd.text(),
+  name: z.string(),
+  type: z.string(),
+  featured_image: z.any(),
+  description: z.string(),
+  short_description: z.string(),
+  instagram: z.string(),
+  tiktok: z.string(),
+  youtube: z.string(),
+  facebook: z.string(),
+  twitter: z.string(),
+  website: z.string(),
   leaders_testimonials: z
     .array(
       z.object({
@@ -69,7 +68,7 @@ export const TokohUpdateItemResultSchema = z.object({
     .array(
       z.object({
         title: z.string(),
-        image: z.union([zfd.file(), z.any()]),
+        image: z.string(),
         link: z.string(),
         thumbnail: z.any(),
       })
@@ -109,7 +108,7 @@ export const updateItem = async <ResponseType = TokohUpdateItemResponse>({
 export const MasterTokohActivationItemParamsSchema = z.object({ id: z.string().optional() })
 export type MasterTokohActivationItemParams = z.infer<typeof MasterTokohActivationItemParamsSchema>
 
-export const MasterTokohActivationItemBodySchema = zfd.formData({ status: z.string() })
+export const MasterTokohActivationItemBodySchema = z.object({ status: z.string() })
 export type MasterTokohActivationItemBody = z.infer<typeof MasterTokohActivationItemBodySchema>
 
 export const MasterTokohActivationItemResponseSchema = HttpBaseResponseMetaSchema
