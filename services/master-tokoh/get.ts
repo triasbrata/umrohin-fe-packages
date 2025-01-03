@@ -31,6 +31,8 @@ export const MasterTokohListItemSchema = z.object({
   facebook: z.string().nullable(),
   twitter: z.string().nullable(),
   website: z.string().nullable(),
+  description_html: z.string().nullable(),
+  short_html: z.string().nullable(),
   testimonials: z
     .array(
       z.object({

@@ -1,22 +1,21 @@
 import { httpGetDetailResponseSchemaBuilder } from '@apps/packages/services/BaseResponse'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { z } from 'zod'
-import { zfd } from 'zod-form-data'
 
 import { apiCall } from '../apiService'
 
-export const TokohCreateItemBodySchema = zfd.formData({
-  name: zfd.text(),
-  type: zfd.text(),
-  featured_image: zfd.file(),
-  description: zfd.text(),
-  short_description: zfd.text(),
-  instagram: zfd.text(),
-  tiktok: zfd.text(),
-  youtube: zfd.text(),
-  facebook: zfd.text(),
-  twitter: zfd.text(),
-  website: zfd.text(),
+export const TokohCreateItemBodySchema = z.object({
+  name: z.string(),
+  type: z.string(),
+  featured_image: z.any(),
+  description_html: z.string(),
+  short_html: z.string(),
+  instagram: z.string(),
+  tiktok: z.string(),
+  youtube: z.string(),
+  facebook: z.string(),
+  twitter: z.string(),
+  website: z.string(),
   leaders_testimonials: z
     .array(
       z.object({
@@ -30,7 +29,7 @@ export const TokohCreateItemBodySchema = zfd.formData({
     .array(
       z.object({
         title: z.string(),
-        image: z.union([zfd.file(), z.any()]),
+        image: z.string(),
         link: z.string(),
         thumbnail: z.any(),
       })
