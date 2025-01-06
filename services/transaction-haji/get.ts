@@ -60,6 +60,7 @@ export const TransactionHajiListItemSchema = z.object({
   discount_price: z.string().nullable(),
   booking_id: z.string().nullable(),
   created_at: z.any().nullable(),
+  with_dp: z.boolean().nullable(),
   histories: z
     .array(
       z.object({
