@@ -124,8 +124,30 @@ export const updateItem = async <ResponseType = PackageHajiUpdateItemResponse>({
 }) => {
   const { id } = params
 
+  const formData = new FormData()
+
+  Object.entries(body).forEach(([key, value]) => {
+    if (!value) return
+    if (key === 'image') {
+      ;(value as File[]).forEach((file) => {
+        formData.append(key, file)
+      })
+    } else if (key === 'flights') {
+      value.forEach((val: Record<string, any>, i: number) => {
+        Object.entries(val).forEach(([key2, value2]) => {
+          if (!value2) return
+          formData.append(`flights[${i}][${key2}]`, value2 as string)
+        })
+      })
+    } else if (Array.isArray(value)) {
+      value.map((val) => formData.append(`${key}[]`, val))
+    } else {
+      formData.append(key, value)
+    }
+  })
+
   const response: AxiosResponse<ResponseType> = await apiCall({
-    data: body,
+    data: formData,
     ...options,
     method: 'put',
     url: `/v1/products_haji/${id}`,
