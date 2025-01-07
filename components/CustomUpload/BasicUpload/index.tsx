@@ -7,12 +7,13 @@ import { useEffect, useState } from 'react'
 
 import styles from './BasicUpload.module.css'
 
-export const BasicUpload = ({ id, ...props }: DraggerProps) => {
+export const BasicUpload = ({ id, maxCount, ...props }: DraggerProps) => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
 
   useEffect(() => {
-    if (!props.fileList?.length) return
-    setFileList(props.fileList)
+    if (props.fileList) {
+      setFileList(props.fileList)
+    }
   }, [props.fileList])
 
   return (
@@ -21,13 +22,15 @@ export const BasicUpload = ({ id, ...props }: DraggerProps) => {
       showUploadList={{ showPreviewIcon: false }}
       beforeUpload={() => false}
       className={styles.basicUpload}
+      fileList={fileList}
       {...props}
       onChange={(value) => {
-        props.onChange?.(value)
         setFileList(value.fileList)
+        props.onChange?.(value)
       }}
     >
-      {(props.multiple || fileList.length < 1) && (
+      {/* Tombol upload hanya muncul jika jumlah file < maxCount */}
+      {fileList.length < (maxCount || Infinity) && (
         <Flex
           id={id}
           align="center"
